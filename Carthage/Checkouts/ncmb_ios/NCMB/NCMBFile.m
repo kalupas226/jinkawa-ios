@@ -330,7 +330,7 @@ static NSMutableData *resultData = nil;
                         self.file = responseData;
                     }
                     if(resultBlock){
-                        resultBlock(self.file,errorBlock);
+                        resultBlock(responseData,errorBlock);
                     }
                 }];
             }else{
