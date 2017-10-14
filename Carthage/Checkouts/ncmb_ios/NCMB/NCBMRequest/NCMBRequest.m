@@ -78,7 +78,13 @@ static NSString *const signatureVersion   = @"SignatureVersion=2";
 }
 
 +(NSString *)returnEncodedString:(NSString *)originalString {
-    NSString *escapedStr = [originalString stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@":/?#[]@!$&'()*+,;=\"<>\\%^`{|} \b\t\n\a\r"] invertedSet]];
+    CFStringRef escapedStrRef = CFURLCreateStringByAddingPercentEscapes(
+                                                                        NULL,
+                                                                        (__bridge CFStringRef)originalString,
+                                                                        NULL,
+                                                                        CFSTR(":/?#[]@!$&'()*+,;="),
+                                                                        kCFStringEncodingUTF8 );
+    NSString *escapedStr = CFBridgingRelease(escapedStrRef);
     return escapedStr;
 }
 

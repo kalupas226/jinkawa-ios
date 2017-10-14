@@ -107,6 +107,17 @@ typedef enum : NSInteger {
     return self;
 }
 
+- (NSString*)percentEscape:(NSString*)str{
+    CFStringRef escapedStrRef = CFURLCreateStringByAddingPercentEscapes(
+                                                                   NULL,
+                                                                   (__bridge CFStringRef)str,
+                                                                   NULL,
+                                                                   (__bridge CFStringRef)@"!*();@+,%#\"",
+                                                                   kCFStringEncodingUTF8 );
+    NSString *escapedStr = CFBridgingRelease(escapedStrRef);
+    return escapedStr;
+}
+
 
 #pragma mark request
 
@@ -130,9 +141,9 @@ typedef enum : NSInteger {
  @return NSMutableURLRequest型リクエスト
  */
 - (NSMutableURLRequest *)createRequest {
-    self.query = [self.query stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"#[]@!()*+,;\"<>\\%^`{|} \b\t\n\a\r"] invertedSet]];
+    self.query = [self percentEscape:self.query];
     [self createSignature];
-    self.path = [self.path stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"#[]@!()*+,;\"<>\\%^`{|} \b\t\n\a\r"] invertedSet]];
+    self.path = [self percentEscape:self.path];
     
     //url生成
     NSString *endPointStr = [self returnEndPoint];

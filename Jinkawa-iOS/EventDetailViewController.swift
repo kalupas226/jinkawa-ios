@@ -18,6 +18,8 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //空のセルの境界線を消す
+        detailTable.tableFooterView = UIView(frame: .zero)
         print(event.name)
         
         detailTable.delegate = self
