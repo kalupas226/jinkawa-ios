@@ -14,6 +14,9 @@ class EntryViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         form
             +++ Section("申し込み情報")
             <<< NameRow("NameRowTag") {

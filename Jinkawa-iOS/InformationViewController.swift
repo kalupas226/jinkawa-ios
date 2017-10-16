@@ -16,6 +16,9 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         informationListView.delegate = self
         informationListView.dataSource = self
         
