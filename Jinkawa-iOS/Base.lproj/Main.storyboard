@@ -139,7 +139,7 @@
                             <constraint firstAttribute="trailing" secondItem="r3g-2h-OAR" secondAttribute="trailing" id="fR9-uo-t2D"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="お知らせ" id="wyD-Z9-1ov"/>
+                    <tabBarItem key="tabBarItem" title="お知らせ" image="ic_feedback_36pt_2x" id="wyD-Z9-1ov"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpL-pG-vgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -247,7 +247,7 @@
                             <constraint firstItem="Wto-7w-FDy" firstAttribute="leading" secondItem="Wzp-c4-wme" secondAttribute="leading" id="iho-7V-6Me"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="設定" id="KhN-TI-n2k"/>
+                    <tabBarItem key="tabBarItem" title="設定" image="ic_settings_36pt_2x" id="KhN-TI-n2k"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dt8-Qx-Twf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -281,7 +281,7 @@
                             <constraint firstAttribute="trailing" secondItem="kZt-Fm-vuf" secondAttribute="trailing" id="qZX-ys-Yop"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="イベント" id="rf6-Hb-cZf"/>
+                    <tabBarItem key="tabBarItem" title="イベント" image="ic_event_note_36pt_2x" id="rf6-Hb-cZf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSl-dj-bCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,5 +514,8 @@
     </scenes>
     <resources>
         <image name="TopBG" width="313" height="386"/>
+        <image name="ic_event_note_36pt_2x" width="36" height="36"/>
+        <image name="ic_feedback_36pt_2x" width="36" height="36"/>
+        <image name="ic_settings_36pt_2x" width="36" height="36"/>
     </resources>
 </document>
