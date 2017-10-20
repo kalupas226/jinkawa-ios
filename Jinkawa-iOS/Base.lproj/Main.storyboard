@@ -202,20 +202,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="msM-lP-MgU" id="3uI-GO-8Kx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRk-zI-W4w">
-                                                    <rect key="frame" x="10" y="5" width="355" height="34"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="aRk-zI-W4w" firstAttribute="leading" secondItem="3uI-GO-8Kx" secondAttribute="leading" constant="10" id="8Ka-HM-pBx"/>
-                                                <constraint firstAttribute="bottom" secondItem="aRk-zI-W4w" secondAttribute="bottom" constant="5" id="8MW-zQ-3NY"/>
-                                                <constraint firstItem="aRk-zI-W4w" firstAttribute="top" secondItem="3uI-GO-8Kx" secondAttribute="top" constant="5" id="ImE-xI-lr6"/>
-                                                <constraint firstAttribute="trailing" secondItem="aRk-zI-W4w" secondAttribute="trailing" constant="10" id="lbQ-4t-ZtI"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -235,12 +221,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="設定" id="YbZ-Uf-H40"/>
                     <connections>
-                        <outlet property="SettingTableView" destination="8yz-45-oMH" id="T4G-BU-6Pg"/>
+                        <outlet property="SettingTableView" destination="8yz-45-oMH" id="Mp0-GH-Kj9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGI-FI-fLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304.8000000000002" y="902.24887556221893"/>
+            <point key="canvasLocation" x="3305" y="962"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qFQ-bR-Jwj">
@@ -316,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dt8-Qx-Twf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1700" y="905"/>
+            <point key="canvasLocation" x="1700" y="984"/>
         </scene>
         <!--イベント-->
         <scene sceneID="T2R-0L-orP">
@@ -513,7 +499,7 @@
                     <connections>
                         <segue destination="A2k-wN-LLX" kind="relationship" relationship="viewControllers" id="Hhd-tS-NKH"/>
                         <segue destination="tH1-aQ-kqf" kind="relationship" relationship="viewControllers" id="bE0-98-pBG"/>
-                        <segue destination="Iyk-sV-SFA" kind="relationship" relationship="viewControllers" id="F9G-rB-zLB"/>
+                        <segue destination="Iyk-sV-SFA" kind="relationship" relationship="viewControllers" id="SmM-DR-guL"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFg-Qy-bKQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -595,7 +581,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQq-8b-kpV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2502" y="904"/>
+            <point key="canvasLocation" x="2502" y="962"/>
         </scene>
     </scenes>
     <resources>
