@@ -17,6 +17,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
+       
         eventListView.delegate = self
         eventListView.dataSource = self
         

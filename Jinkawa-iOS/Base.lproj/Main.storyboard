@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="477"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3E-dw-twv">
-                                <rect key="frame" x="104" y="519" width="166" height="62"/>
+                                <rect key="frame" x="104" y="457" width="166" height="65"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="スタート">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZqP-1g-mkR">
-                                <rect key="frame" x="236" y="617" width="123" height="30"/>
+                                <rect key="frame" x="236" y="597" width="123" height="30"/>
                                 <state key="normal" title="町会役員はコチラ">
                                     <color key="titleColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -48,12 +48,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="v6b-ph-kcL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="6fO-MO-pJT"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="D3E-dw-twv" secondAttribute="bottom" constant="86" id="UNc-AS-Mol"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="D3E-dw-twv" secondAttribute="bottom" constant="145" id="UNc-AS-Mol"/>
                             <constraint firstItem="ZqP-1g-mkR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aR6-UA-Lmd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D3E-dw-twv" secondAttribute="trailing" constant="89" id="gDf-a5-kv0"/>
                             <constraint firstItem="D3E-dw-twv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="88" id="iMq-xr-Ib5"/>
-                            <constraint firstItem="D3E-dw-twv" firstAttribute="top" secondItem="v6b-ph-kcL" secondAttribute="bottom" constant="22" id="lap-x3-Txs"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZqP-1g-mkR" secondAttribute="bottom" constant="20" id="o1n-d6-E36"/>
+                            <constraint firstItem="D3E-dw-twv" firstAttribute="top" secondItem="v6b-ph-kcL" secondAttribute="bottom" constant="-40" id="lap-x3-Txs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZqP-1g-mkR" secondAttribute="bottom" constant="40" id="o1n-d6-E36"/>
                             <constraint firstItem="v6b-ph-kcL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qMH-wl-k3y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="v6b-ph-kcL" secondAttribute="bottom" constant="170" id="sZc-P2-XZh"/>
                             <constraint firstAttribute="trailing" secondItem="v6b-ph-kcL" secondAttribute="trailing" id="vXO-DI-Q2O"/>
