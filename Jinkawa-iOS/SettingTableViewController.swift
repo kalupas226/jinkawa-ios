@@ -22,6 +22,9 @@ class SettingTableViewController: UIViewController, UITableViewDelegate, UITable
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         
+        settingTableView.delegate = self
+        settingTableView.dataSource = self
+        
         //空のセルの境界線を消す
         settingTableView.tableFooterView = UIView(frame: .zero)
         
@@ -74,7 +77,7 @@ class SettingTableViewController: UIViewController, UITableViewDelegate, UITable
     
     //セルが選択された時に呼ばれるデリゲートメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print("セクション番号：\(indexPath.section) セル番号：\(indexPath.row)")
     }
     
     

@@ -194,7 +194,6 @@
 		55C99F8E1F1237AE0089851A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				375810CE1F9B3BEC0095B29C /* SettingTableViewController.swift */,
 				5534EFB61F84B30D00C85E5B /* UserManager.swift */,
 				556A29CD1EFCD8B500FC82E1 /* ViewController.swift */,
 				55C99F851F11BDB20089851A /* EventViewController.swift */,
@@ -205,6 +204,7 @@
 				55C3E34B1F6BE9CB0026E9EE /* PartisipantViewController.swift */,
 				55F8EE6F1F69719800D9E64E /* EntryViewController.swift */,
 				55CD50F61F6E20D8007DECB8 /* LoginViewController.swift */,
+				375810CE1F9B3BEC0095B29C /* SettingTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
