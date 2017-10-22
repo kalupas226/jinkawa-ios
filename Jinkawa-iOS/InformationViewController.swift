@@ -58,6 +58,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.title.text = information.title
         cell.date.text = information.date
         cell.publisher.text = information.departmentName
+        cell.publisher.sizeToFit()
         
         return cell
     }

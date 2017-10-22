@@ -58,6 +58,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.date.text = event.day
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
+        cell.publisher.sizeToFit()
         
         return cell
     }
