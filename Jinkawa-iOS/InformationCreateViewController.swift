@@ -22,8 +22,14 @@ class InformationCreateViewController: FormViewController {
             <<< TextRow("TitleRowTag") {
                 $0.title = "タイトル"
             }
-            <<< TextRow("DepartmentNameRowTag") {
+//            <<< TextRow("DepartmentNameRowTag") {
+//                $0.title = "部署"
+//
+//            }
+            <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
+                $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
+                $0.value = "総務部"    // initially selected
             }
             <<< TextRow("DescriptionRowTag") {
                 $0.title = "説明文"

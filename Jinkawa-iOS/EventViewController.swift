@@ -17,6 +17,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
+       
         eventListView.delegate = self
         eventListView.dataSource = self
         
@@ -57,6 +58,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.date.text = event.day
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
+        cell.publisher.sizeToFit()
         
         return cell
     }
