@@ -38,13 +38,13 @@ class Information: NSObject{
     }
     
     func save(){
-        let eventObject = NCMBObject(className: "Event")
-        eventObject?.setObject(title, forKey: "title")
-        eventObject?.setObject(date, forKey: "date")
-        eventObject?.setObject(departmentName, forKey: "department_name")
-        eventObject?.setObject(descriptionText, forKey: "info")
+        let informationObject = NCMBObject(className: "Information")
+        informationObject?.setObject(title, forKey: "title")
+        informationObject?.setObject(date, forKey: "date")
+        informationObject?.setObject(departmentName, forKey: "department_name")
+        informationObject?.setObject(descriptionText, forKey: "info")
         
-        eventObject?.saveInBackground({(error) in
+        informationObject?.saveInBackground({(error) in
             if error != nil{
                 print("Save error: ", error!)
             }
