@@ -1,5 +1,5 @@
 //
-//  SettingTableViewController.swift
+//  SettingViewController.swift
 //  Jinkawa-iOS
 //
 //  Created by Kenta Aikawa on 2017/10/21.
@@ -12,7 +12,7 @@ let sectionTitle = ["設定", "お問合わせ"]
 let settingItem = ["通知のオン/オフ", "入力情報の確認"]
 let contactItem = ["陣川あさひ町会"]
 
-class SettingTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var settingTableView: UITableView!
     

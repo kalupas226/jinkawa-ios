@@ -115,7 +115,7 @@
         <!--お知らせ-->
         <scene sceneID="WtC-dH-08Q">
             <objects>
-                <viewController id="tH1-aQ-kqf" customClass="InfomationViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tH1-aQ-kqf" customClass="InfomationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w0A-lb-8sh"/>
                         <viewControllerLayoutGuide type="bottom" id="DNz-YW-Pm8"/>
@@ -225,7 +225,7 @@
         <!--設定-->
         <scene sceneID="aaG-Ix-hiT">
             <objects>
-                <viewController id="Iyk-sV-SFA" customClass="SettingViewController" sceneMemberID="viewController">
+                <viewController id="Iyk-sV-SFA" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DUC-qj-4zS"/>
                         <viewControllerLayoutGuide type="bottom" id="VTF-Hf-zdA"/>
@@ -259,7 +259,7 @@
         <!--設定-->
         <scene sceneID="eY7-Lx-5f0">
             <objects>
-                <tableViewController id="IAh-ou-TAm" customClass="SettingTableViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="IAh-ou-TAm" customClass="SettingViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="deX-u7-Kwf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,7 +281,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="1bi-62-Nlh"/>
                     <connections>
-                        <outlet property="settingTableView" destination="deX-u7-Kwf" id="4z8-Fz-zlg"/>
+                        <outlet property="settingTableView" destination="deX-u7-Kwf" id="KLh-2A-rfR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COq-0Y-aao" userLabel="First Responder" sceneMemberID="firstResponder"/>
