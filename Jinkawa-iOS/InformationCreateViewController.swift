@@ -22,10 +22,6 @@ class InformationCreateViewController: FormViewController {
             <<< TextRow("TitleRowTag") {
                 $0.title = "タイトル"
             }
-//            <<< TextRow("DepartmentNameRowTag") {
-//                $0.title = "部署"
-//
-//            }
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
@@ -37,6 +33,9 @@ class InformationCreateViewController: FormViewController {
             <<< DateInlineRow("DateRowTag") {
                 $0.title = "日付"
             }
+            <<< SwitchRow("OfficerRowTag"){
+                $0.title = "役員のみに公開"
+        }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                             target: self,
@@ -64,6 +63,7 @@ class InformationCreateViewController: FormViewController {
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
         let date:Date = values["DateRowTag"] as! Date
+        let officer:Bool = values["OfficerRowTag"] as! Bool
         
         let message: String =
             "タイトル:" + title + "\n" +
@@ -76,7 +76,7 @@ class InformationCreateViewController: FormViewController {
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let information = Information(title: title, descriptionText: description, date:date.description, departmentName: department)
+                                        let information = Information(title: title, descriptionText: description, date:date.description, departmentName: department, officer: officer)
                                         information.save()
                                         
         }))
