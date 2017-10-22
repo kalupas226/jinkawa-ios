@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375810CE1F9B3BEC0095B29C /* SettingViewController.swift */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
 		556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CD1EFCD8B500FC82E1 /* ViewController.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		375810CE1F9B3BEC0095B29C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				55C3E34B1F6BE9CB0026E9EE /* PartisipantViewController.swift */,
 				55F8EE6F1F69719800D9E64E /* EntryViewController.swift */,
 				55CD50F61F6E20D8007DECB8 /* LoginViewController.swift */,
+				375810CE1F9B3BEC0095B29C /* SettingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				55C99F871F11BDB20089851A /* EventManager.swift in Sources */,
 				559FC0931F6A535400FB5ABE /* EventDetailTableViewCell.swift in Sources */,
 				55C99F9A1F126E6D0089851A /* InformationViewController.swift in Sources */,
+				375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */,
 				55F8EE701F69719800D9E64E /* EntryViewController.swift in Sources */,
 				55F8EE6E1F696EB600D9E64E /* EventDetailViewController.swift in Sources */,
 				55C99F981F1269570089851A /* InformationManager.swift in Sources */,
