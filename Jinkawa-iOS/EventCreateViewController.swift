@@ -45,6 +45,7 @@ class EventCreateViewController: FormViewController {
             }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
+                $0.value = false
         }
         
         
