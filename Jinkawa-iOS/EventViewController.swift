@@ -11,13 +11,23 @@ import NCMB
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventListView: UITableView!
+    //リフレッシュコントロールを作成する。
+    let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
-       
+        //インジケーターの下に表示する文字列を設定する。
+        refresh.attributedTitle = NSAttributedString(string: "読込中")
+        //インジケーターの色を設定する。
+        refresh.tintColor = UIColor.blue
+        //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
+        refresh.addTarget(self, action: #selector(EventViewController.refreshTable), for: UIControlEvents.valueChanged)
+        //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
+        eventListView.refreshControl = refresh
+        
         eventListView.delegate = self
         eventListView.dataSource = self
         
@@ -73,6 +83,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let eventDetailViewController = segue.destination as! EventDetailViewController
             eventDetailViewController.event = sender as! Event
         }
+    }
+    
+    func refreshTable()
+    {
+        EventManager.sharedInstance.loadList()
+        refresh.endRefreshing()
+        self.eventListView.reloadData()
     }
     
     /*

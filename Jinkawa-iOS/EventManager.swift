@@ -22,6 +22,8 @@ class EventManager: NSObject{
     }
     
     func loadList(){
+        //イベントリストを一旦空にする
+        eventList.removeAll()
         let query = NCMBQuery(className: "Event")
         var result:[NCMBObject] = []
         do{

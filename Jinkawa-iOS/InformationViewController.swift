@@ -13,12 +13,23 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     @IBOutlet weak var informationListView: UITableView!
+    //リフレッシュコントロールを作成する。
+    let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
+        //インジケーターの下に表示する文字列を設定する。
+        refresh.attributedTitle = NSAttributedString(string: "読込中")
+        //インジケーターの色を設定する。
+        refresh.tintColor = UIColor.blue
+        //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
+        refresh.addTarget(self, action: #selector(InformationViewController.refreshTable), for: UIControlEvents.valueChanged)
+        //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
+        informationListView.refreshControl = refresh
+        
         informationListView.delegate = self
         informationListView.dataSource = self
         
@@ -70,6 +81,13 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+    }
+    
+    func refreshTable()
+    {
+        InformationManager.sharedInstance.loadList()
+        refresh.endRefreshing()
+        self.informationListView.reloadData()
     }
     
     /*

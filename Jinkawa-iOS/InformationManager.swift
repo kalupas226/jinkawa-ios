@@ -22,6 +22,7 @@ class InformationManager: NSObject{
     }
     
     func loadList(){
+        informationList.removeAll()
         let query = NCMBQuery(className: "Information")
         var result:[NCMBObject] = []
         do{
