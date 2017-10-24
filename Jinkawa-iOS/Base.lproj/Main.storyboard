@@ -174,11 +174,56 @@
                     <connections>
                         <outlet property="informationListView" destination="fx8-Kc-9yy" id="mPH-1a-xDU"/>
                         <segue destination="5DY-SI-qys" kind="show" identifier="toInformationCreate" id="Aw6-7i-04g"/>
+                        <segue destination="Yv5-qq-obu" kind="show" identifier="toInformationDetail" id="VYa-e8-uzm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RMl-N9-KWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3305" y="143"/>
+        </scene>
+        <!--お知らせ詳細-->
+        <scene sceneID="T42-qe-pnA">
+            <objects>
+                <viewController id="Yv5-qq-obu" customClass="InformationDetailViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gzs-9R-2Tc"/>
+                        <viewControllerLayoutGuide type="bottom" id="8dJ-1u-9W2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qlx-Ow-gaJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-bd-px7">
+                                <rect key="frame" x="0.0" y="322" width="375" height="296"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kSu-ZE-rpa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="sTw-JU-wgs"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9IB-bd-px7" firstAttribute="top" secondItem="kSu-ZE-rpa" secondAttribute="bottom" constant="8" id="3Lw-Gw-aBG"/>
+                            <constraint firstItem="9IB-bd-px7" firstAttribute="top" secondItem="kSu-ZE-rpa" secondAttribute="bottom" constant="8" id="TUa-R1-7ZC"/>
+                            <constraint firstItem="8dJ-1u-9W2" firstAttribute="top" secondItem="9IB-bd-px7" secondAttribute="bottom" id="XGk-Sa-1GQ"/>
+                            <constraint firstAttribute="trailing" secondItem="9IB-bd-px7" secondAttribute="trailing" id="Ye0-Rv-UId"/>
+                            <constraint firstItem="9IB-bd-px7" firstAttribute="leading" secondItem="qlx-Ow-gaJ" secondAttribute="leading" id="g9J-EF-uzE"/>
+                            <constraint firstAttribute="trailing" secondItem="kSu-ZE-rpa" secondAttribute="trailing" id="hda-fC-HUJ"/>
+                            <constraint firstItem="kSu-ZE-rpa" firstAttribute="leading" secondItem="qlx-Ow-gaJ" secondAttribute="leading" id="lTL-rr-4q0"/>
+                            <constraint firstItem="kSu-ZE-rpa" firstAttribute="top" secondItem="gzs-9R-2Tc" secondAttribute="bottom" id="yku-bM-wqM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="お知らせ詳細" id="KCx-MV-b6h"/>
+                    <connections>
+                        <outlet property="detailTable" destination="9IB-bd-px7" id="Zj6-c3-YbS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uHn-b7-ymB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4120.8000000000002" y="142.1289355322339"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qFQ-bR-Jwj">
@@ -220,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXp-eW-Vuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4121" y="142"/>
+            <point key="canvasLocation" x="4121" y="983"/>
         </scene>
         <!--設定-->
         <scene sceneID="aaG-Ix-hiT">
