@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */; };
 		375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375810CE1F9B3BEC0095B29C /* SettingViewController.swift */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailViewController.swift; sourceTree = "<group>"; };
 		375810CE1F9B3BEC0095B29C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,7 @@
 				55F8EE6D1F696EB600D9E64E /* EventDetailViewController.swift */,
 				55DF2DD31F6CC808002491E1 /* EventCreateViewController.swift */,
 				55C99F991F126E6D0089851A /* InformationViewController.swift */,
+				19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */,
 				55E07F841F6D4EBA0056E726 /* InformationCreateViewController.swift */,
 				55C3E34B1F6BE9CB0026E9EE /* PartisipantViewController.swift */,
 				55F8EE6F1F69719800D9E64E /* EntryViewController.swift */,
@@ -415,6 +418,7 @@
 				55F8EE701F69719800D9E64E /* EntryViewController.swift in Sources */,
 				55F8EE6E1F696EB600D9E64E /* EventDetailViewController.swift in Sources */,
 				55C99F981F1269570089851A /* InformationManager.swift in Sources */,
+				19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */,
 				559FC0961F6A67DD00FB5ABE /* ParticipantManager.swift in Sources */,
 				55C99F831F11BDA40089851A /* EventItemViewCell.swift in Sources */,
 				55C99F951F12692A0089851A /* InformationItemViewCell.swift in Sources */,

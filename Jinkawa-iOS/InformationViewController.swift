@@ -20,6 +20,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         //インジケーターの下に表示する文字列を設定する。
         refresh.attributedTitle = NSAttributedString(string: "読込中")
@@ -50,7 +51,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "toEventDetail", sender: EventManager.sharedInstance.getList()[indexPath.row])
+        performSegue(withIdentifier: "toInformationDetail", sender: InformationManager.sharedInstance.getList()[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +81,10 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "toInformationDetail"{
+            let imformationDetailViewController = segue.destination as! InformationDetailViewController
+            imformationDetailViewController.imformation = sender as! Information
+        }
     }
     
     func refreshTable()

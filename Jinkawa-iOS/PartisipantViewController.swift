@@ -21,6 +21,7 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
 
         participantTable.delegate = self
