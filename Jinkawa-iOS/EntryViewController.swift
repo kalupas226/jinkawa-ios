@@ -16,6 +16,7 @@ class EntryViewController: FormViewController {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         form
             +++ Section("申し込み情報")

@@ -20,6 +20,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         //空のセルの境界線を消す
         detailTable.tableFooterView = UIView(frame: .zero)
