@@ -35,7 +35,9 @@ class EventManager: NSObject{
         
         if result.count > 0 {
             result.forEach{ obj in
-                self.eventList.append(Event(event: obj))
+//                self.eventList.append(Event(event: obj))
+                //イベントリストの最後尾に追加
+                self.eventList.insert(Event(event: obj), at: 0)
             }
         print("イベントリストが更新されました")
         }
