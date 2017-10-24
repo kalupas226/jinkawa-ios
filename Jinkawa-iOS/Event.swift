@@ -18,6 +18,9 @@ class Event: NSObject{
     let location: String
     let departmentName: String
     let id: String
+    let capacity: String
+    let officer: Bool
+    let deadline: String
     
     override init(){
         name = ""
@@ -27,6 +30,9 @@ class Event: NSObject{
         location = ""
         departmentName = ""
         id = ""
+        capacity = ""
+        officer = false
+        deadline = ""
     }
     
     init(event: NCMBObject) {
@@ -37,9 +43,12 @@ class Event: NSObject{
         location = event.object(forKey: "location") as! String
         departmentName = event.object(forKey: "event_department_name") as! String
         id = event.object(forKey: "objectId") as! String
+        capacity = event.object(forKey: "capacity") as! String
+        officer = event.object(forKey: "officer_only") as! Bool
+        deadline = event.object(forKey: "deadline_day") as! String
     }
     
-    init(name: String, descriptionText: String, day: String, location: String, departmentName:String) {
+    init(name: String, descriptionText: String, day: String, location: String, departmentName:String, capacity: String, officer:Bool, deadline: String) {
         self.name = name
         self.updateDate = String(describing: Date())
         self.descriptionText = descriptionText
@@ -47,6 +56,9 @@ class Event: NSObject{
         self.location = location
         self.departmentName = departmentName
         self.id = ""
+        self.capacity = capacity
+        self.officer = officer
+        self.deadline = deadline
     }
     
     func save(){
@@ -57,6 +69,9 @@ class Event: NSObject{
         eventObject?.setObject(day, forKey: "day")
         eventObject?.setObject(location, forKey: "location")
         eventObject?.setObject(departmentName, forKey: "event_department_name")
+        eventObject?.setObject(capacity, forKey: "capacity")
+        eventObject?.setObject(officer, forKey: "officer_only")
+        eventObject?.setObject(deadline, forKey: "deadline_day")
         
         eventObject?.saveInBackground({(error) in
             if error != nil{
