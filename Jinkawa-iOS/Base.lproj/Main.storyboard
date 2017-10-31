@@ -68,10 +68,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="XTi-mB-YuS">
             <objects>
-                <viewController id="2yu-wv-UVU" sceneMemberID="viewController">
+                <viewController id="2yu-wv-UVU" customClass="LoginViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bbn-F7-ZjF"/>
                         <viewControllerLayoutGuide type="bottom" id="D8C-5S-wxd"/>
@@ -81,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oNc-H1-Tf5">
-                                <rect key="frame" x="101" y="318.5" width="172" height="30"/>
+                                <rect key="frame" x="101" y="363.5" width="172" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="172" id="19f-BT-0wM"/>
                                     <constraint firstAttribute="height" constant="30" id="Uij-Qw-ddf"/>
@@ -91,21 +91,38 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvy-RL-HIo">
-                                <rect key="frame" x="164" y="368.5" width="46" height="30"/>
+                                <rect key="frame" x="164" y="418.5" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
+                                    <action selector="loginButton:" destination="2yu-wv-UVU" eventType="touchUpInside" id="1Op-3k-DLK"/>
                                     <segue destination="0kt-W7-Pbn" kind="unwind" unwindAction="backToHomeWithSegue:" id="DNw-hQ-yJI"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXy-gW-pNL">
+                                <rect key="frame" x="101.5" y="298.5" width="172" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172" id="0ko-Ck-zJO"/>
+                                    <constraint firstAttribute="height" constant="30" id="9Mz-FJ-U0x"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bXy-gW-pNL" firstAttribute="centerY" secondItem="UuR-uv-Pck" secondAttribute="centerY" constant="-20" id="3qY-Qt-ioI"/>
                             <constraint firstItem="Lvy-RL-HIo" firstAttribute="centerX" secondItem="UuR-uv-Pck" secondAttribute="centerX" id="ZiF-zN-PhL"/>
                             <constraint firstItem="oNc-H1-Tf5" firstAttribute="centerX" secondItem="UuR-uv-Pck" secondAttribute="centerX" id="fGA-fO-XYZ"/>
-                            <constraint firstItem="oNc-H1-Tf5" firstAttribute="centerY" secondItem="UuR-uv-Pck" secondAttribute="centerY" id="pZY-4D-nJr"/>
-                            <constraint firstItem="Lvy-RL-HIo" firstAttribute="centerY" secondItem="UuR-uv-Pck" secondAttribute="centerY" constant="50" id="slv-fW-5z4"/>
+                            <constraint firstItem="bXy-gW-pNL" firstAttribute="centerX" secondItem="UuR-uv-Pck" secondAttribute="centerX" id="oQt-5V-Y9Z"/>
+                            <constraint firstItem="oNc-H1-Tf5" firstAttribute="centerY" secondItem="UuR-uv-Pck" secondAttribute="centerY" constant="45" id="pZY-4D-nJr"/>
+                            <constraint firstItem="Lvy-RL-HIo" firstAttribute="centerY" secondItem="UuR-uv-Pck" secondAttribute="centerY" constant="100" id="slv-fW-5z4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="idTextField" destination="bXy-gW-pNL" id="cfD-NZ-tLC"/>
+                        <outlet property="psTextField" destination="oNc-H1-Tf5" id="sil-pS-0DP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOW-Vp-J19" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0kt-W7-Pbn" userLabel="Exit" sceneMemberID="exit"/>

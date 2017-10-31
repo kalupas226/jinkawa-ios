@@ -10,8 +10,16 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+
+    @IBOutlet weak var psTextField: UITextField!
+    @IBOutlet weak var idTextField: UITextField!
+    var idTextString = ""
+    var psTextString = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        idTextField.placeholder = "ユーザーID"
+        psTextField.placeholder = "パスワード"
 
         // Do any additional setup after loading the view.
     }
@@ -19,6 +27,12 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func loginButton(_ sender: Any) {
+        idTextString = idTextField.text!
+        psTextString = psTextField.text!
+        UserManager.sharedManager.login(pass:psTextString)
     }
     
    
