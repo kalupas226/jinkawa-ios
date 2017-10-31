@@ -20,6 +20,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
+        
         //インジケーターの下に表示する文字列を設定する。
         refresh.attributedTitle = NSAttributedString(string: "読込中")
         //インジケーターの色を設定する。
@@ -70,6 +71,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
         cell.publisher.sizeToFit()
+        
+        let fileData = NCMBFile.file(withName: "test.png", data: nil) as! NCMBFile
+        fileData.getDataInBackground { (data, error) in
+            if error != nil {
+                // ファイル取得失敗時の処理
+            } else {
+                // ファイル取得成功時の処理
+                let image = UIImage.init(data: data!)
+                cell.eveImage.image = image
+            }
+        }
         
         return cell
     }

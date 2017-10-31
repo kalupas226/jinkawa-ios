@@ -492,6 +492,7 @@
                     <navigationItem key="navigationItem" title="イベント詳細" id="GF7-dW-Q6K"/>
                     <connections>
                         <outlet property="detailTable" destination="Yhv-bg-ape" id="mT6-d3-c64"/>
+                        <outlet property="eventDetailImage" destination="GG1-Nk-1eQ" id="kiS-TC-Nxb"/>
                         <segue destination="MhY-WN-Q6N" kind="show" identifier="toParticipantList" id="IyC-5P-Ule"/>
                     </connections>
                 </viewController>
