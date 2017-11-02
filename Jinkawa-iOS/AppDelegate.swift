@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NCMB.setApplicationKey("fe37c2186e22a438c980af699d831ac26d2ce6e05909c89e0677309528274a4d", clientKey: "9fd56b4ec717815b4d72081d9ae9e58192bdec9be30a416319d0069a6c33fd9f")
         
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -15,6 +15,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var detailList:[String] = []
     
     @IBOutlet weak var detailTable: UITableView!
+    @IBOutlet weak var eventDetailImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,17 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         detailList.append(event.name)
         detailList.append(event.day)
         detailList.append(event.location)
+        
+        let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
+        fileData.getDataInBackground { (data, error) in
+            if error != nil {
+                // ファイル取得失敗時の処理
+            } else {
+                // ファイル取得成功時の処理
+                let image = UIImage.init(data: data!)
+                self.eventDetailImage.image = image
+            }
+        }
         
         // Do any additional setup after loading the view.
         detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")

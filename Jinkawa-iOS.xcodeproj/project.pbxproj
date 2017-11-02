@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */; };
+		370C26431FA81AB000657570 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C26421FA81AAD00657570 /* test.png */; };
 		375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375810CE1F9B3BEC0095B29C /* SettingViewController.swift */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailViewController.swift; sourceTree = "<group>"; };
+		370C26421FA81AAD00657570 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		375810CE1F9B3BEC0095B29C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 		556A29CA1EFCD8B500FC82E1 /* Jinkawa-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				370C26421FA81AAD00657570 /* test.png */,
 				55C99F8F1F1237BD0089851A /* Model */,
 				55C99F901F1237CF0089851A /* View */,
 				55C99F8E1F1237AE0089851A /* Controller */,
@@ -354,6 +357,7 @@
 				55C99F961F12692A0089851A /* InformationItemViewCell.xib in Resources */,
 				556A29D61EFCD8B500FC82E1 /* LaunchScreen.storyboard in Resources */,
 				556A29D31EFCD8B500FC82E1 /* Assets.xcassets in Resources */,
+				370C26431FA81AB000657570 /* test.png in Resources */,
 				55C99F891F11BDB20089851A /* EventItemViewCell.xib in Resources */,
 				55C3E3501F6BEA120026E9EE /* ParticipantTableViewCell.xib in Resources */,
 				556A29D11EFCD8B500FC82E1 /* Main.storyboard in Resources */,

@@ -8,9 +8,13 @@
 
 import UIKit
 import Eureka
+import NCMB
 
-class EventCreateViewController: FormViewController {
 
+class EventCreateViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var image:UIImage? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
@@ -44,6 +48,10 @@ class EventCreateViewController: FormViewController {
             <<< DateInlineRow("DeadlineRowTag"){
                 $0.title = "締切日"
             }
+            <<< ButtonRow() {
+            $0.title = "画像を選択してください"
+            }
+                .onCellSelection {  cell, row in  self.choosePicture() }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
                 $0.value = false
@@ -104,9 +112,87 @@ class EventCreateViewController: FormViewController {
                                       handler: {(UIAlertAction)-> Void in
                                         let event = Event(name:name, descriptionText:description, day:day.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
                                         event.save()
+                                        //イベントリストが更新されるのを待つため
+                                        sleep(2)
+                                        EventManager.sharedInstance.loadList()
+                                        //print(EventManager.sharedInstance.getList()[0].id)
+                                        self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
         }))
         present(alert, animated: true, completion: nil)
     }
+        
+        // 画像選択ボタン押下時の処理
+        func choosePicture() {
+            // カメラロールが利用可能か？
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                // 写真を選ぶビュー
+                let pickerView = UIImagePickerController()
+                // 写真の選択元をカメラロールにする
+                // 「.camera」にすればカメラを起動できる
+                pickerView.sourceType = .photoLibrary
+                // デリゲート
+                pickerView.delegate = self
+                // ビューに表示
+                self.present(pickerView, animated: true)
+            }
+        }
+        
+        // 写真を選んだ後に呼ばれる処理
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            // 選択した写真を取得する
+            image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
+            // 写真を選ぶビューを引っ込める
+            self.dismiss(animated: true)
+        }
+        
+        // 撮影がキャンセルされた時に呼ばれる
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+            print("キャンセルされました")
+            
+        }
+        
+        // 「mobile backendに保存」ボタン押下時の処理
+        func saveImage(id:String) {
+            // 画像をリサイズする
+            let imageW : Int = Int(image!.size.width*0.2)
+            let imageH : Int = Int(image!.size.height*0.2)
+            let resizeImage = resize(image: image!, width: imageW, height: imageH)
+            
+            let fileName = id + ".png"
+            
+            // 画像をNSDataに変換
+            let pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
+            let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
+            
+            // ファイルストアへ画像のアップロード
+            file.saveInBackground({ (error) in
+                if error != nil {
+                    // 保存失敗時の処理
+                } else {
+                    // 保存成功時の処理
+                }
+            }) { (int) in
+                // 進行状況を取得するためのBlock
+                /* 1-100のpercentDoneを返す */
+                /* このコールバックは保存中何度も呼ばれる */
+                /*例）*/
+                print("\(int)%")
+            }
+
+    }
+        
+        func resize (image: UIImage, width: Int, height: Int) -> UIImage {
+            let size: CGSize = CGSize(width: width, height: height)
+            UIGraphicsBeginImageContext(size)
+            image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return resizeImage!
+        }
+    
+    
 
 
     /*
@@ -118,5 +204,4 @@ class EventCreateViewController: FormViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

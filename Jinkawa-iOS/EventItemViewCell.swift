@@ -14,6 +14,7 @@ class EventItemViewCell: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var publisher: UILabel!
+    @IBOutlet weak var eveImage: UIImageView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
