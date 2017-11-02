@@ -35,7 +35,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         detailList.append(event.day)
         detailList.append(event.location)
         
-        let fileData = NCMBFile.file(withName: "test.png", data: nil) as! NCMBFile
+        let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
             if error != nil {
                 // ファイル取得失敗時の処理
