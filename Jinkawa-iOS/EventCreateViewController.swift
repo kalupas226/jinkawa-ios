@@ -51,7 +51,9 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             <<< ButtonRow() {
             $0.title = "画像を選択してください"
             }
-                .onCellSelection {  cell, row in  self.choosePicture() }
+                .onCellSelection {  cell, row in
+                    self.choosePicture()
+            }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
                 $0.value = false
@@ -143,16 +145,44 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
             // 写真を選ぶビューを引っ込める
             self.dismiss(animated: true)
+            //アラートの表示
+            let alert: UIAlertController = UIAlertController(title: nil, message: "画像が選択されました", preferredStyle:  UIAlertControllerStyle.alert)
+            // Actionの設定
+            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            //Alertを表示
+            present(alert, animated: true, completion: nil)
         }
         
         // 撮影がキャンセルされた時に呼ばれる
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             picker.dismiss(animated: true, completion: nil)
             print("キャンセルされました")
+            //アラートの表示
+            let alert: UIAlertController = UIAlertController(title: nil, message: "キャンセルされました", preferredStyle:  UIAlertControllerStyle.alert)
+            // Actionの設定
+            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            //Alertを表示
+            present(alert, animated: true, completion: nil)
             
         }
         
-        // 「mobile backendに保存」ボタン押下時の処理
+        // 保存ボタン押下時の処理
         func saveImage(id:String) {
             // 画像をリサイズする
             let imageW : Int = Int(image!.size.width*0.2)

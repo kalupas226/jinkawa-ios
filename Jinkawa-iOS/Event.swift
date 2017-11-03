@@ -39,7 +39,7 @@ class Event: NSObject{
         name = event.object(forKey: "event_name") as! String
         updateDate = event.object(forKey: "update_date") as! String
         descriptionText = event.object(forKey: "description") as! String
-        day = event.object(forKey: "day") as! String
+        day = event.object(forKey: "date_start") as! String
         location = event.object(forKey: "location") as! String
         departmentName = event.object(forKey: "event_department_name") as! String
         id = event.object(forKey: "objectId") as! String
@@ -66,7 +66,7 @@ class Event: NSObject{
         eventObject?.setObject(name, forKey: "event_name")
         eventObject?.setObject(updateDate, forKey: "update_date")
         eventObject?.setObject(descriptionText, forKey: "description")
-        eventObject?.setObject(day, forKey: "day")
+        eventObject?.setObject(day, forKey: "date_start")
         eventObject?.setObject(location, forKey: "location")
         eventObject?.setObject(departmentName, forKey: "event_department_name")
         eventObject?.setObject(capacity, forKey: "capacity")
