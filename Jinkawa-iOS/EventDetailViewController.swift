@@ -8,6 +8,7 @@
 
 import UIKit
 import NCMB
+import SKPhotoBrowser
 
 class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -88,6 +89,27 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         if segue.identifier == "toParticipantList" {
             let participantViewController = segue.destination as! PartisipantViewController
             participantViewController.event = event
+        }
+    }
+    
+    
+    @IBAction func photoUp(_ sender: Any) {
+    // 1. create SKPhoto Array from UIImage
+    let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
+    fileData.getDataInBackground { (data, error) in
+    if error != nil {
+    // ファイル取得失敗時の処理
+    } else {
+    // ファイル取得成功時の処理
+    let image = UIImage.init(data: data!)
+        var images = [SKPhoto]()
+        let photo = SKPhoto.photoWithImage(image!)// add some UIImage
+        images.append(photo)
+        // 2. create PhotoBrowser Instance, and present from your viewController.
+        let browser = SKPhotoBrowser(photos: images)
+        browser.initializePageIndex(0)
+        self.present(browser, animated: true, completion: {})
+        }
         }
     }
 

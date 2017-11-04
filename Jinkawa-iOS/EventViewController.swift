@@ -71,6 +71,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
         cell.publisher.sizeToFit()
+        cell.publisher.layer.cornerRadius = 3
+        cell.publisher.clipsToBounds = true
         
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in

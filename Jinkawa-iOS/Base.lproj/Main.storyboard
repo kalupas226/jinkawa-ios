@@ -439,7 +439,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pM-lJ-UHo">
                                 <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-Nk-1eQ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-Nk-1eQ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="zrD-5Q-7sR"/>
@@ -459,6 +459,13 @@
                                         </state>
                                         <connections>
                                             <segue destination="qqw-K6-MHR" kind="show" identifier="toEntry" id="3gV-lL-ArT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVV-gg-dah">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="photoUp:" destination="qvG-28-qwA" eventType="touchUpInside" id="Mw3-9c-CCP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -498,7 +505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6M-nF-eU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4121" y="-658"/>
+            <point key="canvasLocation" x="4120.8000000000002" y="-658.4707646176912"/>
         </scene>
         <!-- 参加者リスト-->
         <scene sceneID="0XT-48-GMV">
