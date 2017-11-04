@@ -53,8 +53,8 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! EventDetailTableViewCell
-        cell.title.text = detailList[indexPath.row]
-        cell.title.sizeToFit()
+        cell.content.text = detailList[indexPath.row]
+        cell.content.sizeToFit()
         
         return cell
     }

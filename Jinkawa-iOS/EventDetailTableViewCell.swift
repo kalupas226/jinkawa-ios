@@ -10,7 +10,8 @@ import UIKit
 
 class EventDetailTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var content: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
