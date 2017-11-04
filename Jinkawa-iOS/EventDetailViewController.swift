@@ -13,28 +13,25 @@ import SKPhotoBrowser
 class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var event:Event = Event() // イベントオブジェクトの保持
-    var detailList:[String] = []
+    var detailListOrder: Array = ["日程", "場所", "定員", "締切日", "本文"]
+    var detailList: Dictionary<String, String> = [:]
     
     @IBOutlet weak var detailTable: UITableView!
     @IBOutlet weak var eventDetailImage: UIImageView!
+    @IBOutlet weak var departmentLabel: UILabel!
+    @IBOutlet weak var updateDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
         }
-        //空のセルの境界線を消す
-        detailTable.tableFooterView = UIView(frame: .zero)
         
         print(event.name)
         
         detailTable.delegate = self
         detailTable.dataSource = self
-        
-        detailList.append(event.name)
-        detailList.append(event.day)
-        detailList.append(event.location)
         
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
@@ -47,13 +44,40 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        // Do any additional setup after loading the view.
+        detailList["日程"] = event.day
+        detailList["場所"] = event.location
+        detailList["定員"] = event.capacity
+        detailList["締切日"] = event.deadline
+        detailList["本文"] = event.descriptionText
+        
+        // Labelの設定
+        departmentLabel.text = event.departmentName
+        departmentLabel.textColor = UIColor.white
+        departmentLabel.backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        departmentLabel.textAlignment = .center
+        updateDateLabel.text = "最終更新日 \(event.updateDate)"
+        updateDateLabel.textColor = UIColor.white
+        updateDateLabel.backgroundColor = UIColor.gray
+        updateDateLabel.textAlignment = .center
+        
+        //CustomCellの登録
         detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
         
+        //空のcellの境界線を消す
+        detailTable.tableFooterView = UIView(frame: .zero)
+        
+        //cellの高さを動的に変更する
+        detailTable.estimatedRowHeight = 40
+        detailTable.rowHeight = UITableViewAutomaticDimension
+        
+        //navigationbarの設定
+        navigationItem.title = event.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(toParticipantListView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        // Do any additional setup after loading the view.
     }
     
     func toParticipantListView(){
@@ -66,7 +90,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.detailList.count
+        return self.detailListOrder.count
         
     }
     
@@ -76,8 +100,11 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! EventDetailTableViewCell
-        cell.title.text = detailList[indexPath.row]
-
+        cell.category.text = detailListOrder[indexPath.row]
+        cell.category.textAlignment = .center
+        cell.category.font = UIFont.boldSystemFont(ofSize: 16.0)
+        cell.content.text = detailList[detailListOrder[indexPath.row]]
+        
         return cell
     }
     

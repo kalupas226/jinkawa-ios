@@ -2,7 +2,7 @@
 //  InformationDetailViewController.swift
 //  Jinkawa-iOS
 //
-//  Created by narihiro on 2017/10/22.
+//  Created by Hironari Matsui on 2017/10/22.
 //  Copyright © 2017年 Taro Sato. All rights reserved.
 //
 
@@ -11,7 +11,8 @@ import UIKit
 class InformationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     var imformation: Information = Information()
-    var detailList:[String] = []
+    var detailListOrder: Array = ["日程", "本文"]
+    var detailList: Dictionary<String, String> = [:]
     
     @IBOutlet weak var detailTable: UITableView!
 
@@ -21,21 +22,25 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
-        //空のセルの境界線を消す
-        detailTable.tableFooterView = UIView(frame: .zero)
         
         detailTable.delegate = self
         detailTable.dataSource = self
         
-        detailList.append(imformation.title)
-        detailList.append(imformation.date)
-        detailList.append(imformation.descriptionText)
+        detailList["日程"] = imformation.date
+        detailList["本文"] = imformation.descriptionText
         
+        //CustomCellの登録
         detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
+        
+        //空のcellの境界線を消す
+        detailTable.tableFooterView = UIView(frame: .zero)
         
         //cellの高さを動的に変更する
         detailTable.estimatedRowHeight = 40
         detailTable.rowHeight = UITableViewAutomaticDimension
+        
+        //navigationbarの設定
+        navigationItem.title = imformation.title
         
         // Do any additional setup after loading the view.
     }
@@ -48,13 +53,15 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return detailList.count
+        return detailListOrder.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! EventDetailTableViewCell
-        cell.title.text = detailList[indexPath.row]
-        cell.title.sizeToFit()
+        cell.category.text = detailListOrder[indexPath.row]
+        cell.category.textAlignment = .center
+        cell.category.font = UIFont.boldSystemFont(ofSize: 16.0)
+        cell.content.text = detailList[detailListOrder[indexPath.row]]
         
         return cell
     }
