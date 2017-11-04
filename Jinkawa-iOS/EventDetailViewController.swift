@@ -25,21 +25,13 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
         }
-        //空のセルの境界線を消す
-        detailTable.tableFooterView = UIView(frame: .zero)
         
         print(event.name)
         
         detailTable.delegate = self
         detailTable.dataSource = self
-        
-        detailList["日程"] = event.day
-        detailList["場所"] = event.location
-        detailList["定員"] = event.capacity
-        detailList["締切日"] = event.deadline
-        detailList["本文"] = event.descriptionText
         
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
@@ -52,6 +44,12 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
+        detailList["日程"] = event.day
+        detailList["場所"] = event.location
+        detailList["定員"] = event.capacity
+        detailList["締切日"] = event.deadline
+        detailList["本文"] = event.descriptionText
+        
         // Labelの設定
         departmentLabel.text = event.departmentName
         departmentLabel.textColor = UIColor.white
@@ -62,15 +60,17 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         updateDateLabel.backgroundColor = UIColor.gray
         updateDateLabel.textAlignment = .center
         
+        //CustomCellの登録
+        detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
+        
+        //空のcellの境界線を消す
+        detailTable.tableFooterView = UIView(frame: .zero)
+        
         //cellの高さを動的に変更する
         detailTable.estimatedRowHeight = 40
         detailTable.rowHeight = UITableViewAutomaticDimension
         
-        //CustomCellの登録
-        detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
-        
         //navigationbarの設定
-        // タイトルをセット
         navigationItem.title = event.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
