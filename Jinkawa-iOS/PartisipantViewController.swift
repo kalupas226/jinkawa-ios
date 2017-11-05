@@ -60,7 +60,7 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func uploadCSV(){
-        var data = event.name + "," + event.day + "," + event.location + "," + event.departmentName
+        var data = event.name + "," + event.dateStart + "," + event.location + "," + event.departmentName
         data += "\r\n"
         data += " "
         data += "\r\n"

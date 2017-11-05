@@ -36,7 +36,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             <<< TextRow("DescriptionRowTag") {
                 $0.title = "説明文"
             }
-            <<< DateInlineRow("DayRowTag") {
+            <<< DateInlineRow("DateStartRowTag") {
                 $0.title = "開始日"
             }
             <<< TextRow("LocationRowTag") {
@@ -97,7 +97,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         let name:String = values["EventNameRowTag"] as! String
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
-        let day = dateFrt.string(from:values["DayRowTag"] as! Date)
+        let dateStart = dateFrt.string(from:values["DateStartRowTag"] as! Date)
         let location: String = values["LocationRowTag"] as! String
         let capacity: String = values["CapacityRowTag"] as! String + "名"
         let officer: Bool = values["OfficerRowTag"] as! Bool
@@ -106,7 +106,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         let message: String =
             "イベント名:" + name + "\n" +
                 "発行部署:" + department + "\n" +
-                "開催日:" + day.description + "\n" +
+                "開催日:" + dateStart.description + "\n" +
                 "場所" + location + "\n" +
         "定員" + capacity + "\n" +
         "締切日" + deadline.description
@@ -117,7 +117,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let event = Event(name:name, descriptionText:description, day:day.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
+                                        let event = Event(name:name, descriptionText:description, dateStart:dateStart.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
                                         event.save()
                                         //イベントリストが更新されるのを待つため
                                         sleep(2)

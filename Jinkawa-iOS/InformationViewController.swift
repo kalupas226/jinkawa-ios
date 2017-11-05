@@ -72,6 +72,8 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.date.text = information.date
         cell.publisher.text = information.departmentName
         cell.publisher.sizeToFit()
+        cell.publisher.layer.cornerRadius = 3
+        cell.publisher.clipsToBounds = true
         
         return cell
     }
