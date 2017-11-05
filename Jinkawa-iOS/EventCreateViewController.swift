@@ -15,6 +15,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     
     var image:UIImage? = nil
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
@@ -36,7 +37,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "説明文"
             }
             <<< DateInlineRow("DayRowTag") {
-                $0.title = "開催日"
+                $0.title = "開始日"
             }
             <<< TextRow("LocationRowTag") {
                 $0.title = "開催場所"
@@ -89,14 +90,18 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         // Get the value of all rows which have a Tag assigned
         let values = form.values()
         
+        //日付関連を日本標準時にするためのformatter
+        let dateFrt = DateFormatter()
+        dateFrt.setTemplate(.full)
+        
         let name:String = values["EventNameRowTag"] as! String
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
-        let day:Date = values["DayRowTag"] as! Date
+        let day = dateFrt.string(from:values["DayRowTag"] as! Date)
         let location: String = values["LocationRowTag"] as! String
         let capacity: String = values["CapacityRowTag"] as! String + "名"
         let officer: Bool = values["OfficerRowTag"] as! Bool
-        let deadline: Date = values["DeadlineRowTag"] as! Date
+        let deadline = dateFrt.string(from:values["DeadlineRowTag"] as! Date)
         
         let message: String =
             "イベント名:" + name + "\n" +
@@ -221,9 +226,6 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             
             return resizeImage!
         }
-    
-    
-
 
     /*
     // MARK: - Navigation
@@ -235,3 +237,5 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     }
     */
 }
+
+
