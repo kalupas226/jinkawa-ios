@@ -75,7 +75,27 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
         
+        //役員専用のセルを隠す
+        if(UserManager.sharedInstance.getState() == .common){
+            if(information.officer == true){
+                cell.isHidden = true
+            }
+        }
         return cell
+    }
+    
+    //役員専用のセルの高さを0にする
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
+        if(UserManager.sharedInstance.getState() == .common){
+            if(information.officer == true){
+                return 0
+            }else{
+                return 121.5
+            }
+        }else{
+                return 121.5
+            }
     }
     
     override func didReceiveMemoryWarning() {

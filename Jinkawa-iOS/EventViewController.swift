@@ -75,6 +75,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
         
+        //役員専用のセルを隠す
+        if(UserManager.sharedInstance.getState() == .common){
+            if(event.officer == true){
+                cell.isHidden = true
+            }
+        }
+        
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
             if error != nil {
@@ -98,6 +105,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if segue.identifier == "toEventDetail"{
             let eventDetailViewController = segue.destination as! EventDetailViewController
             eventDetailViewController.event = sender as! Event
+        }
+    }
+    
+    //役員専用のセルの高さを0にする
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let event:Event = EventManager.sharedInstance.getList()[indexPath.row]
+        if(UserManager.sharedInstance.getState() == .common){
+            if(event.officer == true){
+                return 0
+            }else{
+                return 121.5
+            }
+        }else{
+            return 121.5
         }
     }
     
