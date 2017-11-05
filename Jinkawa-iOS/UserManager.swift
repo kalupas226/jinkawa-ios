@@ -27,7 +27,8 @@ class UserManager: NSObject{
     }
     
     func login(id:String,pass:String){
-        // TestClassクラスを検索するNCMBQueryを作成
+        accountsList.removeAll()
+        // AccountsClassクラスを検索するNCMBQueryを作成
         let query = NCMBQuery(className: "Accounts")
         var result:[NCMBObject] = []
         
@@ -55,6 +56,10 @@ class UserManager: NSObject{
                         self.setState(state: .admin)
                         print(self.accountsList[0].role)
                         print("管理者としてログインしました。")
+                    }else{
+                        self.setState(state: .officer)
+                        print(self.accountsList[0].role)
+                        print("役員としてログインしました。")
                     }
                 }
             }
