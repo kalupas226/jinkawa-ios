@@ -11,7 +11,7 @@ import NCMB
 
 class UserManager: NSObject{
     private var userState:UserState
-    static let sharedManager = UserManager()
+    static let sharedInstance = UserManager()
     private var accountsList:[Accounts] = []
     
     private override init(){

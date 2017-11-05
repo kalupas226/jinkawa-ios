@@ -37,11 +37,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         eventListView.register(UINib(nibName:"EventItemViewCell", bundle:nil), forCellReuseIdentifier: "eventItem")
         
+        if(UserManager.sharedInstance.getState() != .common){
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(toEventCreateView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+        }
         // Do any additional setup after loading the view.
     }
     
