@@ -14,7 +14,7 @@ class Event: NSObject{
     let name: String
     let updateDate: String
     let descriptionText: String
-    let day: String
+    let dateStart: String
     let location: String
     let departmentName: String
     let id: String
@@ -26,7 +26,7 @@ class Event: NSObject{
         name = ""
         updateDate = ""
         descriptionText = ""
-        day = ""
+        dateStart = ""
         location = ""
         departmentName = ""
         id = ""
@@ -36,23 +36,23 @@ class Event: NSObject{
     }
     
     init(event: NCMBObject) {
-        name = event.object(forKey: "event_name") as! String
+        name = event.object(forKey: "name") as! String
         updateDate = event.object(forKey: "update_date") as! String
         descriptionText = event.object(forKey: "description") as! String
-        day = event.object(forKey: "date_start") as! String
+        dateStart = event.object(forKey: "date_start") as! String
         location = event.object(forKey: "location") as! String
-        departmentName = event.object(forKey: "event_department_name") as! String
+        departmentName = event.object(forKey: "department") as! String
         id = event.object(forKey: "objectId") as! String
         capacity = event.object(forKey: "capacity") as! String
         officer = event.object(forKey: "officer_only") as! Bool
         deadline = event.object(forKey: "deadline_day") as! String
     }
     
-    init(name: String, descriptionText: String, day: String, location: String, departmentName:String, capacity: String, officer:Bool, deadline: String) {
+    init(name: String, descriptionText: String, dateStart: String, location: String, departmentName:String, capacity: String, officer:Bool, deadline: String) {
         self.name = name
         self.updateDate = String(describing: Date())
         self.descriptionText = descriptionText
-        self.day = day
+        self.dateStart = dateStart
         self.location = location
         self.departmentName = departmentName
         self.id = ""
@@ -63,12 +63,12 @@ class Event: NSObject{
     
     func save(){
         let eventObject = NCMBObject(className: "Event")
-        eventObject?.setObject(name, forKey: "event_name")
+        eventObject?.setObject(name, forKey: "name")
         eventObject?.setObject(updateDate, forKey: "update_date")
         eventObject?.setObject(descriptionText, forKey: "description")
-        eventObject?.setObject(day, forKey: "date_start")
+        eventObject?.setObject(dateStart, forKey: "date_start")
         eventObject?.setObject(location, forKey: "location")
-        eventObject?.setObject(departmentName, forKey: "event_department_name")
+        eventObject?.setObject(departmentName, forKey: "department")
         eventObject?.setObject(capacity, forKey: "capacity")
         eventObject?.setObject(officer, forKey: "officer_only")
         eventObject?.setObject(deadline, forKey: "deadline_day")

@@ -32,7 +32,11 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         idTextString = idTextField.text!
         psTextString = psTextField.text!
-        UserManager.sharedManager.login(pass:psTextString)
+        UserManager.sharedInstance.login(id:idTextString, pass:psTextString)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
    

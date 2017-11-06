@@ -44,7 +44,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        detailList["日程"] = event.day
+        detailList["日程"] = event.dateStart
         detailList["場所"] = event.location
         detailList["定員"] = event.capacity
         detailList["締切日"] = event.deadline
@@ -72,11 +72,12 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         //navigationbarの設定
         navigationItem.title = event.name
+        if(UserManager.sharedInstance.getState() != .common){
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(toParticipantListView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+        }
         // Do any additional setup after loading the view.
     }
     

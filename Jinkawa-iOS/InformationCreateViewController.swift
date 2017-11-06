@@ -61,10 +61,14 @@ class InformationCreateViewController: FormViewController {
         // Get the value of all rows which have a Tag assigned
         let values = form.values()
         
+        //日付関連を日本標準時にするためのformatter
+        let dateFrt = DateFormatter()
+        dateFrt.setTemplate(.full)
+        
         let title:String = values["TitleRowTag"] as! String
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
-        let date:Date = values["DateRowTag"] as! Date
+        let date = dateFrt.string(from:values["DateRowTag"] as! Date)
         let officer:Bool = values["OfficerRowTag"] as! Bool
         
         let message: String =
@@ -84,6 +88,8 @@ class InformationCreateViewController: FormViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
+    
+    
 
     /*
     // MARK: - Navigation

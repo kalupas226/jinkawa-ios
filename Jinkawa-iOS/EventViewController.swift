@@ -37,11 +37,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         eventListView.register(UINib(nibName:"EventItemViewCell", bundle:nil), forCellReuseIdentifier: "eventItem")
         
+        if(UserManager.sharedInstance.getState() != .common){
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(toEventCreateView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -67,12 +68,19 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let event = EventManager.sharedInstance.getList()[indexPath.row]
         
         cell.title.text = event.name
-        cell.date.text = event.day
+        cell.date.text = event.dateStart
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
         cell.publisher.sizeToFit()
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
+        
+        //役員専用のセルを隠す
+        if(UserManager.sharedInstance.getState() == .common){
+            if(event.officer == true){
+                cell.isHidden = true
+            }
+        }
         
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
@@ -97,6 +105,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if segue.identifier == "toEventDetail"{
             let eventDetailViewController = segue.destination as! EventDetailViewController
             eventDetailViewController.event = sender as! Event
+        }
+    }
+    
+    //役員専用のセルの高さを0にする
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let event:Event = EventManager.sharedInstance.getList()[indexPath.row]
+        if(UserManager.sharedInstance.getState() == .common){
+            if(event.officer == true){
+                return 0
+            }else{
+                return 121.5
+            }
+        }else{
+            return 121.5
         }
     }
     

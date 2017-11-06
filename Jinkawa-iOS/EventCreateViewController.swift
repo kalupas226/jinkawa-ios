@@ -15,6 +15,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     
     var image:UIImage? = nil
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
@@ -35,8 +36,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             <<< TextRow("DescriptionRowTag") {
                 $0.title = "説明文"
             }
-            <<< DateInlineRow("DayRowTag") {
-                $0.title = "開催日"
+            <<< DateInlineRow("DateStartRowTag") {
+                $0.title = "開始日"
             }
             <<< TextRow("LocationRowTag") {
                 $0.title = "開催場所"
@@ -89,19 +90,23 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         // Get the value of all rows which have a Tag assigned
         let values = form.values()
         
+        //日付関連を日本標準時にするためのformatter
+        let dateFrt = DateFormatter()
+        dateFrt.setTemplate(.full)
+        
         let name:String = values["EventNameRowTag"] as! String
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
-        let day:Date = values["DayRowTag"] as! Date
+        let dateStart = dateFrt.string(from:values["DateStartRowTag"] as! Date)
         let location: String = values["LocationRowTag"] as! String
         let capacity: String = values["CapacityRowTag"] as! String + "名"
         let officer: Bool = values["OfficerRowTag"] as! Bool
-        let deadline: Date = values["DeadlineRowTag"] as! Date
+        let deadline = dateFrt.string(from:values["DeadlineRowTag"] as! Date)
         
         let message: String =
             "イベント名:" + name + "\n" +
                 "発行部署:" + department + "\n" +
-                "開催日:" + day.description + "\n" +
+                "開催日:" + dateStart.description + "\n" +
                 "場所" + location + "\n" +
         "定員" + capacity + "\n" +
         "締切日" + deadline.description
@@ -112,7 +117,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let event = Event(name:name, descriptionText:description, day:day.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
+                                        let event = Event(name:name, descriptionText:description, dateStart:dateStart.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
                                         event.save()
                                         //イベントリストが更新されるのを待つため
                                         sleep(2)
@@ -221,9 +226,6 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             
             return resizeImage!
         }
-    
-    
-
 
     /*
     // MARK: - Navigation
@@ -235,3 +237,5 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     }
     */
 }
+
+

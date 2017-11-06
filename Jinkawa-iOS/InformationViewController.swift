@@ -38,11 +38,12 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         
         informationListView.register(UINib(nibName:"InformationItemViewCell", bundle:nil), forCellReuseIdentifier: "informationItem")
         
+        if(UserManager.sharedInstance.getState() != .common){
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                             target: self,
                                                             action: #selector(toEventCreateView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -71,8 +72,30 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.date.text = information.date
         cell.publisher.text = information.departmentName
         cell.publisher.sizeToFit()
+        cell.publisher.layer.cornerRadius = 3
+        cell.publisher.clipsToBounds = true
         
+        //役員専用のセルを隠す
+        if(UserManager.sharedInstance.getState() == .common){
+            if(information.officer == true){
+                cell.isHidden = true
+            }
+        }
         return cell
+    }
+    
+    //役員専用のセルの高さを0にする
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
+        if(UserManager.sharedInstance.getState() == .common){
+            if(information.officer == true){
+                return 0
+            }else{
+                return 121.5
+            }
+        }else{
+                return 121.5
+            }
     }
     
     override func didReceiveMemoryWarning() {

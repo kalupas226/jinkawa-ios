@@ -92,8 +92,8 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvy-RL-HIo">
-                                <rect key="frame" x="164" y="418.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="156" y="418.5" width="62" height="30"/>
+                                <state key="normal" title="ログイン"/>
                                 <connections>
                                     <action selector="loginButton:" destination="2yu-wv-UVU" eventType="touchUpInside" id="1Op-3k-DLK"/>
                                     <segue destination="0kt-W7-Pbn" kind="unwind" unwindAction="backToHomeWithSegue:" id="DNw-hQ-yJI"/>
