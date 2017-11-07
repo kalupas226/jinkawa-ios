@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import NCMB
 
 class LoginViewController: UIViewController {
-
-
+    
     @IBOutlet weak var psTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
     var idTextString = ""
@@ -30,14 +30,34 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        
         idTextString = idTextField.text!
         psTextString = psTextField.text!
-        UserManager.sharedInstance.login(id:idTextString, pass:psTextString)
+        UserManager.sharedInstance.login(id: idTextString, pass: psTextString)
+        loginAlert()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    
+    func loginAlert(){
+        //アラートの表示
+        let alert: UIAlertController = UIAlertController(title: nil, message: "aaa", preferredStyle:  UIAlertControllerStyle.alert)
+        // Actionの設定
+        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        // OKボタン
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(defaultAction)
+        //Alertを表示
+        self.present(alert, animated: true, completion: nil)
+        }
     
    
     /*

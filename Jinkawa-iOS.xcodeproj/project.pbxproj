@@ -13,6 +13,8 @@
 		37AA18A01FAC5C6D000EBD5E /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */; };
 		37AA18A41FAE97A5000EBD5E /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA18A31FAE97A5000EBD5E /* DateFormat.swift */; };
 		37AA18A61FAEF8F4000EBD5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA18A51FAEF8F4000EBD5E /* User.swift */; };
+		37B0C80B1FB1FEAC00479E95 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */; };
+		37B0C80C1FB1FEAC00479E95 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
 		556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CD1EFCD8B500FC82E1 /* ViewController.swift */; };
@@ -71,6 +73,8 @@
 		37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = Carthage/Build/iOS/SKPhotoBrowser.framework; sourceTree = "<group>"; };
 		37AA18A31FAE97A5000EBD5E /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		37AA18A51FAEF8F4000EBD5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 				55C99F8C1F11BE200089851A /* NCMB.framework in Frameworks */,
 				55B403D21F696714007CDFDB /* Eureka.framework in Frameworks */,
 				37AA18A01FAC5C6D000EBD5E /* SKPhotoBrowser.framework in Frameworks */,
+				37B0C80B1FB1FEAC00479E95 /* AlamofireImage.framework in Frameworks */,
+				37B0C80C1FB1FEAC00479E95 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +204,8 @@
 		55C99F8A1F11BE200089851A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */,
+				37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */,
 				37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */,
 				55B403D11F696714007CDFDB /* Eureka.framework */,
 				55C99F8B1F11BE200089851A /* NCMB.framework */,
@@ -401,6 +409,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NCMB.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SKPhotoBrowser.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
 			);
 			outputPaths = (
 			);
