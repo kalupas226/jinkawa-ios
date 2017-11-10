@@ -8,6 +8,7 @@
 
 import UIKit
 import NCMB
+import AlamofireImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventListView: UITableView!
@@ -82,6 +83,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
+        /*
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
             if error != nil {
@@ -92,6 +94,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.eveImage.image = image
             }
         }
+         */
+        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
+        let url = URL(string: imageURL)!
+        cell.eveImage.af_setImage(
+            withURL: url
+//            placeholderImage: UIImage(named: "event_sample")
+        )
         
         return cell
     }

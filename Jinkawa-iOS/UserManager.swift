@@ -8,8 +8,9 @@
 
 import Foundation
 import NCMB
+import UIKit
 
-class UserManager: NSObject{
+class UserManager: NSObject {
     private var userState:UserState
     static let sharedInstance = UserManager()
     private var accountsList:[Accounts] = []
@@ -26,7 +27,7 @@ class UserManager: NSObject{
         self.userState = state
     }
     
-    func login(id:String,pass:String){
+    func login(id:String,pass:String) {
         accountsList.removeAll()
         // AccountsClassクラスを検索するNCMBQueryを作成
         let query = NCMBQuery(className: "Accounts")
@@ -38,14 +39,15 @@ class UserManager: NSObject{
         // データストアの検索を実施
         query?.findObjectsInBackground({(objects, error) in
             if (error != nil){
-                print("エラーが発生しました。")
+                print("エラーが発生しました")
             }else{
                 result = objects! as! [NCMBObject]
                 //検索しても見つからなかった場合
                 if(result.isEmpty == true){
-                    print("ログインできませんでした。")
+                    print("IDまたはパスワードが間違っています")
                 }else{
                 // 検索成功時の処理
+                    // 検索成功時の処理
                     if result.count > 0 {
                         result.forEach{ obj in
                             self.accountsList.append(Accounts(accounts: obj))
@@ -64,6 +66,10 @@ class UserManager: NSObject{
                 }
             }
         })
+    }
+    
+    func getList()->[Accounts]{
+        return self.accountsList
     }
 }
 
