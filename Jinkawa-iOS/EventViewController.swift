@@ -69,6 +69,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let event = EventManager.sharedInstance.getList()[indexPath.row]
         
         cell.title.text = event.name
+        cell.title.sizeToFit()
         cell.date.text = event.dateStart
         cell.location.text = event.location
         cell.publisher.text = event.departmentName

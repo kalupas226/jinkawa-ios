@@ -15,6 +15,8 @@
 		37AA18A61FAEF8F4000EBD5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA18A51FAEF8F4000EBD5E /* User.swift */; };
 		37B0C80B1FB1FEAC00479E95 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */; };
 		37B0C80C1FB1FEAC00479E95 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */; };
+		37B0C8131FB720BD00479E95 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C8121FB720BD00479E95 /* ImagePickerController.swift */; };
+		37B0C8151FB720C000479E95 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C8141FB720BF00479E95 /* ImageRow.swift */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
 		556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CD1EFCD8B500FC82E1 /* ViewController.swift */; };
@@ -75,6 +77,8 @@
 		37AA18A51FAEF8F4000EBD5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		37B0C8121FB720BD00479E95 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		37B0C8141FB720BF00479E95 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 				55F8EE6F1F69719800D9E64E /* EntryViewController.swift */,
 				55CD50F61F6E20D8007DECB8 /* LoginViewController.swift */,
 				375810CE1F9B3BEC0095B29C /* SettingViewController.swift */,
+				37B0C8121FB720BD00479E95 /* ImagePickerController.swift */,
+				37B0C8141FB720BF00479E95 /* ImageRow.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -430,6 +436,8 @@
 				55C99F881F11BDB20089851A /* EventViewController.swift in Sources */,
 				37AA18A61FAEF8F4000EBD5E /* User.swift in Sources */,
 				556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */,
+				37B0C8151FB720C000479E95 /* ImageRow.swift in Sources */,
+				37B0C8131FB720BD00479E95 /* ImagePickerController.swift in Sources */,
 				559FC0981F6A68E100FB5ABE /* Participant.swift in Sources */,
 				559FC09C1F6AB22200FB5ABE /* Information.swift in Sources */,
 				55DF2DD41F6CC808002491E1 /* EventCreateViewController.swift in Sources */,
@@ -621,6 +629,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kalupas.Jinkawa-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -641,6 +650,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kalupas.Jinkawa-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

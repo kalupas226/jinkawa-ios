@@ -34,15 +34,13 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         detailTable.delegate = self
         detailTable.dataSource = self
         
-        /*----オートレイアウト？問題のためEventDetailViewControllerについてはAlamofireImage保留---
         let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         self.eventDetailImage.af_setImage(
             withURL: url,
             placeholderImage: UIImage(named: "test.png")
         )
-         */
-        
+        /*
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
         fileData.getDataInBackground { (data, error) in
             if error != nil {
@@ -53,6 +51,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                 self.eventDetailImage.image = image
             }
         }
+ */
         
         detailList["日程"] = event.dateStart
         detailList["場所"] = event.location

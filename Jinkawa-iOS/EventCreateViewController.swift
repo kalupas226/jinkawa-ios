@@ -22,9 +22,15 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
+        
+        ImageRow.defaultCellUpdate = { cell, row in
+            cell.accessoryView?.layer.cornerRadius = 17
+            cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 90, height: 90)
+            cell.height = ({return 100})
+        }
 
         form
-            +++ Section("イベント情報")
+            +++ Section("イベント基本情報")
             <<< TextRow("EventNameRowTag") {
                 $0.title = "イベント名"
             }
@@ -33,11 +39,32 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
                 $0.value = "総務部"    // initially selected
             }
-            <<< TextRow("DescriptionRowTag") {
-                $0.title = "説明文"
+            <<< SwitchRow("OfficerRowTag"){
+                $0.title = "役員のみに公開"
+                $0.value = false
             }
+            +++ Section("イベント日程")
             <<< DateInlineRow("DateStartRowTag") {
                 $0.title = "開始日"
+            }
+            <<< TimeInlineRow("TimeStartRowTag") {
+                $0.title = "開始時間"
+            }
+            <<< DateInlineRow("DateEndRowTag") {
+                $0.title = "終了日"
+            }
+            <<< TimeInlineRow("TimeEndRowTag") {
+                $0.title = "終了時間"
+            }
+            <<< DateInlineRow("DeadlineRowTag"){
+                $0.title = "締切日"
+            }
+            +++ Section ("イベント詳細情報")
+            <<< TextAreaRow("DescriptionRowTag") {
+                $0.placeholder = "イベント説明文"
+            }
+            <<< ImageRow("ImageRowTag") {
+            $0.title = "イベント画像"
             }
             <<< TextRow("LocationRowTag") {
                 $0.title = "開催場所"
@@ -45,19 +72,6 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             <<< TextRow("CapacityRowTag"){
                 $0.title = "定員"
                 $0.placeholder = "(例)20"
-        }
-            <<< DateInlineRow("DeadlineRowTag"){
-                $0.title = "締切日"
-            }
-            <<< ButtonRow() {
-            $0.title = "画像を選択してください"
-            }
-                .onCellSelection {  cell, row in
-                    self.choosePicture()
-            }
-            <<< SwitchRow("OfficerRowTag"){
-                $0.title = "役員のみに公開"
-                $0.value = false
         }
         
         
@@ -90,6 +104,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         // Get the value of all rows which have a Tag assigned
         let values = form.values()
         
+        image = (values["ImageRowTag"] as! UIImage)
+        
         //日付関連を日本標準時にするためのformatter
         let dateFrt = DateFormatter()
         dateFrt.setTemplate(.full)
@@ -98,6 +114,9 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
         let dateStart = dateFrt.string(from:values["DateStartRowTag"] as! Date)
+        let dateEnd = dateFrt.string(from:values["DateEndRowTag"] as! Date)
+        let timeStart = values["TimeStartRowTag"] as! Date
+        let timeEnd = values["TimeEndRowTag"] as! Date
         let location: String = values["LocationRowTag"] as! String
         let capacity: String = values["CapacityRowTag"] as! String + "名"
         let officer: Bool = values["OfficerRowTag"] as! Bool
@@ -117,7 +136,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let event = Event(name:name, descriptionText:description, dateStart:dateStart.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
+                                        let event = Event(name:name, descriptionText:description, dateStart: dateStart.description, dateEnd: dateEnd.description, timeStart: timeStart.description, timeEnd: timeEnd.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
                                         event.save()
                                         //イベントリストが更新されるのを待つため
                                         sleep(2)
@@ -128,76 +147,17 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         present(alert, animated: true, completion: nil)
     }
         
-        // 画像選択ボタン押下時の処理
-        func choosePicture() {
-            // カメラロールが利用可能か？
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                // 写真を選ぶビュー
-                let pickerView = UIImagePickerController()
-                // 写真の選択元をカメラロールにする
-                // 「.camera」にすればカメラを起動できる
-                pickerView.sourceType = .photoLibrary
-                // デリゲート
-                pickerView.delegate = self
-                // ビューに表示
-                self.present(pickerView, animated: true)
-            }
-        }
-        
-        // 写真を選んだ後に呼ばれる処理
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-            // 選択した写真を取得する
-            image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
-            // 写真を選ぶビューを引っ込める
-            self.dismiss(animated: true)
-            //アラートの表示
-            let alert: UIAlertController = UIAlertController(title: nil, message: "画像が選択されました", preferredStyle:  UIAlertControllerStyle.alert)
-            // Actionの設定
-            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
-            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
-            // OKボタン
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-            })
-            alert.addAction(defaultAction)
-            //Alertを表示
-            present(alert, animated: true, completion: nil)
-        }
-        
-        // 撮影がキャンセルされた時に呼ばれる
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            picker.dismiss(animated: true, completion: nil)
-            print("キャンセルされました")
-            //アラートの表示
-            let alert: UIAlertController = UIAlertController(title: nil, message: "キャンセルされました", preferredStyle:  UIAlertControllerStyle.alert)
-            // Actionの設定
-            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
-            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
-            // OKボタン
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-            })
-            alert.addAction(defaultAction)
-            //Alertを表示
-            present(alert, animated: true, completion: nil)
-            
-        }
-        
         // 保存ボタン押下時の処理
         func saveImage(id:String) {
             // 画像をリサイズする
-            let imageW : Int = Int(image!.size.width*0.2)
-            let imageH : Int = Int(image!.size.height*0.2)
-            let resizeImage = resize(image: image!, width: imageW, height: imageH)
+//            let imageW : Int = Int(image!.size.width*0.2)
+//            let imageH : Int = Int(image!.size.height*0.2)
+//            let resizeImage = resize(image: image!, width: imageW, height: imageH)
             
             let fileName = id + ".png"
             
             // 画像をNSDataに変換
-            let pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
+            let pngData = NSData(data: UIImagePNGRepresentation(image!)!)
             let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
             
             // ファイルストアへ画像のアップロード
@@ -216,7 +176,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             }
 
     }
-        
+        /*
         func resize (image: UIImage, width: Int, height: Int) -> UIImage {
             let size: CGSize = CGSize(width: width, height: height)
             UIGraphicsBeginImageContext(size)
@@ -226,6 +186,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             
             return resizeImage!
         }
+ */
 
     /*
     // MARK: - Navigation
