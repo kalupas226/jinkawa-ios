@@ -108,15 +108,17 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         
         //日付関連を日本標準時にするためのformatter
         let dateFrt = DateFormatter()
-        dateFrt.setTemplate(.full)
+        let timeFrt = DateFormatter()
+        dateFrt.setTemplate(.date)
+        timeFrt.setTemplate(.time)
         
         let name:String = values["EventNameRowTag"] as! String
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
         let dateStart = dateFrt.string(from:values["DateStartRowTag"] as! Date)
         let dateEnd = dateFrt.string(from:values["DateEndRowTag"] as! Date)
-        let timeStart = values["TimeStartRowTag"] as! Date
-        let timeEnd = values["TimeEndRowTag"] as! Date
+        let timeStart = timeFrt.string(from:values["TimeStartRowTag"] as! Date)
+        let timeEnd = timeFrt.string(from:values["TimeEndRowTag"] as! Date)
         let location: String = values["LocationRowTag"] as! String
         let capacity: String = values["CapacityRowTag"] as! String + "名"
         let officer: Bool = values["OfficerRowTag"] as! Bool
