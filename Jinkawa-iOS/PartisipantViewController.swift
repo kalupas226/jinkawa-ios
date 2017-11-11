@@ -78,7 +78,7 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
             data += "\r\n"
         }
         
-        let file = NCMBFile.file(withName: "testSwift.csv", data: data.data(using: String.Encoding.utf16)) as! NCMBFile
+        let file = NCMBFile.file(withName: "untiSwift.csv", data: data.data(using: String.Encoding.utf16)) as! NCMBFile
         file.save(nil)
         print("File Saved.")
     }
