@@ -39,7 +39,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         informationListView.register(UINib(nibName:"InformationItemViewCell", bundle:nil), forCellReuseIdentifier: "informationItem")
         
         if(UserManager.sharedInstance.getState() != .common){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(toEventCreateView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
