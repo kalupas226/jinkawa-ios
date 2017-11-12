@@ -120,8 +120,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         cell.eveImage.af_setImage(
-            withURL: url
-//            placeholderImage: UIImage(named: "event_sample")
+            withURL: url,
+            placeholderImage: UIImage(named: "iron.png")
         )
         
         return cell

@@ -28,11 +28,47 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 90, height: 90)
             cell.height = ({return 100})
         }
+        
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.contentView.backgroundColor = .red
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.textLabel?.textAlignment = .right
+            
+        }
+        
+        TextRow.defaultCellUpdate = { cell, row in
+            if !row.isValid {
+                cell.titleLabel?.textColor = .red
+            }
+        }
 
         form
             +++ Section("イベント基本情報")
             <<< TextRow("EventNameRowTag") {
                 $0.title = "イベント名"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnBlur
+            }
+                .cellUpdate{ cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+                }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "イベント名を入力してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
@@ -46,32 +82,196 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             +++ Section("イベント日程")
             <<< DateInlineRow("DateStartRowTag") {
                 $0.title = "開始日"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "開始日を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< TimeInlineRow("TimeStartRowTag") {
                 $0.title = "開始時間"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "開始時間を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< DateInlineRow("DateEndRowTag") {
                 $0.title = "終了日"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "終了日を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< TimeInlineRow("TimeEndRowTag") {
                 $0.title = "終了時間"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "終了時間を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< DateInlineRow("DeadlineRowTag"){
                 $0.title = "締切日"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "締切日を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             +++ Section ("イベント詳細情報")
             <<< TextAreaRow("DescriptionRowTag") {
                 $0.placeholder = "イベント説明文"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnBlur
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "イベント説明文を入力してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< ImageRow("ImageRowTag") {
-            $0.title = "イベント画像"
+                $0.title = "イベント画像"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnBlur
             }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "画像を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
+            }
+
             <<< TextRow("LocationRowTag") {
                 $0.title = "開催場所"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnBlur
+            }
+                .cellUpdate{ cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+                }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "開催場所を入力してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< TextRow("CapacityRowTag"){
                 $0.title = "定員"
                 $0.placeholder = "(例)20"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnBlur
+        }
+                .cellUpdate{ cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+                }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "定員を入力してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
         }
         
         
@@ -98,6 +298,14 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         let errors = form.validate()
         guard errors.isEmpty else {
             print("validate errors:", errors)
+            let alert: UIAlertController = UIAlertController(title: "エラー", message: "入力または選択されていない\n項目があります", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
             return
         }
         
@@ -135,7 +343,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         let alert = UIAlertController(title: "この内容で申し込みます",
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK",
+        alert.addAction(UIAlertAction(title: "確定",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
                                         let event = Event(name:name, descriptionText:description, dateStart: dateStart.description, dateEnd: dateEnd.description, timeStart: timeStart.description, timeEnd: timeEnd.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
@@ -145,6 +353,11 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                         EventManager.sharedInstance.loadList()
                                         //print(EventManager.sharedInstance.getList()[0].id)
                                         self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
+        }))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
         }))
         present(alert, animated: true, completion: nil)
     }

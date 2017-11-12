@@ -17,22 +17,93 @@ class InformationCreateViewController: FormViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
-
+        
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.contentView.backgroundColor = .red
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.textLabel?.textAlignment = .right
+            
+        }
+        
+        TextRow.defaultCellUpdate = { cell, row in
+            if !row.isValid {
+                cell.titleLabel?.textColor = .red
+            }
+        }
+        
         form
             +++ Section("お知らせの内容")
             <<< TextRow("TitleRowTag") {
                 $0.title = "タイトル"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "タイトルを入力してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
+            }
+                .cellUpdate{ cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
                 $0.value = "総務部"    // initially selected
             }
-            <<< TextRow("DescriptionRowTag") {
-                $0.title = "説明文"
-            }
             <<< DateInlineRow("DateRowTag") {
                 $0.title = "日付"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "日付を選択してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
+            }
+            
+            <<< TextAreaRow("DescriptionRowTag") {
+                $0.placeholder = "説明文"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+                .onRowValidationChanged { cell, row in
+                    let rowIndex = row.indexPath!.row
+                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+                        row.section?.remove(at: rowIndex + 1)
+                    }
+                    if !row.isValid {
+                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+                            let labelRow = LabelRow() {
+                                $0.title = "説明文を入力してください"
+                                $0.cell.height = { 30 }
+                            }
+                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+                        }
+                    }
             }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
@@ -55,6 +126,14 @@ class InformationCreateViewController: FormViewController {
         let errors = form.validate()
         guard errors.isEmpty else {
             print("validate errors:", errors)
+            let alert: UIAlertController = UIAlertController(title: "エラー", message: "入力または選択されていない\n項目があります", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
             return
         }
         
@@ -79,12 +158,17 @@ class InformationCreateViewController: FormViewController {
         let alert = UIAlertController(title: "この内容で申し込みます",
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK",
+        alert.addAction(UIAlertAction(title: "確定",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
                                         let information = Information(title: title, descriptionText: description, date:date.description, departmentName: department, officer: officer)
                                         information.save()
                                         
+        }))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
         }))
         present(alert, animated: true, completion: nil)
     }

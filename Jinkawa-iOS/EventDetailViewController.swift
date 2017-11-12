@@ -38,7 +38,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         let url = URL(string: imageURL)!
         self.eventDetailImage.af_setImage(
             withURL: url,
-            placeholderImage: UIImage(named: "test.png")
+            placeholderImage: UIImage(named: "iron.png")
         )
         /*
         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
@@ -62,7 +62,19 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Labelの設定
         departmentLabel.text = event.departmentName
         departmentLabel.textColor = UIColor.white
-        departmentLabel.backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        switch event.departmentName {
+        case "役員": departmentLabel.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        case "総務部": departmentLabel.backgroundColor = UIColor.colorWithHexString("cc4454")
+        case "青少年育成部": departmentLabel.backgroundColor = UIColor.colorWithHexString("4b93bc")
+        case "女性部": departmentLabel.backgroundColor = UIColor.colorWithHexString("d45273")
+        case "福祉部": departmentLabel.backgroundColor = UIColor.colorWithHexString("d96047")
+        case "環境部": departmentLabel.backgroundColor = UIColor.colorWithHexString("3ba88d")
+        case "防火防犯部": departmentLabel.backgroundColor = UIColor.colorWithHexString("1e2952")
+        case "交通部": departmentLabel.backgroundColor = UIColor.colorWithHexString("00913a")
+        case "Jバス部": departmentLabel.backgroundColor = UIColor.colorWithHexString("4cacd9")
+        default:
+            departmentLabel.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        }
         departmentLabel.textAlignment = .center
         updateDateLabel.text = "最終更新日 \(event.updateDate)"
         updateDateLabel.textColor = UIColor.white
