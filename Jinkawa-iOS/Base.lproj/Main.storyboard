@@ -72,7 +72,7 @@
         <!--Login View Controller-->
         <scene sceneID="XTi-mB-YuS">
             <objects>
-                <viewController storyboardIdentifier="Login" id="2yu-wv-UVU" customClass="LoginViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2yu-wv-UVU" customClass="LoginViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bbn-F7-ZjF"/>
                         <viewControllerLayoutGuide type="bottom" id="D8C-5S-wxd"/>
