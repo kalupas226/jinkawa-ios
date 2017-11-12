@@ -80,6 +80,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.date.text = event.dateStart
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
+        switch event.departmentName {
+        case "役員": cell.publisher.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        case "総務部": cell.publisher.backgroundColor = UIColor.colorWithHexString("cc4454")
+        case "青少年育成部": cell.publisher.backgroundColor = UIColor.colorWithHexString("4b93bc")
+        case "女性部": cell.publisher.backgroundColor = UIColor.colorWithHexString("d45273")
+        case "福祉部": cell.publisher.backgroundColor = UIColor.colorWithHexString("d96047")
+        case "環境部": cell.publisher.backgroundColor = UIColor.colorWithHexString("3ba88d")
+        case "防火防犯部": cell.publisher.backgroundColor = UIColor.colorWithHexString("1e2952")
+        case "交通部": cell.publisher.backgroundColor = UIColor.colorWithHexString("00913a")
+        case "Jバス部": cell.publisher.backgroundColor = UIColor.colorWithHexString("4cacd9")
+        default:
+            cell.publisher.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        }
+        
         cell.publisher.sizeToFit()
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
