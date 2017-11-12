@@ -60,6 +60,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            array.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
