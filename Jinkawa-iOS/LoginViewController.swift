@@ -33,16 +33,9 @@ class LoginViewController: UIViewController {
         
         idTextString = idTextField.text!
         psTextString = psTextField.text!
-        var sw = false
-        DispatchQueue.global().async {
-            sw = UserManager.sharedInstance.login(id: self.idTextString, pass: self.psTextString)
+        UserManager.sharedInstance.login(id: idTextString, pass: psTextString)
+        loginAlert()
         }
-        wait({return sw == false}){
-            print(sw)
-            print(UserManager.sharedInstance.getState())
-            self.loginAlert()
-        }
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -51,11 +44,7 @@ class LoginViewController: UIViewController {
     
     func loginAlert(){
         //アラートの表示
-        var loginMessage = "ログイン"
-        print(UserManager.sharedInstance.getState())
-        if(UserManager.sharedInstance.getState() != .common){
-            loginMessage = "ログイン"
-        }
+        let loginMessage = "ログイン"
         let alert: UIAlertController = UIAlertController(title: nil, message: loginMessage, preferredStyle:  UIAlertControllerStyle.alert)
         // Actionの設定
         // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
@@ -70,31 +59,6 @@ class LoginViewController: UIViewController {
         //Alertを表示
         self.present(alert, animated: true, completion: nil)
         }
-    
-    /// 条件をクリアするまで待ちます
-    ///
-    /// - Parameters:
-    ///   - waitContinuation: 待機条件
-    ///   - compleation: 通過後の処理
-    func wait(_ waitContinuation: @escaping (()->Bool), compleation: @escaping (()->Void)) {
-        var wait = waitContinuation()
-        // 0.01秒周期で待機条件をクリアするまで待ちます。
-        let semaphore = DispatchSemaphore(value: 0)
-        DispatchQueue.global().async {
-            while wait {
-                DispatchQueue.main.async {
-                    wait = waitContinuation()
-                    semaphore.signal()
-                }
-                semaphore.wait()
-                Thread.sleep(forTimeInterval: 0.01)
-            }
-            // 待機条件をクリアしたので通過後の処理を行います。
-            DispatchQueue.main.async {
-                compleation()
-            }
-        }
-    }
     
    
     /*

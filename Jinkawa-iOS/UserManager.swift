@@ -27,7 +27,7 @@ class UserManager: NSObject {
         self.userState = state
     }
     
-    func login(id:String,pass:String) -> Bool{
+    func login(id:String,pass:String){
         accountsList.removeAll()
         // AccountsClassクラスを検索するNCMBQueryを作成
         let query = NCMBQuery(className: "Accounts")
@@ -67,7 +67,6 @@ class UserManager: NSObject {
                 }
             }
         })
-        return true
     }
     
     func getList()->[Accounts]{
