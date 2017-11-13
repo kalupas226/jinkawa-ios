@@ -30,21 +30,37 @@ class SettingViewController: FormViewController {
             <<< LabelRow() {
                 $0.title = "入力情報の確認"
             }
-            +++ Section("アカウント")
+            +++ Section("アカウント"){ section in
+                if UserManager.sharedInstance.getState() == .common {
+                    section.hidden = true
+                }
+            }
             <<< LabelRow() {
                 $0.title = "パスワード変更"
             }
-            <<< LabelRow() {
+            <<< ButtonRow() {
                 $0.title = "ログアウト"
+                }.onCellSelection { cell, row in
+                    let alertController = UIAlertController(title: "ログアウト",message: "ログアウトしますか", preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: "はい", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+                        UserManager.sharedInstance.setState(state: .common)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    let cancelAction = UIAlertAction(title: "いいえ", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alertController.addAction(okAction)
+                    alertController.addAction(cancelAction)
+                    
+                    self.present(alertController,animated: true,completion: nil)
             }
             +++ Section("お問い合わせ")
             <<< LabelRow() {
                 $0.title = "陣川あさひ町会"
             }
             +++ Section()
-            <<< LabelRow() {
+            <<< ButtonRow() {
                 $0.title = "ホーム画面へ戻る"
-                }.onCellSelection {cell, row in
+                }.onCellSelection { cell, row in
                     self.dismiss(animated: true, completion: nil)
         }
         
