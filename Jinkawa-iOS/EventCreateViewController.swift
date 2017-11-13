@@ -340,7 +340,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         "定員" + capacity + "\n" +
         "締切日" + deadline.description
         
-        let alert = UIAlertController(title: "この内容で申し込みます",
+        let alert = UIAlertController(title: "この内容で作成します",
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "確定",
@@ -353,11 +353,34 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                         EventManager.sharedInstance.loadList()
                                         //print(EventManager.sharedInstance.getList()[0].id)
                                         self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
+                                        
+                                        let alertAfter = UIAlertController(title: "作成が確定されました",
+                                                                           message: nil,
+                                                                           preferredStyle: .alert)
+                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                            // ボタンが押された時の処理を書く（クロージャ実装）
+                                            (action: UIAlertAction!) -> Void in
+                                            print("OK")
+                                        })
+                                        
+                                        alertAfter.addAction(defaultAction)
+                                        self.present(alertAfter, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             print("Cancel")
+            let alertCancel = UIAlertController(title: "キャンセルされました",
+                                                message: nil,
+                                                preferredStyle: .alert)
+            let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            
+            alertCancel.addAction(defaultAction)
+            self.present(alertCancel, animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
     }

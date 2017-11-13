@@ -159,14 +159,6 @@ class EntryViewController: FormViewController {
         let errors = form.validate()
         guard errors.isEmpty else {
             print("validate errors:", errors)
-            let alert: UIAlertController = UIAlertController(title: "エラー", message: "入力されていない\n項目があります", preferredStyle:  UIAlertControllerStyle.alert)
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-            })
-            alert.addAction(defaultAction)
-            present(alert, animated: true, completion: nil)
             return
         }
         
@@ -197,11 +189,34 @@ class EntryViewController: FormViewController {
                                       handler: {(UIAlertAction)-> Void in
                                         let participant = Participant(name: name, gender: gender, age: age.description, tell: tell, address: address, event_id:self.event_id)
                                         participant.save()
+                                        
+                                        let alertAfter = UIAlertController(title: "申し込みが確定されました",
+                                                                      message: nil,
+                                                                      preferredStyle: .alert)
+                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                            // ボタンが押された時の処理を書く（クロージャ実装）
+                                            (action: UIAlertAction!) -> Void in
+                                            print("OK")
+                                        })
+                                        
+                                        alertAfter.addAction(defaultAction)
+                                        self.present(alertAfter, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             print("Cancel")
+            let alertCancel = UIAlertController(title: "キャンセルされました",
+                                                message: nil,
+                                                preferredStyle: .alert)
+            let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            
+            alertCancel.addAction(defaultAction)
+            self.present(alertCancel, animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
     }
