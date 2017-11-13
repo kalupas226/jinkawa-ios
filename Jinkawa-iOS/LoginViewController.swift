@@ -11,6 +11,7 @@ import NCMB
 
 class LoginViewController: UIViewController {
     
+    static let sharedInstance = LoginViewController()
     @IBOutlet weak var psTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
     var idTextString = ""
@@ -20,7 +21,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         idTextField.placeholder = "ユーザーID"
         psTextField.placeholder = "パスワード"
-
         // Do any additional setup after loading the view.
     }
 
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         psTextString = psTextField.text!
         UserManager.sharedInstance.login(id: idTextString, pass: psTextString)
         loginAlert()
-    }
+        }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -44,7 +44,8 @@ class LoginViewController: UIViewController {
     
     func loginAlert(){
         //アラートの表示
-        let alert: UIAlertController = UIAlertController(title: nil, message: "aaa", preferredStyle:  UIAlertControllerStyle.alert)
+        let loginMessage = "ログイン"
+        let alert: UIAlertController = UIAlertController(title: nil, message: loginMessage, preferredStyle:  UIAlertControllerStyle.alert)
         // Actionの設定
         // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
         // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する

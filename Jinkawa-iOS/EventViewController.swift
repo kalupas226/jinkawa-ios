@@ -39,7 +39,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         eventListView.register(UINib(nibName:"EventItemViewCell", bundle:nil), forCellReuseIdentifier: "eventItem")
         
         if(UserManager.sharedInstance.getState() != .common){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(toEventCreateView))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -60,6 +60,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            array.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -69,9 +76,24 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let event = EventManager.sharedInstance.getList()[indexPath.row]
         
         cell.title.text = event.name
+        cell.title.sizeToFit()
         cell.date.text = event.dateStart
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
+        switch event.departmentName {
+        case "役員": cell.publisher.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        case "総務部": cell.publisher.backgroundColor = UIColor.colorWithHexString("cc4454")
+        case "青少年育成部": cell.publisher.backgroundColor = UIColor.colorWithHexString("4b93bc")
+        case "女性部": cell.publisher.backgroundColor = UIColor.colorWithHexString("d45273")
+        case "福祉部": cell.publisher.backgroundColor = UIColor.colorWithHexString("d96047")
+        case "環境部": cell.publisher.backgroundColor = UIColor.colorWithHexString("3ba88d")
+        case "防火防犯部": cell.publisher.backgroundColor = UIColor.colorWithHexString("1e2952")
+        case "交通部": cell.publisher.backgroundColor = UIColor.colorWithHexString("00913a")
+        case "Jバス部": cell.publisher.backgroundColor = UIColor.colorWithHexString("4cacd9")
+        default:
+            cell.publisher.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        }
+        
         cell.publisher.sizeToFit()
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
@@ -98,8 +120,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         cell.eveImage.af_setImage(
-            withURL: url
-//            placeholderImage: UIImage(named: "event_sample")
+            withURL: url,
+            placeholderImage: UIImage(named: "iron.png")
         )
         
         return cell

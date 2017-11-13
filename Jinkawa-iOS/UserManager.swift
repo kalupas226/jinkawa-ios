@@ -27,7 +27,7 @@ class UserManager: NSObject {
         self.userState = state
     }
     
-    func login(id:String,pass:String) {
+    func login(id:String,pass:String){
         accountsList.removeAll()
         // AccountsClassクラスを検索するNCMBQueryを作成
         let query = NCMBQuery(className: "Accounts")
@@ -45,6 +45,7 @@ class UserManager: NSObject {
                 //検索しても見つからなかった場合
                 if(result.isEmpty == true){
                     print("IDまたはパスワードが間違っています")
+                    
                 }else{
                 // 検索成功時の処理
                     // 検索成功時の処理

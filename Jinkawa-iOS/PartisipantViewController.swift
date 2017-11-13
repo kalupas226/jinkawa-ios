@@ -33,7 +33,11 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
         
         participantTable.register(UINib(nibName: "ParticipantTableViewCell", bundle: nil), forCellReuseIdentifier: "participantCell")
         
-        uploadCSV()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize,
+                                                            target: self,
+                                                            action: #selector(uploadCSV))
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
         // Do any additional setup after loading the view.
     }
 
@@ -78,9 +82,32 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
             data += "\r\n"
         }
         
-        let file = NCMBFile.file(withName: "testSwift.csv", data: data.data(using: String.Encoding.utf16)) as! NCMBFile
+        let file = NCMBFile.file(withName: event.id + ".csv", data: data.data(using: String.Encoding.utf8)) as! NCMBFile
         file.save(nil)
         print("File Saved.")
+        tapShare(fileName: event.id)
+    }
+    
+    func tapShare(fileName: String) {
+        // 共有する項目
+        let shareTitle = "こちらのURLからCSVファイルをダウンロードすることができます。"
+        let shareURL = NSURL(string: "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + fileName + ".csv")
+        let shareItems = [shareTitle,shareURL!] as [Any]
+        
+        let avc = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        
+        // 使用しないアクティビティタイプ
+        let excludedActivityTypes = [
+            UIActivityType.postToWeibo,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.print,
+            UIActivityType.copyToPasteboard,
+            UIActivityType.assignToContact,
+            UIActivityType.addToReadingList
+        ]
+        avc.excludedActivityTypes = excludedActivityTypes
+        
+        present(avc, animated: true, completion: nil)
     }
     
     /*
