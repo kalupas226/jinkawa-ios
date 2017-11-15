@@ -22,6 +22,13 @@ class SettingViewController: FormViewController {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.contentView.backgroundColor = .white
+            cell.textLabel?.textColor = .black
+            cell.textLabel?.font = nil
+            cell.textLabel?.textAlignment = .right
+        }
+        
         form
             +++ Section("設定")
             <<< SwitchRow() {
@@ -29,7 +36,11 @@ class SettingViewController: FormViewController {
             }
             <<< LabelRow() {
                 $0.title = "入力情報の確認"
-            }
+                }.onCellSelection{ cell, row in
+                    let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
+                    nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                    self.present(nvc, animated: true, completion: nil)
+                }
             +++ Section("アカウント"){ section in
                 if UserManager.sharedInstance.getState() == .common {
                     section.hidden = true
@@ -70,7 +81,6 @@ class SettingViewController: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     /*
      // MARK: - Navigation

@@ -335,6 +335,38 @@
             </objects>
             <point key="canvasLocation" x="3305" y="984"/>
         </scene>
+        <!--User Information View Controller-->
+        <scene sceneID="IvI-51-Nke">
+            <objects>
+                <viewController storyboardIdentifier="UserInformationView" modalPresentationStyle="overCurrentContext" id="oxb-5A-vjQ" customClass="UserInformationViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a40-Uk-FhZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9RA-yi-EF6"/>
+                    </layoutGuides>
+                    <view key="view" tag="1" contentMode="scaleToFill" id="nnf-o1-fW7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k8c-kx-TF5">
+                                <rect key="frame" x="67" y="177.5" width="240" height="312"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="RFi-Pt-zRn"/>
+                                    <constraint firstAttribute="height" constant="312" id="i8x-6A-xhk"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="k8c-kx-TF5" firstAttribute="centerX" secondItem="nnf-o1-fW7" secondAttribute="centerX" id="Rrb-P8-wHz"/>
+                            <constraint firstItem="k8c-kx-TF5" firstAttribute="centerY" secondItem="nnf-o1-fW7" secondAttribute="centerY" id="jpe-pY-IHb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eCM-1z-Pks"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asw-30-nPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3301.5999999999999" y="1665.5172413793105"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="adG-mE-Q36">
             <objects>
