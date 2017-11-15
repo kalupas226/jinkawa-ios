@@ -13,6 +13,9 @@ extension DateFormatter {
         case date = "yMd"     // 2017/1/1
         case time = "Hm"     // 12:39
         case full = "yMdkHm" // 2017/1/1 12:39
+        case day = "d"
+        case mon = "M"
+        case yer = "y"
         case onlyHour = "k"   // 17時
         case era = "GG"       // "西暦" (default) or "平成" (本体設定で和暦を指定している場合)
         case weekDay = "EEEE" // 日曜日

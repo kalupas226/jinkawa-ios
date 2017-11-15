@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		19ADFF1E1FB9F2580000A172 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */; };
 		19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */; };
-		370C26431FA81AB000657570 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C26421FA81AAD00657570 /* test.png */; };
 		375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375810CE1F9B3BEC0095B29C /* SettingViewController.swift */; };
 		378C21CD1FB84C18005E243C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C21CC1FB84C18005E243C /* UIColor.swift */; };
 		37AA18A01FAC5C6D000EBD5E /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */; };
@@ -73,9 +72,9 @@
 /* Begin PBXFileReference section */
 		19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
 		19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailViewController.swift; sourceTree = "<group>"; };
-		370C26421FA81AAD00657570 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		375810CE1F9B3BEC0095B29C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		378C21CC1FB84C18005E243C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		378C21D41FBBF31D005E243C /* Jinkawa-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jinkawa-iOS.entitlements"; sourceTree = "<group>"; };
 		37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = Carthage/Build/iOS/SKPhotoBrowser.framework; sourceTree = "<group>"; };
 		37AA18A31FAE97A5000EBD5E /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		37AA18A51FAEF8F4000EBD5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -177,7 +176,7 @@
 		556A29CA1EFCD8B500FC82E1 /* Jinkawa-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				370C26421FA81AAD00657570 /* test.png */,
+				378C21D41FBBF31D005E243C /* Jinkawa-iOS.entitlements */,
 				55C99F8F1F1237BD0089851A /* Model */,
 				55C99F901F1237CF0089851A /* View */,
 				55C99F8E1F1237AE0089851A /* Controller */,
@@ -342,7 +341,13 @@
 				TargetAttributes = {
 					556A29C71EFCD8B500FC82E1 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 565CL88MF2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					556A29DB1EFCD8B500FC82E1 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -386,7 +391,6 @@
 				55C99F961F12692A0089851A /* InformationItemViewCell.xib in Resources */,
 				556A29D61EFCD8B500FC82E1 /* LaunchScreen.storyboard in Resources */,
 				556A29D31EFCD8B500FC82E1 /* Assets.xcassets in Resources */,
-				370C26431FA81AB000657570 /* test.png in Resources */,
 				55C99F891F11BDB20089851A /* EventItemViewCell.xib in Resources */,
 				55C3E3501F6BEA120026E9EE /* ParticipantTableViewCell.xib in Resources */,
 				556A29D11EFCD8B500FC82E1 /* Main.storyboard in Resources */,
@@ -628,9 +632,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Jinkawa-iOS/Jinkawa-iOS.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 565CL88MF2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -638,7 +643,7 @@
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kalupas.Jinkawa-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.fun.jinkawa.jipuri-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -649,9 +654,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Jinkawa-iOS/Jinkawa-iOS.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 565CL88MF2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -659,7 +665,7 @@
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kalupas.Jinkawa-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.fun.jinkawa.jipuri-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

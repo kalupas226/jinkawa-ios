@@ -11,6 +11,7 @@ import NCMB
 
 class LoginViewController: UIViewController {
     
+    private var accountsList:[Accounts] = []
     static let sharedInstance = LoginViewController()
     @IBOutlet weak var psTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
@@ -19,32 +20,72 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        idTextField.placeholder = "ユーザーID"
-        psTextField.placeholder = "パスワード"
+        idTextField.placeholder = "IDを入力してください"
+        psTextField.placeholder = "パスワードを入力してください"
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func login(id:String,pass:String){
+        accountsList.removeAll()
+        // AccountsClassクラスを検索するNCMBQueryを作成
+        let query = NCMBQuery(className: "Accounts")
+        var result:[NCMBObject] = []
+        
+        /** 条件を入れる場合はここに書きます **/
+        query?.whereKey("userId", equalTo: id)
+        query?.whereKey("password", equalTo: pass)
+        // データストアの検索を実施
+        query?.findObjectsInBackground({(objects, error) in
+            if (error != nil){
+                print("エラーが発生しました")
+            }else{
+                result = objects! as! [NCMBObject]
+                //検索しても見つからなかった場合
+                if(result.isEmpty == true){
+                    self.loginAlert(loginMessage: "IDまたはパスワードが\n間違っています")
+                    
+                }else{
+                    // 検索成功時の処理
+                    if result.count > 0 {
+                        result.forEach{ obj in
+                            self.accountsList.append(Accounts(accounts: obj))
+                        }
+                        print("アカウントリストが更新されました")
+                    }
+                    if self.accountsList[0].role == "admin" {
+                        UserManager.sharedInstance.setState(state: .admin)
+                        print(self.accountsList[0].role)
+                        self.loginAlert(loginMessage: "管理者としてログインしました")
+                    }else{
+                        UserManager.sharedInstance.setState(state: .officer)
+                        print(self.accountsList[0].role)
+                        self.loginAlert(loginMessage: "役員としてログインしました")
+                    }
+                }
+            }
+        })
+    }
+    
+    
     @IBAction func loginButton(_ sender: Any) {
         
         idTextString = idTextField.text!
         psTextString = psTextField.text!
-        UserManager.sharedInstance.login(id: idTextString, pass: psTextString)
-        loginAlert()
-        }
+        login(id: idTextString, pass: psTextString)
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     
-    func loginAlert(){
+    func loginAlert(loginMessage:String){
         //アラートの表示
-        let loginMessage = "ログイン"
         let alert: UIAlertController = UIAlertController(title: nil, message: loginMessage, preferredStyle:  UIAlertControllerStyle.alert)
         // Actionの設定
         // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
@@ -58,17 +99,18 @@ class LoginViewController: UIViewController {
         alert.addAction(defaultAction)
         //Alertを表示
         self.present(alert, animated: true, completion: nil)
-        }
-    
-   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
