@@ -43,7 +43,7 @@ class Event: NSObject{
     
     init(event: NCMBObject) {
         name = event.object(forKey: "name") as! String
-        updateDate = event.object(forKey: "update_date") as! String
+        updateDate = event.object(forKey: "updateDate") as! String
         descriptionText = event.object(forKey: "description") as! String
         dateStart = event.object(forKey: "date_start") as! String
         dateEnd = event.object(forKey: "date_end") as! String
