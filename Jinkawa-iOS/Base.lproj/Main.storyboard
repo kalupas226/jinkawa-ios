@@ -81,21 +81,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oNc-H1-Tf5">
-                                <rect key="frame" x="101" y="363.5" width="172" height="30"/>
+                                <rect key="frame" x="62" y="358.5" width="250" height="40"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="19f-BT-0wM"/>
-                                    <constraint firstAttribute="height" constant="30" id="Uij-Qw-ddf"/>
+                                    <constraint firstAttribute="width" constant="250" id="19f-BT-0wM"/>
+                                    <constraint firstAttribute="height" constant="40" id="Uij-Qw-ddf"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvy-RL-HIo">
-                                <rect key="frame" x="137" y="418.5" width="100" height="30"/>
+                                <rect key="frame" x="127" y="413.5" width="120" height="40"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="4ac-39-A5f"/>
+                                    <constraint firstAttribute="width" constant="120" id="4ac-39-A5f"/>
+                                    <constraint firstAttribute="height" constant="40" id="qmu-QB-rYw"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="ログイン">
@@ -106,11 +107,11 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXy-gW-pNL">
-                                <rect key="frame" x="101.5" y="298.5" width="172" height="30"/>
+                                <rect key="frame" x="62.5" y="293.5" width="250" height="40"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="0ko-Ck-zJO"/>
-                                    <constraint firstAttribute="height" constant="30" id="9Mz-FJ-U0x"/>
+                                    <constraint firstAttribute="width" constant="250" id="0ko-Ck-zJO"/>
+                                    <constraint firstAttribute="height" constant="40" id="9Mz-FJ-U0x"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

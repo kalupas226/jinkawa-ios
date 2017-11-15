@@ -13,7 +13,6 @@ import UIKit
 class UserManager: NSObject {
     private var userState:UserState
     static let sharedInstance = UserManager()
-    private var accountsList:[Accounts] = []
     
     private override init(){
         self.userState = .common
@@ -26,52 +25,6 @@ class UserManager: NSObject {
     func setState(state:UserState){
         self.userState = state
     }
-    
-    func login(id:String,pass:String){
-        accountsList.removeAll()
-        // AccountsClassクラスを検索するNCMBQueryを作成
-        let query = NCMBQuery(className: "Accounts")
-        var result:[NCMBObject] = []
-        
-        /** 条件を入れる場合はここに書きます **/
-        query?.whereKey("userId", equalTo: id)
-        query?.whereKey("password", equalTo: pass)
-        // データストアの検索を実施
-        query?.findObjectsInBackground({(objects, error) in
-            if (error != nil){
-                print("エラーが発生しました")
-            }else{
-                result = objects! as! [NCMBObject]
-                //検索しても見つからなかった場合
-                if(result.isEmpty == true){
-                    print("IDまたはパスワードが間違っています")
-                    
-                }else{
-                // 検索成功時の処理
-                    // 検索成功時の処理
-                    if result.count > 0 {
-                        result.forEach{ obj in
-                            self.accountsList.append(Accounts(accounts: obj))
-                        }
-                        print("アカウントリストが更新されました")
-                    }
-                    if self.accountsList[0].role == "admin" {
-                        self.setState(state: .admin)
-                        print(self.accountsList[0].role)
-                        print("管理者としてログインしました。")
-                    }else{
-                        self.setState(state: .officer)
-                        print(self.accountsList[0].role)
-                        print("役員としてログインしました。")
-                    }
-                }
-            }
-        })
-    }
-    
-    func getList()->[Accounts]{
-        return self.accountsList
-    }
 }
 
 enum UserState{
@@ -79,3 +32,4 @@ enum UserState{
     case officer
     case admin
 }
+

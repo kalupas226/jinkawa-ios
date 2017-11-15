@@ -9,10 +9,11 @@
 import UIKit
 import NCMB
 import SKPhotoBrowser
+import Alamofire
 import AlamofireImage
 
 class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     var event:Event = Event() // イベントオブジェクトの保持
     var detailListOrder: Array = ["日程", "場所", "定員", "締切日", "本文"]
     var detailList: Dictionary<String, String> = [:]
@@ -40,18 +41,19 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             withURL: url,
             placeholderImage: UIImage(named: "iron.png")
         )
+        
         /*
-        let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
-        fileData.getDataInBackground { (data, error) in
-            if error != nil {
-                // ファイル取得失敗時の処理
-            } else {
-                // ファイル取得成功時の処理
-                let image = UIImage.init(data: data!)
-                self.eventDetailImage.image = image
-            }
-        }
- */
+         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
+         fileData.getDataInBackground { (data, error) in
+         if error != nil {
+         // ファイル取得失敗時の処理
+         } else {
+         // ファイル取得成功時の処理
+         let image = UIImage.init(data: data!)
+         self.eventDetailImage.image = image
+         }
+         }
+         */
         
         detailList["日程"] = event.dateStart
         detailList["場所"] = event.location
@@ -76,7 +78,32 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             departmentLabel.backgroundColor = UIColor.colorWithHexString("ce1d1c")
         }
         departmentLabel.textAlignment = .center
-        updateDateLabel.text = "最終更新日 \(event.updateDate)"
+        
+        // タイムゾーンを言語設定にあわせる
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        // 上記の形式の日付文字列から日付データを取得します。
+        let d:Date = formatter.date(from: event.updateDate)!
+        print(d)
+        
+        let dateFrt = DateFormatter()
+        dateFrt.setTemplate(.yer)
+        let updateYear = dateFrt.string(from: d)
+        dateFrt.setTemplate(.mon)
+        let updateMonth = dateFrt.string(from: d)
+        dateFrt.setTemplate(.day)
+        let updateDay = dateFrt.string(from: d)
+        dateFrt.setTemplate(.time)
+        let updateTime = dateFrt.string(from: d)
+        
+        print(updateYear + "/" + updateMonth + "/" + updateDay + " " + updateTime)
+        
+        let updateDate = updateYear + updateMonth + updateDay + updateTime
+        
+        updateDateLabel.text = "最終更新日 \(updateDate)"
         updateDateLabel.textColor = UIColor.white
         updateDateLabel.backgroundColor = UIColor.gray
         updateDateLabel.textAlignment = .center
@@ -94,10 +121,10 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         //navigationbarの設定
         navigationItem.title = event.name
         if(UserManager.sharedInstance.getState() != .common){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
-                                                            target: self,
-                                                            action: #selector(toParticipantListView))
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+                                                                target: self,
+                                                                action: #selector(toParticipantListView))
+            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
         // Do any additional setup after loading the view.
     }
@@ -105,7 +132,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     func toParticipantListView(){
         performSegue(withIdentifier: "toParticipantList", sender: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -143,34 +170,40 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     @IBAction func photoUp(_ sender: Any) {
-    // 1. create SKPhoto Array from UIImage
-    let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
-    fileData.getDataInBackground { (data, error) in
-    if error != nil {
-    // ファイル取得失敗時の処理
-    } else {
-    // ファイル取得成功時の処理
-    let image = UIImage.init(data: data!)
-        var images = [SKPhoto]()
-        let photo = SKPhoto.photoWithImage(image!)// add some UIImage
-        images.append(photo)
-        // 2. create PhotoBrowser Instance, and present from your viewController.
-        let browser = SKPhotoBrowser(photos: images)
-        browser.initializePageIndex(0)
-        self.present(browser, animated: true, completion: {})
-        }
+        // 1. create SKPhoto Array from UIImage
+        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
+        Alamofire.request(imageURL).responseImage { response in
+            debugPrint(response)
+            print(response.request as Any)
+            print(response.response as Any)
+            debugPrint(response.result)
+            if let image = response.result.value {
+                print("image downloaded: \(image)")
+                var images = [SKPhoto]()
+                let photo = SKPhoto.photoWithImage(image)// add some UIImage
+                images.append(photo)
+                // 2. create PhotoBrowser Instance, and present from your viewController.
+                let browser = SKPhotoBrowser(photos: images)
+                browser.initializePageIndex(0)
+                self.present(browser, animated: true, completion: {})
+            }
         }
     }
-
-
+    
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
+
+
+
+
