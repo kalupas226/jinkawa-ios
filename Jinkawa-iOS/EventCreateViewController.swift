@@ -161,7 +161,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                     }
             }
             <<< DateInlineRow("DeadlineRowTag"){
-                $0.title = "締切日"
+                $0.title = "申し込み締切日"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
             }
@@ -173,7 +173,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                     if !row.isValid {
                         for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
                             let labelRow = LabelRow() {
-                                $0.title = "締切日を選択してください"
+                                $0.title = "申し込み締切日を選択してください"
                                 $0.cell.height = { 30 }
                             }
                             row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
@@ -247,7 +247,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                         }
                     }
             }
-            <<< TextRow("CapacityRowTag"){
+            <<< IntRow("CapacityRowTag"){
                 $0.title = "定員"
                 $0.placeholder = "(例)20"
                 $0.add(rule: RuleRequired())
@@ -328,7 +328,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         let timeStart = timeFrt.string(from:values["TimeStartRowTag"] as! Date)
         let timeEnd = timeFrt.string(from:values["TimeEndRowTag"] as! Date)
         let location: String = values["LocationRowTag"] as! String
-        let capacity: String = values["CapacityRowTag"] as! String + "名"
+        let capacity: Int = values["CapacityRowTag"] as! Int
         let officer: Bool = values["OfficerRowTag"] as! Bool
         let deadline = dateFrt.string(from:values["DeadlineRowTag"] as! Date)
         
@@ -337,7 +337,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 "発行部署:" + department + "\n" +
                 "開催日:" + dateStart.description + "\n" +
                 "場所" + location + "\n" +
-        "定員" + capacity + "\n" +
+        "定員" + capacity.description + "\n" +
         "締切日" + deadline.description
         
         let alert = UIAlertController(title: "この内容で作成します",
@@ -346,7 +346,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         alert.addAction(UIAlertAction(title: "確定",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let event = Event(name:name, descriptionText:description, dateStart: dateStart.description, dateEnd: dateEnd.description, timeStart: timeStart.description, timeEnd: timeEnd.description, location: location, departmentName: department, capacity: capacity, officer: officer, deadline: deadline.description)
+                                        let event = Event(name:name, descriptionText:description, dateStart: dateStart.description, dateEnd: dateEnd.description, timeStart: timeStart.description, timeEnd: timeEnd.description, location: location, departmentName: department, capacity: capacity.description, officer: officer, deadline: deadline.description)
                                         event.save()
                                         //イベントリストが更新されるのを待つため
                                         sleep(2)

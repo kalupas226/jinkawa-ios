@@ -57,7 +57,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         detailList["日程"] = event.dateStart
         detailList["場所"] = event.location
-        detailList["定員"] = event.capacity
+        detailList["定員"] = event.capacity + "名"
         detailList["締切日"] = event.deadline
         detailList["本文"] = event.descriptionText
         
