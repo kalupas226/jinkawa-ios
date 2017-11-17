@@ -54,7 +54,9 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = participantTable.dequeueReusableCell(withIdentifier: "participantCell") as! ParticipantTableViewCell
         let participant = participantList[indexPath.row]
         
-        cell.nameLabel.text = participant.name
+        cell.nameLabel.text = "氏名:" + participant.name + " " + participant.gender
+        cell.phoneLabel.text = "電話番号:" + participant.tell
+        cell.addressLabel.text = "住所:" + participant.address
         
         return cell
     }
