@@ -391,7 +391,7 @@
         <!--イベント-->
         <scene sceneID="T2R-0L-orP">
             <objects>
-                <viewController storyboardIdentifier="eventListView" id="A2k-wN-LLX" customClass="ViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="A2k-wN-LLX" customClass="ViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9HN-Bd-jIr"/>
                         <viewControllerLayoutGuide type="bottom" id="4EK-Fg-cvm"/>
@@ -605,7 +605,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="iSK-kv-OrS">
             <objects>
-                <tabBarController id="ZQp-Wp-SOg" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="eventListView" id="ZQp-Wp-SOg" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="vcO-9s-ZwM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Xtj-7Q-ZH9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
