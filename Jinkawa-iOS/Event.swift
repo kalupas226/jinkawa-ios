@@ -76,7 +76,6 @@ class Event: NSObject{
     func save(){
         let eventObject = NCMBObject(className: "Event")
         eventObject?.setObject(name, forKey: "name")
-        eventObject?.setObject(updateDate, forKey: "update_date")
         eventObject?.setObject(descriptionText, forKey: "description")
         eventObject?.setObject(dateStart, forKey: "date_start")
         eventObject?.setObject(dateEnd, forKey: "date_end")

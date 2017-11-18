@@ -64,6 +64,11 @@ class InformationCreateViewController: FormViewController {
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
                 $0.value = "総務部"    // initially selected
             }
+            <<< PickerInlineRow<String>("TypeRowTag") {
+                $0.title = "お知らせ種類"
+                $0.options = ["注意","買い物","告知","緊急","バス"]
+                $0.value = "告知"    // initially selected
+            }
             <<< DateInlineRow("DateRowTag") {
                 $0.title = "日付"
                 $0.add(rule: RuleRequired())
@@ -147,6 +152,7 @@ class InformationCreateViewController: FormViewController {
         let title:String = values["TitleRowTag"] as! String
         let department:String = values["DepartmentNameRowTag"] as! String
         let description:String = values["DescriptionRowTag"] as! String
+        let type:String = values["TypeRowTag"] as! String
         let date = dateFrt.string(from:values["DateRowTag"] as! Date)
         let officer:Bool = values["OfficerRowTag"] as! Bool
         
@@ -161,7 +167,7 @@ class InformationCreateViewController: FormViewController {
         alert.addAction(UIAlertAction(title: "確定",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let information = Information(title: title, descriptionText: description, date:date.description, departmentName: department, officer: officer)
+                                        let information = Information(title: title, descriptionText: description, date:date.description, type:type, departmentName: department, officer: officer)
                                         information.save()
                                         
                                         let alertAfter = UIAlertController(title: "作成が確定されました",

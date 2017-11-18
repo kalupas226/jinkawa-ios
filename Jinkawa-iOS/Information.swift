@@ -13,6 +13,7 @@ class Information: NSObject{
     
     let title: String
     let date: String
+    let type: String
     let departmentName: String
     let descriptionText: String
     let officer: Bool
@@ -20,6 +21,7 @@ class Information: NSObject{
     override init(){
         title = ""
         date = ""
+        type = ""
         departmentName = ""
         descriptionText = ""
         officer = false
@@ -28,14 +30,16 @@ class Information: NSObject{
     init(information: NCMBObject) {
         title = information.object(forKey: "title") as! String
         date = information.object(forKey: "date") as! String
+        type = information.object(forKey: "type") as! String
         departmentName = information.object(forKey: "department_name") as! String
         descriptionText = information.object(forKey: "info") as! String
         officer = information.object(forKey: "officer_only") as! Bool
     }
     
-    init(title: String, descriptionText: String, date: String, departmentName:String, officer:Bool) {
+    init(title: String, descriptionText: String, date: String, type: String, departmentName:String, officer:Bool) {
         self.title = title
         self.date = date
+        self.type = type
         self.departmentName = departmentName
         self.descriptionText = descriptionText
         self.officer = officer
@@ -45,6 +49,7 @@ class Information: NSObject{
         let informationObject = NCMBObject(className: "Information")
         informationObject?.setObject(title, forKey: "title")
         informationObject?.setObject(date, forKey: "date")
+        informationObject?.setObject(type, forKey: "type")
         informationObject?.setObject(departmentName, forKey: "department_name")
         informationObject?.setObject(descriptionText, forKey: "info")
         informationObject?.setObject(officer, forKey: "officer_only")

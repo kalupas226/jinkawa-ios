@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
-            self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
         })
         alert.addAction(defaultAction)
         //Alertを表示
