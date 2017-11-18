@@ -11,6 +11,7 @@ import NCMB
 
 class Information: NSObject{
     
+    let id: String
     let title: String
     let date: String
     let type: String
@@ -19,6 +20,7 @@ class Information: NSObject{
     let officer: Bool
 
     override init(){
+        id = ""
         title = ""
         date = ""
         type = ""
@@ -28,6 +30,7 @@ class Information: NSObject{
     }
     
     init(information: NCMBObject) {
+        id = information.object(forKey: "objectId") as! String
         title = information.object(forKey: "title") as! String
         date = information.object(forKey: "date") as! String
         type = information.object(forKey: "type") as! String
@@ -37,6 +40,7 @@ class Information: NSObject{
     }
     
     init(title: String, descriptionText: String, date: String, type: String, departmentName:String, officer:Bool) {
+        self.id = ""
         self.title = title
         self.date = date
         self.type = type

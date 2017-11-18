@@ -244,11 +244,30 @@
                     <navigationItem key="navigationItem" title="お知らせ詳細" id="KCx-MV-b6h"/>
                     <connections>
                         <outlet property="detailTable" destination="9IB-bd-px7" id="Zj6-c3-YbS"/>
+                        <segue destination="v1N-Ne-raN" kind="show" identifier="toInformationEdit" id="R4f-UJ-nrp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHn-b7-ymB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4120.8000000000002" y="142.1289355322339"/>
+        </scene>
+        <!--お知らせ編集-->
+        <scene sceneID="V3U-Ns-zHz">
+            <objects>
+                <viewController title="お知らせ編集" id="v1N-Ne-raN" customClass="InformationEditViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0by-mI-ARV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hm1-h7-eOL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v6f-aM-kMh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="22w-GS-7Ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4943" y="143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qFQ-bR-Jwj">
