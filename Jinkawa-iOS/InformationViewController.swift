@@ -72,12 +72,12 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.date.text = information.date
         cell.publisher.text = information.departmentName
         switch information.type {
-        case "注意": cell.infoImage.image = UIImage(named:"注意.png")
-        case "買い物": cell.infoImage.image = UIImage(named:"買い物.png")
-        case "緊急": cell.infoImage.image = UIImage(named:"警告.png")
-        case "告知": cell.infoImage.image = UIImage(named:"お知らせ.png")
-        case "バス": cell.infoImage.image = UIImage(named:"バス.png")
-        default: cell.infoImage.image = UIImage(named:"お知らせ.png")
+        case "注意": cell.infoImage.image = UIImage(named:"caution.png")
+        case "買い物": cell.infoImage.image = UIImage(named:"shopping.png")
+        case "緊急": cell.infoImage.image = UIImage(named:"alert.png")
+        case "告知": cell.infoImage.image = UIImage(named:"info.png")
+        case "バス": cell.infoImage.image = UIImage(named:"bus.png")
+        default: cell.infoImage.image = UIImage(named:"info.png")
         }
         switch information.departmentName {
         case "役員": cell.publisher.backgroundColor = UIColor.colorWithHexString("ce1d1c")
