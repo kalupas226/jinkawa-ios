@@ -105,18 +105,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        /*
-        let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
-        fileData.getDataInBackground { (data, error) in
-            if error != nil {
-                // ファイル取得失敗時の処理
-            } else {
-                // ファイル取得成功時の処理
-                let image = UIImage.init(data: data!)
-                cell.eveImage.image = image
-            }
-        }
-         */
         let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         cell.eveImage.af_setImage(

@@ -10,7 +10,7 @@ import UIKit
 import NCMB
 
 class InformationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
+    
     var imformation: Information = Information()
     var detailListOrder: Array = ["日程", "本文"]
     var detailList: Dictionary<String, String> = [:]
@@ -20,7 +20,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         preferredStyle: .actionSheet)
     
     @IBOutlet weak var detailTable: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
@@ -51,7 +51,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
                 handler:{(action)-> Void in
                     self.toInformationEditView()
             })
-            )
+        )
         
         actionSheet.addAction(
             UIAlertAction(
@@ -80,7 +80,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -119,32 +119,32 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
                 // 取得に失敗した場合の処理
             }else{
                 let alert = UIAlertController(title: "本当に削除しても良いですか",
-                                                   message: nil,
-                                                   preferredStyle: .alert)
+                                              message: nil,
+                                              preferredStyle: .alert)
                 let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                     // ボタンが押された時の処理を書く（クロージャ実装）
                     (action: UIAlertAction!) -> Void in
-                // 取得に成功した場合の処理
-                obj?.deleteInBackground({ (error) in
-                    if error != nil {
-                        // 削除に失敗した場合の処理
-                    }else{
-                        // 削除に成功した場合の処理
-                        let alertAfter = UIAlertController(title: "お知らせが削除されました",
-                                                           message: nil,
-                                                           preferredStyle: .alert)
-                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                            // ボタンが押された時の処理を書く（クロージャ実装）
-                            (action: UIAlertAction!) -> Void in
-                            print("OK")
-                            //前の画面に遷移する
-                            self.navigationController?.popViewController(animated: true)
-                        })
-                        
-                        alertAfter.addAction(defaultAction)
-                        self.present(alertAfter, animated: true, completion: nil)
-                    }
-                })
+                    // 取得に成功した場合の処理
+                    obj?.deleteInBackground({ (error) in
+                        if error != nil {
+                            // 削除に失敗した場合の処理
+                        }else{
+                            // 削除に成功した場合の処理
+                            let alertAfter = UIAlertController(title: "お知らせが削除されました",
+                                                               message: nil,
+                                                               preferredStyle: .alert)
+                            let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                // ボタンが押された時の処理を書く（クロージャ実装）
+                                (action: UIAlertAction!) -> Void in
+                                print("OK")
+                                //前の画面に遷移する
+                                self.navigationController?.popViewController(animated: true)
+                            })
+                            
+                            alertAfter.addAction(defaultAction)
+                            self.present(alertAfter, animated: true, completion: nil)
+                        }
+                    })
                 }
                 )
                 let cancelAction: UIAlertAction = UIKit.UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
@@ -169,13 +169,13 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

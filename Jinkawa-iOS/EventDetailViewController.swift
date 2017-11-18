@@ -17,6 +17,10 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var event:Event = Event() // イベントオブジェクトの保持
     var detailListOrder: Array = ["日程", "場所", "定員", "締切日", "本文"]
     var detailList: Dictionary<String, String> = [:]
+    let actionSheet = UIAlertController(
+        title:nil,
+        message:nil,
+        preferredStyle: .actionSheet)
     
     @IBOutlet weak var detailTable: UITableView!
     @IBOutlet weak var eventDetailImage: UIImageView!
@@ -42,18 +46,40 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             placeholderImage: UIImage(named: "iron.png")
         )
         
-        /*
-         let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
-         fileData.getDataInBackground { (data, error) in
-         if error != nil {
-         // ファイル取得失敗時の処理
-         } else {
-         // ファイル取得成功時の処理
-         let image = UIImage.init(data: data!)
-         self.eventDetailImage.image = image
-         }
-         }
-         */
+        actionSheet.addAction(
+            UIAlertAction(
+                title:"イベントを編集する",
+                style: .default,
+                handler:{(action)-> Void in
+                    self.toEventEditView()
+            })
+        )
+        
+        actionSheet.addAction(
+            UIAlertAction(
+                title:"イベントを削除する",
+                style: .destructive,
+                handler: {(action) -> Void in
+                    self.eventDelete()
+            })
+        )
+        
+        actionSheet.addAction(
+            UIAlertAction(
+                title:"イベント参加者一覧を見る",
+                style: .default,
+                handler: {(action) -> Void in
+                    self.toParticipantListView()
+            })
+        )
+        
+        actionSheet.addAction(
+            UIAlertAction(
+                title: "キャンセル",
+                style: .cancel,
+                handler: nil
+            )
+        )
         
         detailList["日程"] = event.dateStart
         detailList["場所"] = event.location
@@ -123,14 +149,25 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         if(UserManager.sharedInstance.getState() != .common){
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                                 target: self,
-                                                                action: #selector(toParticipantListView))
+                                                                action: #selector(showAlert))
             navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
         // Do any additional setup after loading the view.
     }
     
+    func showAlert(){
+        self.present(
+            self.actionSheet,
+            animated: true,
+            completion:nil)
+    }
+    
     func toParticipantListView(){
         performSegue(withIdentifier: "toParticipantList", sender: nil)
+    }
+    
+    func toEventEditView(){
+        performSegue(withIdentifier: "toEventEdit", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -166,6 +203,83 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             let participantViewController = segue.destination as! PartisipantViewController
             participantViewController.event = event
         }
+        if segue.identifier == "toEventEdit" {
+            let EventEditViewController = segue.destination as! EventEditViewController
+            EventEditViewController.event = event
+        }
+    }
+    
+    func eventDelete(){
+        let obj = NCMBObject(className: "Event")
+        // objectIdプロパティを設定
+        obj?.objectId = self.event.id
+        // 設定されたobjectIdを元にデータストアからデータを取得
+        obj?.fetchInBackground({ (error) in
+            if error != nil {
+                // 取得に失敗した場合の処理
+            }else{
+                let alert = UIAlertController(title: "本当に削除しても良いですか",
+                                              message: nil,
+                                              preferredStyle: .alert)
+                let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    // 取得に成功した場合の処理
+                    obj?.deleteInBackground({ (error) in
+                        if error != nil {
+                            // 削除に失敗した場合の処理
+                        }else{
+                            // 削除に成功した場合の処理
+                            //ファイルストアから画像を削除する
+                            // ファイルストアを検索するクエリを作成
+                            let query = NCMBFile.query()
+                            // 検索するファイル名を設定
+                            query?.whereKey("fileName", equalTo: self.event.id + ".png")
+                            // ファイルストアの検索を実行
+                            query?.findObjectsInBackground({ (files, error) in
+                                if error != nil {
+                                    // 検索失敗時の処理
+                                } else {
+                                    // 検索成功時の処理
+                                    for file in files! as! [NCMBFile] {
+                                        file.getDataInBackground({ (data, error) in
+                                            if error != nil {
+                                                // ファイル取得失敗時の処理
+                                                print("画像が見つかりませんでした")
+                                            } else {
+                                                // ファイル取得成功時の処理
+                                                file.deleteInBackground(nil)
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                            let alertAfter = UIAlertController(title: "お知らせが削除されました",
+                                                               message: nil,
+                                                               preferredStyle: .alert)
+                            let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                // ボタンが押された時の処理を書く（クロージャ実装）
+                                (action: UIAlertAction!) -> Void in
+                                print("OK")
+                                //前の画面に遷移する
+                                self.navigationController?.popViewController(animated: true)
+                            })
+                            
+                            alertAfter.addAction(defaultAction)
+                            self.present(alertAfter, animated: true, completion: nil)
+                        }
+                    })
+                }
+                )
+                let cancelAction: UIAlertAction = UIKit.UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("cancel")
+                })
+                alert.addAction(defaultAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
     }
     
     

@@ -267,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22w-GS-7Ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4943" y="143"/>
+            <point key="canvasLocation" x="4945" y="228"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qFQ-bR-Jwj">
@@ -562,11 +562,30 @@
                         <outlet property="eventDetailImage" destination="GG1-Nk-1eQ" id="kiS-TC-Nxb"/>
                         <outlet property="updateDateLabel" destination="XkW-v0-4ao" id="MVT-ir-aCq"/>
                         <segue destination="MhY-WN-Q6N" kind="show" identifier="toParticipantList" id="IyC-5P-Ule"/>
+                        <segue destination="Va0-K4-g7T" kind="show" identifier="toEventEdit" id="l54-3g-WBD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6M-nF-eU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4120.8000000000002" y="-658.4707646176912"/>
+        </scene>
+        <!--イベント編集-->
+        <scene sceneID="xfN-R6-bGd">
+            <objects>
+                <viewController title="イベント編集" id="Va0-K4-g7T" customClass="EventEditViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vqM-mt-aq8"/>
+                        <viewControllerLayoutGuide type="bottom" id="rW3-NC-5pb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Uo-OS-Wd9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dgE-ay-6rI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5113" y="-397"/>
         </scene>
         <!-- 参加者リスト-->
         <scene sceneID="0XT-48-GMV">
@@ -600,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9B-IK-4sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5112.8000000000002" y="-1295.352323838081"/>
+            <point key="canvasLocation" x="5113" y="-1686"/>
         </scene>
         <!--申し込みフォーム-->
         <scene sceneID="ayq-Kg-Vgf">
@@ -619,7 +638,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbR-uc-rKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5113" y="-636"/>
+            <point key="canvasLocation" x="5113" y="-1047"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="iSK-kv-OrS">
