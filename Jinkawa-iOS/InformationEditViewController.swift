@@ -78,7 +78,7 @@ class InformationEditViewController: FormViewController {
                 $0.title = "日付"
                 //日付関連を日本標準時にするためのformatter
                 let dateFrt = DateFormatter()
-                dateFrt.setTemplate(.date)
+                dateFrt.setTemplate(.full)
                 $0.value = dateFrt.date(from: information.date)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
