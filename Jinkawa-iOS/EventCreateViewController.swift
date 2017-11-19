@@ -391,18 +391,20 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     // 保存ボタン押下時の処理
     func saveImage(id:String) {
         
-        
+        var pngData: NSData
         // 画像をリサイズする(任意)
         /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
         /* 上限を超えてしまうデータの場合はリサイズが必要です */
-        let imageW : Int = Int(image!.size.width*0.4) /* 40%に縮小 */
-        let imageH : Int = Int(image!.size.height*0.4) /* 40%に縮小 */
-        let resizeImage = resize(image: image!, width: imageW, height: imageH)
-        
+        if(image!.size.width>=500||image!.size.height>=500){
+            let imageW : Int = Int(image!.size.width*0.2) /* 20%に縮小 */
+            let imageH : Int = Int(image!.size.height*0.2) /* 20%に縮小 */
+            let resizeImage = resize(image: image!, width: imageW, height: imageH)
+            // 画像をNSDataに変換
+            pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
+        }else{
+            pngData = NSData(data: UIImagePNGRepresentation(image!)!)
+        }
         let fileName = id + ".png"
-        
-        // 画像をNSDataに変換
-        let pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
         let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
         
         // ファイルストアへ画像のアップロード
