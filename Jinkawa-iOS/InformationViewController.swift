@@ -126,8 +126,8 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toInformationDetail"{
-            let imformationDetailViewController = segue.destination as! InformationDetailViewController
-            imformationDetailViewController.imformation = sender as! Information
+            let informationDetailViewController = segue.destination as! InformationDetailViewController
+            informationDetailViewController.information = sender as! Information
         }
     }
     

@@ -11,7 +11,7 @@ import NCMB
 
 class InformationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var imformation: Information = Information()
+    var information: Information = Information()
     var detailListOrder: Array = ["日程", "本文"]
     var detailList: Dictionary<String, String> = [:]
     let actionSheet = UIAlertController(
@@ -31,8 +31,8 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         detailTable.delegate = self
         detailTable.dataSource = self
         
-        detailList["日程"] = imformation.date
-        detailList["本文"] = imformation.descriptionText
+        detailList["日程"] = information.date
+        detailList["本文"] = information.descriptionText
         
         //CustomCellの登録
         detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
@@ -70,7 +70,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
             )
         )
         //navigationbarの設定
-        navigationItem.title = imformation.title
+        navigationItem.title = information.title
         if(UserManager.sharedInstance.getState() != .common){
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                                 target: self,
@@ -112,7 +112,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
     func infomationDelete(){
         let obj = NCMBObject(className: "Information")
         // objectIdプロパティを設定
-        obj?.objectId = self.imformation.id
+        obj?.objectId = self.information.id
         // 設定されたobjectIdを元にデータストアからデータを取得
         obj?.fetchInBackground({ (error) in
             if error != nil {
@@ -165,7 +165,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toInformationEdit" {
             let InformationEditViewController = segue.destination as! InformationEditViewController
-            InformationEditViewController.imformation = imformation
+            InformationEditViewController.information = information
         }
     }
     /*

@@ -13,7 +13,7 @@ import NCMB
 
 class InformationEditViewController: FormViewController {
     
-    var imformation:Information = Information()
+    var information:Information = Information()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class InformationEditViewController: FormViewController {
             +++ Section("お知らせの内容")
             <<< TextRow("TitleRowTag") {
                 $0.title = "タイトル"
-                $0.value = imformation.title
+                $0.value = information.title
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -67,12 +67,12 @@ class InformationEditViewController: FormViewController {
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
-                $0.value = imformation.departmentName   // initially selected
+                $0.value = information.departmentName   // initially selected
             }
             <<< PickerInlineRow<String>("TypeRowTag") {
                 $0.title = "お知らせ種類"
                 $0.options = ["注意","買い物","告知","緊急","バス"]
-                $0.value = imformation.type    // initially selected
+                $0.value = information.type    // initially selected
             }
             <<< DateInlineRow("DateRowTag") {
                 $0.title = "日付"
@@ -97,7 +97,7 @@ class InformationEditViewController: FormViewController {
             
             <<< TextAreaRow("DescriptionRowTag") {
                 $0.placeholder = "説明文"
-                $0.value = imformation.descriptionText
+                $0.value = information.descriptionText
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -118,7 +118,7 @@ class InformationEditViewController: FormViewController {
             }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
-                $0.value = imformation.officer
+                $0.value = information.officer
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
@@ -177,7 +177,7 @@ class InformationEditViewController: FormViewController {
                                         // クラスのNCMBObjectを作成
                                         let obj = NCMBObject(className: "Information")
                                         // objectIdプロパティを設定
-                                        obj?.objectId = self.imformation.id
+                                        obj?.objectId = self.information.id
                                         // 設定されたobjectIdを元にデータストアからデータを取得
                                         obj?.fetchInBackground({ (error) in
                                             if error != nil {
