@@ -70,7 +70,7 @@ class EntryViewController: FormViewController {
                 $0.title = "年齢"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -87,20 +87,20 @@ class EntryViewController: FormViewController {
                     }
                 }
                 .cellUpdate{ cell, row in
-                if !row.isValid {
-                cell.titleLabel?.textColor = .red
-                }
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             <<< PhoneRow("PhoneRowTag") {
                 $0.title = "電話番号"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-            }
+                }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
                     }
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -120,7 +120,7 @@ class EntryViewController: FormViewController {
                 $0.title = "住所"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-            }
+                }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
@@ -191,8 +191,8 @@ class EntryViewController: FormViewController {
                                         participant.save()
                                         
                                         let alertAfter = UIAlertController(title: "申し込みが確定されました",
-                                                                      message: nil,
-                                                                      preferredStyle: .alert)
+                                                                           message: nil,
+                                                                           preferredStyle: .alert)
                                         let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                                             // ボタンが押された時の処理を書く（クロージャ実装）
                                             (action: UIAlertAction!) -> Void in

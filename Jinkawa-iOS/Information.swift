@@ -18,7 +18,7 @@ class Information: NSObject{
     let departmentName: String
     let descriptionText: String
     let officer: Bool
-
+    
     override init(){
         id = ""
         title = ""

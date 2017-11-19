@@ -42,14 +42,14 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 cell.titleLabel?.textColor = .red
             }
         }
-
+        
         form
             +++ Section("イベント基本情報")
             <<< TextRow("EventNameRowTag") {
                 $0.title = "イベント名"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-            }
+                }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
@@ -84,7 +84,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "開始日"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -104,7 +104,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "開始時間"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -124,7 +124,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "終了日"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -144,7 +144,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "終了時間"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -164,7 +164,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "申し込み締切日"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -185,7 +185,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.placeholder = "イベント説明文"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -205,7 +205,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.title = "イベント画像"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -221,12 +221,12 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                         }
                     }
             }
-
+            
             <<< TextRow("LocationRowTag") {
                 $0.title = "開催場所"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-            }
+                }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
@@ -252,7 +252,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 $0.placeholder = "(例)20"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
-        }
+                }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
@@ -288,7 +288,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -337,8 +337,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 "発行部署:" + department + "\n" +
                 "開催日:" + dateStart.description + "\n" +
                 "場所" + location + "\n" +
-        "定員" + capacity.description + "\n" +
-        "締切日" + deadline.description
+                "定員" + capacity.description + "\n" +
+                "締切日" + deadline.description
         
         let alert = UIAlertController(title: "この内容で作成します",
                                       message: message,
@@ -386,57 +386,57 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         }))
         present(alert, animated: true, completion: nil)
     }
+    
+    // 保存ボタン押下時の処理
+    func saveImage(id:String) {
+        // 画像をリサイズする
+        //            let imageW : Int = Int(image!.size.width*0.2)
+        //            let imageH : Int = Int(image!.size.height*0.2)
+        //            let resizeImage = resize(image: image!, width: imageW, height: imageH)
         
-        // 保存ボタン押下時の処理
-        func saveImage(id:String) {
-            // 画像をリサイズする
-//            let imageW : Int = Int(image!.size.width*0.2)
-//            let imageH : Int = Int(image!.size.height*0.2)
-//            let resizeImage = resize(image: image!, width: imageW, height: imageH)
-            
-            let fileName = id + ".png"
-            
-            // 画像をNSDataに変換
-            let pngData = NSData(data: UIImagePNGRepresentation(image!)!)
-            let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
-            
-            // ファイルストアへ画像のアップロード
-            file.saveInBackground({ (error) in
-                if error != nil {
-                    // 保存失敗時の処理
-                } else {
-                    // 保存成功時の処理
-                }
-            }) { (int) in
-                // 進行状況を取得するためのBlock
-                /* 1-100のpercentDoneを返す */
-                /* このコールバックは保存中何度も呼ばれる */
-                /*例）*/
-                print("\(int)%")
+        let fileName = id + ".png"
+        
+        // 画像をNSDataに変換
+        let pngData = NSData(data: UIImagePNGRepresentation(image!)!)
+        let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
+        
+        // ファイルストアへ画像のアップロード
+        file.saveInBackground({ (error) in
+            if error != nil {
+                // 保存失敗時の処理
+            } else {
+                // 保存成功時の処理
             }
-
-    }
-        /*
-        func resize (image: UIImage, width: Int, height: Int) -> UIImage {
-            let size: CGSize = CGSize(width: width, height: height)
-            UIGraphicsBeginImageContext(size)
-            image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-            let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            return resizeImage!
+        }) { (int) in
+            // 進行状況を取得するためのBlock
+            /* 1-100のpercentDoneを返す */
+            /* このコールバックは保存中何度も呼ばれる */
+            /*例）*/
+            print("\(int)%")
         }
- */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+    /*
+     func resize (image: UIImage, width: Int, height: Int) -> UIImage {
+     let size: CGSize = CGSize(width: width, height: height)
+     UIGraphicsBeginImageContext(size)
+     image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+     let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+     UIGraphicsEndImageContext()
+     
+     return resizeImage!
+     }
+     */
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
 
 

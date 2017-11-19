@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startButtonDidTapped(_ sender: Any) {
@@ -20,15 +20,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        let event = Event(eventName: "testName2", updateAt: "2:00", description: "testDescription")
+        //        let event = Event(eventName: "testName2", updateAt: "2:00", description: "testDescription")
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func backToHome(segue: UIStoryboardSegue){
         
     }

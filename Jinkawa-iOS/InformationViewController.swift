@@ -39,10 +39,10 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         informationListView.register(UINib(nibName:"InformationItemViewCell", bundle:nil), forCellReuseIdentifier: "informationItem")
         
         if(UserManager.sharedInstance.getState() != .common){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(toEventCreateView))
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(toEventCreateView))
+            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
         // Do any additional setup after loading the view.
     }
@@ -107,7 +107,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     //役員専用のセルの高さを0にする
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
+        let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
         if(UserManager.sharedInstance.getState() == .common){
             if(information.officer == true){
                 return 0
@@ -115,8 +115,8 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
                 return 121.5
             }
         }else{
-                return 121.5
-            }
+            return 121.5
+        }
     }
     
     override func didReceiveMemoryWarning() {

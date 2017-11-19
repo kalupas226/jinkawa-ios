@@ -34,7 +34,7 @@ class InformationManager: NSObject{
         
         if result.count > 0 {
             result.forEach{ obj in
-//                self.informationList.append(Information(information: obj))
+                //                self.informationList.append(Information(information: obj))
                 //お知らせリストの最後尾に追加
                 self.informationList.insert(Information(information: obj), at: 0)
             }

@@ -10,7 +10,7 @@ import UIKit
 import Eureka
 
 class InformationCreateViewController: FormViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
@@ -38,7 +38,7 @@ class InformationCreateViewController: FormViewController {
                 $0.title = "タイトル"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -53,7 +53,7 @@ class InformationCreateViewController: FormViewController {
                             row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
                         }
                     }
-            }
+                }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
@@ -73,7 +73,7 @@ class InformationCreateViewController: FormViewController {
                 $0.title = "日付"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -94,7 +94,7 @@ class InformationCreateViewController: FormViewController {
                 $0.placeholder = "説明文"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }
+                }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
                     while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
@@ -121,7 +121,7 @@ class InformationCreateViewController: FormViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -205,15 +205,15 @@ class InformationCreateViewController: FormViewController {
     }
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

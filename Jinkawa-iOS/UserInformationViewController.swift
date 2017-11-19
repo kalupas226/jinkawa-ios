@@ -14,13 +14,13 @@ class UserInformationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-//        let visualEffectView = UIVisualEffectView(frame: view.frame)
-//        visualEffectView.effect = UIBlurEffect(style: .regular)
-//        view.insertSubview(visualEffectView, at: 0)
+        //        let visualEffectView = UIVisualEffectView(frame: view.frame)
+        //        visualEffectView.effect = UIBlurEffect(style: .regular)
+        //        view.insertSubview(visualEffectView, at: 0)
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,15 +35,15 @@ class UserInformationViewController: UIViewController {
             }
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

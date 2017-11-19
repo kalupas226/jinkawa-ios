@@ -92,6 +92,6 @@ class Event: NSObject{
                 print("Save error: ", error!)
             }
         })
-
+        
     }
 }
