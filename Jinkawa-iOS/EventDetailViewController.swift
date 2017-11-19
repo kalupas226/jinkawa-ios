@@ -254,7 +254,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                                     }
                                 }
                             })
-                            let alertAfter = UIAlertController(title: "お知らせが削除されました",
+                            let alertAfter = UIAlertController(title: "イベントが削除されました",
                                                                message: nil,
                                                                preferredStyle: .alert)
                             let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{

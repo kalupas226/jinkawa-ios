@@ -9,6 +9,7 @@
 import UIKit
 import Eureka
 import NCMB
+import CoreImage
 
 
 class EventCreateViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -389,15 +390,19 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     
     // 保存ボタン押下時の処理
     func saveImage(id:String) {
-        // 画像をリサイズする
-        //            let imageW : Int = Int(image!.size.width*0.2)
-        //            let imageH : Int = Int(image!.size.height*0.2)
-        //            let resizeImage = resize(image: image!, width: imageW, height: imageH)
+        
+        
+        // 画像をリサイズする(任意)
+        /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
+        /* 上限を超えてしまうデータの場合はリサイズが必要です */
+        let imageW : Int = Int(image!.size.width*0.4) /* 40%に縮小 */
+        let imageH : Int = Int(image!.size.height*0.4) /* 40%に縮小 */
+        let resizeImage = resize(image: image!, width: imageW, height: imageH)
         
         let fileName = id + ".png"
         
         // 画像をNSDataに変換
-        let pngData = NSData(data: UIImagePNGRepresentation(image!)!)
+        let pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
         let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
         
         // ファイルストアへ画像のアップロード
@@ -416,17 +421,17 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         }
         
     }
-    /*
-     func resize (image: UIImage, width: Int, height: Int) -> UIImage {
-     let size: CGSize = CGSize(width: width, height: height)
-     UIGraphicsBeginImageContext(size)
-     image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-     let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-     UIGraphicsEndImageContext()
-     
-     return resizeImage!
-     }
-     */
+    
+    // 画像をリサイズする処理
+    func resize (image: UIImage, width: Int, height: Int) -> UIImage {
+        let size: CGSize = CGSize(width: width, height: height)
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resizeImage!
+    }
     
     /*
      // MARK: - Navigation

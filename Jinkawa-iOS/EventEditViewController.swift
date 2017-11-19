@@ -9,11 +9,14 @@
 import UIKit
 import Eureka
 import NCMB
+import Alamofire
 
 class EventEditViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var image:UIImage? = nil
     var event: Event = Event()
+    //日付関連を日本標準時にするためのformatter
+    let dateFrt = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +85,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             +++ Section("イベント日程")
             <<< DateInlineRow("DateStartRowTag") {
                 $0.title = "開始日"
+                dateFrt.setTemplate(.date)
+                $0.value = dateFrt.date(from:event.dateStart)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -102,6 +107,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< TimeInlineRow("TimeStartRowTag") {
                 $0.title = "開始時間"
+                dateFrt.setTemplate(.time)
+                $0.value = dateFrt.date(from:event.timeStart)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -122,6 +129,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< DateInlineRow("DateEndRowTag") {
                 $0.title = "終了日"
+                dateFrt.setTemplate(.date)
+                $0.value = dateFrt.date(from:event.dateEnd)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -142,6 +151,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< TimeInlineRow("TimeEndRowTag") {
                 $0.title = "終了時間"
+                dateFrt.setTemplate(.time)
+                $0.value = dateFrt.date(from:event.timeStart)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -162,6 +173,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< DateInlineRow("DeadlineRowTag"){
                 $0.title = "申し込み締切日"
+                dateFrt.setTemplate(.date)
+                $0.value = dateFrt.date(from:event.deadline)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -251,7 +264,7 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< IntRow("CapacityRowTag"){
                 $0.title = "定員"
-                $0.value = event.capacity as? Int
+                $0.value = Int(event.capacity)
                 $0.placeholder = "(例)20"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
@@ -377,9 +390,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                                                         // 更新に失敗した場合の処理
                                                     }else{
                                                         // 更新に成功した場合の処理
-                                                        sleep(2)
                                                         EventManager.sharedInstance.loadList()
-                                                        self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
+                                                        self.saveImage(id: self.event.id)
                                                         
                                                         let alertAfter = UIAlertController(title: "更新が確定されました",
                                                                                            message: nil,
@@ -422,15 +434,18 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
     
     // 保存ボタン押下時の処理
     func saveImage(id:String) {
-        // 画像をリサイズする
-        //            let imageW : Int = Int(image!.size.width*0.2)
-        //            let imageH : Int = Int(image!.size.height*0.2)
-        //            let resizeImage = resize(image: image!, width: imageW, height: imageH)
+       
+        // 画像をリサイズする(任意)
+        /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
+        /* 上限を超えてしまうデータの場合はリサイズが必要です */
+        let imageW : Int = Int(image!.size.width*0.2) /* 20%に縮小 */
+        let imageH : Int = Int(image!.size.height*0.2) /* 20%に縮小 */
+        let resizeImage = resize(image: image!, width: imageW, height: imageH)
         
         let fileName = id + ".png"
         
         // 画像をNSDataに変換
-        let pngData = NSData(data: UIImagePNGRepresentation(image!)!)
+        let pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
         let file = NCMBFile.file(withName: fileName, data: pngData as Data!) as! NCMBFile
         
         // ファイルストアへ画像のアップロード
@@ -449,17 +464,17 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
         }
         
     }
-    /*
-     func resize (image: UIImage, width: Int, height: Int) -> UIImage {
-     let size: CGSize = CGSize(width: width, height: height)
-     UIGraphicsBeginImageContext(size)
-     image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-     let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-     UIGraphicsEndImageContext()
-     
-     return resizeImage!
-     }
-     */
+    
+    // 画像をリサイズする処理
+    func resize (image: UIImage, width: Int, height: Int) -> UIImage {
+        let size: CGSize = CGSize(width: width, height: height)
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resizeImage!
+    }
     
     /*
      // MARK: - Navigation
