@@ -20,6 +20,7 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         preferredStyle: .actionSheet)
     
     @IBOutlet weak var detailTable: UITableView!
+    @IBOutlet weak var infoImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,15 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
                     self.toInformationEditView()
             })
         )
+        
+        switch information.type{
+        case "注意": infoImage.image = UIImage(named:"caution.png")
+        case "買い物": infoImage.image = UIImage(named:"shopping.png")
+        case "緊急": infoImage.image = UIImage(named:"alert.png")
+        case "告知": infoImage.image = UIImage(named:"info.png")
+        case "バス": infoImage.image = UIImage(named:"bus.png")
+        default: infoImage.image = UIImage(named:"info.png")
+        }
         
         actionSheet.addAction(
             UIAlertAction(
