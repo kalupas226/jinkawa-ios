@@ -10,7 +10,7 @@ import UIKit
 import NCMB
 
 class PartisipantViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     
     @IBOutlet weak var participantTable: UITableView!
     var event: Event = Event()
@@ -23,7 +23,7 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
-
+        
         participantTable.delegate = self
         participantTable.dataSource = self
         
@@ -37,10 +37,10 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
                                                             target: self,
                                                             action: #selector(uploadCSV))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,7 +54,9 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = participantTable.dequeueReusableCell(withIdentifier: "participantCell") as! ParticipantTableViewCell
         let participant = participantList[indexPath.row]
         
-        cell.nameLabel.text = participant.name
+        cell.nameLabel.text = "氏名:" + participant.name + " " + participant.gender
+        cell.phoneLabel.text = "電話番号:" + participant.tell
+        cell.addressLabel.text = "住所:" + participant.address
         
         return cell
     }
@@ -111,13 +113,13 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

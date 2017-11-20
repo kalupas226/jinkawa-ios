@@ -1,21 +1,22 @@
 //
-//  EventCreateViewController.swift
+//  EventEditViewController.swift
 //  Jinkawa-iOS
 //
-//  Created by Taro Sato on 2017/09/16.
+//  Created by Kenta Aikawa on 2017/11/19.
 //  Copyright © 2017年 Taro Sato. All rights reserved.
 //
 
 import UIKit
 import Eureka
 import NCMB
-import CoreImage
+import Alamofire
 
-
-class EventCreateViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EventEditViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var image:UIImage? = nil
-    
+    var event: Event = Event()
+    //日付関連を日本標準時にするためのformatter
+    let dateFrt = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             +++ Section("イベント基本情報")
             <<< TextRow("EventNameRowTag") {
                 $0.title = "イベント名"
+                $0.value = event.name
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
                 }
@@ -74,15 +76,17 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
-                $0.value = "総務部"    // initially selected
+                $0.value = event.departmentName   // initially selected
             }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
-                $0.value = false
+                $0.value = event.officer
             }
             +++ Section("イベント日程")
             <<< DateInlineRow("DateStartRowTag") {
                 $0.title = "開始日"
+                dateFrt.setTemplate(.date)
+                $0.value = dateFrt.date(from:event.dateStart)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -103,6 +107,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             }
             <<< TimeInlineRow("TimeStartRowTag") {
                 $0.title = "開始時間"
+                dateFrt.setTemplate(.time)
+                $0.value = dateFrt.date(from:event.timeStart)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -123,6 +129,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             }
             <<< DateInlineRow("DateEndRowTag") {
                 $0.title = "終了日"
+                dateFrt.setTemplate(.date)
+                $0.value = dateFrt.date(from:event.dateEnd)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -143,6 +151,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             }
             <<< TimeInlineRow("TimeEndRowTag") {
                 $0.title = "終了時間"
+                dateFrt.setTemplate(.time)
+                $0.value = dateFrt.date(from:event.timeEnd)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -163,6 +173,8 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             }
             <<< DateInlineRow("DeadlineRowTag"){
                 $0.title = "申し込み締切日"
+                dateFrt.setTemplate(.date)
+                $0.value = dateFrt.date(from:event.deadline)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -184,6 +196,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             +++ Section ("イベント詳細情報")
             <<< TextAreaRow("DescriptionRowTag") {
                 $0.placeholder = "イベント説明文"
+                $0.value = event.descriptionText
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
                 }
@@ -225,6 +238,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             
             <<< TextRow("LocationRowTag") {
                 $0.title = "開催場所"
+                $0.value = event.location
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
                 }
@@ -250,6 +264,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             }
             <<< IntRow("CapacityRowTag"){
                 $0.title = "定員"
+                $0.value = Int(event.capacity)
                 $0.placeholder = "(例)20"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
@@ -341,33 +356,62 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                 "定員" + capacity.description + "\n" +
                 "締切日" + deadline.description
         
-        let alert = UIAlertController(title: "この内容で作成します",
+        let alert = UIAlertController(title: "この内容で更新します",
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "確定",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let event = Event(name:name, descriptionText:description, dateStart: dateStart.description, dateEnd: dateEnd.description, timeStart: timeStart.description, timeEnd: timeEnd.description, location: location, departmentName: department, capacity: capacity.description, officer: officer, deadline: deadline.description)
-                                        event.save()
-                                        //イベントリストが更新されるのを待つため
-                                        sleep(2)
-                                        EventManager.sharedInstance.loadList()
-                                        //print(EventManager.sharedInstance.getList()[0].id)
-                                        self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
-                                        
-                                        let alertAfter = UIAlertController(title: "作成が確定されました",
-                                                                           message: nil,
-                                                                           preferredStyle: .alert)
-                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                                            // ボタンが押された時の処理を書く（クロージャ実装）
-                                            (action: UIAlertAction!) -> Void in
-                                            print("OK")
-                                            //前の画面に遷移する
-                                            self.navigationController?.popViewController(animated: true)
+                                        /** オブジェクトの更新**/
+                                        // クラスのNCMBObjectを作成
+                                        let obj = NCMBObject(className: "Event")
+                                        // objectIdプロパティを設定
+                                        obj?.objectId = self.event.id
+                                        // 設定されたobjectIdを元にデータストアからデータを取得
+                                        obj?.fetchInBackground({ (error) in
+                                            if error != nil {
+                                                // 取得に失敗した場合の処理
+                                            }else{
+                                                // 取得に成功した場合の処理
+                                                obj?.setObject(name, forKey: "name")
+                                                obj?.setObject(description, forKey: "description")
+                                                obj?.setObject(dateStart, forKey: "date_start")
+                                                obj?.setObject(dateEnd, forKey: "date_end")
+                                                obj?.setObject(timeStart, forKey: "start_time")
+                                                obj?.setObject(timeEnd, forKey: "end_time")
+                                                obj?.setObject(location, forKey: "location")
+                                                obj?.setObject(department, forKey: "department")
+                                                obj?.setObject(capacity.description, forKey: "capacity")
+                                                obj?.setObject(officer, forKey: "officer_only")
+                                                obj?.setObject(deadline, forKey: "deadline_day")
+                                                
+                                                obj?.saveInBackground({ (error) in
+                                                    if error != nil {
+                                                        // 更新に失敗した場合の処理
+                                                    }else{
+                                                        // 更新に成功した場合の処理
+                                                        EventManager.sharedInstance.loadList()
+                                                        self.saveImage(id: self.event.id)
+                                                        
+                                                        let alertAfter = UIAlertController(title: "更新が確定されました",
+                                                                                           message: nil,
+                                                                                           preferredStyle: .alert)
+                                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                                            // ボタンが押された時の処理を書く（クロージャ実装）
+                                                            (action: UIAlertAction!) -> Void in
+                                                            print("OK")
+                                                            //前の画面に遷移する
+                                                            self.navigationController?.popToRootViewController(animated: true)
+                                                        })
+                                                        
+                                                        alertAfter.addAction(defaultAction)
+                                                        self.present(alertAfter, animated: true, completion: nil)
+                                                        // (例)更新したデータの出力
+                                                        print(obj! as NCMBObject)
+                                                    }
+                                                })
+                                            }
                                         })
-                                        
-                                        alertAfter.addAction(defaultAction)
-                                        self.present(alertAfter, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
@@ -390,7 +434,6 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     
     // 保存ボタン押下時の処理
     func saveImage(id:String) {
-        
         var pngData: NSData
         // 画像をリサイズする(任意)
         /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
@@ -445,5 +488,6 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
      }
      */
 }
+
 
 

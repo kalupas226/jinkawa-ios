@@ -42,7 +42,7 @@ public struct ImageRowSourceTypes : OptionSet {
 
 extension ImageRowSourceTypes {
     
-// MARK: Helpers
+    // MARK: Helpers
     
     var localizedString: String {
         switch self {
@@ -75,7 +75,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
     /// Will be called before the presentation occurs.
     open var onPresentCallback: ((FormViewController, PresenterRow) -> Void)?
     
-
+    
     open var sourceTypes: ImageRowSourceTypes
     open internal(set) var imageURL: URL?
     open var clearAction = ImageClearAction.yes(style: .destructive)
@@ -88,7 +88,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
         presentationMode = .presentModally(controllerProvider: ControllerProvider.callback { return ImagePickerController() }, onDismiss: { [weak self] vc in
             self?.select()
             vc.dismiss(animated: true)
-            })
+        })
         self.displayValueFor = nil
         
     }
@@ -120,7 +120,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
         deselect()
         
         var availableSources: ImageRowSourceTypes = []
-            
+        
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let _ = availableSources.insert(.PhotoLibrary)
         }
@@ -130,7 +130,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
             let _ = availableSources.insert(.SavedPhotosAlbum)
         }
-
+        
         sourceTypes.formIntersection(availableSources)
         
         if sourceTypes.isEmpty {
@@ -160,7 +160,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
                 self?.value = nil
                 self?.imageURL = nil
                 self?.updateCell()
-                })
+            })
             sourceActionSheet.addAction(clearPhotoOption)
         }
         if sourceActionSheet.actions.count == 1 {
@@ -209,12 +209,12 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
         }
     }
     
-
+    
 }
 
 extension _ImageRow {
     
-//MARK: Helpers
+    //MARK: Helpers
     
     func createOptionForAlertController(_ alertController: UIAlertController, sourceType: ImageRowSourceTypes) {
         guard let pickerSourceType = UIImagePickerControllerSourceType(rawValue: sourceType.imagePickerControllerSourceTypeRawValue), sourceTypes.contains(sourceType) else { return }

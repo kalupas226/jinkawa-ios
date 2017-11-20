@@ -39,10 +39,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         eventListView.register(UINib(nibName:"EventItemViewCell", bundle:nil), forCellReuseIdentifier: "eventItem")
         
         if(UserManager.sharedInstance.getState() != .common){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(toEventCreateView))
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(toEventCreateView))
+            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
         // Do any additional setup after loading the view.
     }
@@ -60,12 +60,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            array.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
+    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    //        if editingStyle == .delete {
+    //            array.remove(at: indexPath.row)
+    //            tableView.deleteRows(at: [indexPath], with: .fade)
+    //        }
+    //    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -105,18 +105,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        /*
-        let fileData = NCMBFile.file(withName: event.id + ".png" , data: nil) as! NCMBFile
-        fileData.getDataInBackground { (data, error) in
-            if error != nil {
-                // ファイル取得失敗時の処理
-            } else {
-                // ファイル取得成功時の処理
-                let image = UIImage.init(data: data!)
-                cell.eveImage.image = image
-            }
-        }
-         */
         let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         cell.eveImage.af_setImage(
@@ -126,7 +114,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -161,13 +149,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

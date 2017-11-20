@@ -1,15 +1,19 @@
 //
-//  InformationCreateViewController.swift
+//  InformationEditViewController.swift
 //  Jinkawa-iOS
 //
-//  Created by Taro Sato on 2017/09/16.
+//  Created by Kenta Aikawa on 2017/11/18.
 //  Copyright © 2017年 Taro Sato. All rights reserved.
 //
 
+
 import UIKit
 import Eureka
+import NCMB
 
-class InformationCreateViewController: FormViewController {
+class InformationEditViewController: FormViewController {
+    
+    var information:Information = Information()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,7 @@ class InformationCreateViewController: FormViewController {
             +++ Section("お知らせの内容")
             <<< TextRow("TitleRowTag") {
                 $0.title = "タイトル"
+                $0.value = information.title
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -62,15 +67,19 @@ class InformationCreateViewController: FormViewController {
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
                 $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
-                $0.value = "総務部"    // initially selected
+                $0.value = information.departmentName   // initially selected
             }
             <<< PickerInlineRow<String>("TypeRowTag") {
                 $0.title = "お知らせ種類"
                 $0.options = ["注意","買い物","告知","緊急","バス"]
-                $0.value = "告知"    // initially selected
+                $0.value = information.type    // initially selected
             }
             <<< DateInlineRow("DateRowTag") {
                 $0.title = "日付"
+                //日付関連を日本標準時にするためのformatter
+                let dateFrt = DateFormatter()
+                dateFrt.setTemplate(.full)
+                $0.value = dateFrt.date(from: information.date)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -92,6 +101,7 @@ class InformationCreateViewController: FormViewController {
             
             <<< TextAreaRow("DescriptionRowTag") {
                 $0.placeholder = "説明文"
+                $0.value = information.descriptionText
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
@@ -112,7 +122,7 @@ class InformationCreateViewController: FormViewController {
             }
             <<< SwitchRow("OfficerRowTag"){
                 $0.title = "役員のみに公開"
-                $0.value = false
+                $0.value = information.officer
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
@@ -161,24 +171,51 @@ class InformationCreateViewController: FormViewController {
                 "発行部署:" + department + "\n" +
                 "開催日:" + date.description + "\n"
         
-        let alert = UIAlertController(title: "この内容で作成します",
+        let alert = UIAlertController(title: "この内容で更新します",
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "確定",
                                       style: .default,
                                       handler: {(UIAlertAction)-> Void in
-                                        let information = Information(title: title, descriptionText: description, date:date.description, type:type, departmentName: department, officer: officer)
-                                        information.save()
+                                        /** オブジェクトの更新**/
+                                        // クラスのNCMBObjectを作成
+                                        let obj = NCMBObject(className: "Information")
+                                        // objectIdプロパティを設定
+                                        obj?.objectId = self.information.id
+                                        // 設定されたobjectIdを元にデータストアからデータを取得
+                                        obj?.fetchInBackground({ (error) in
+                                            if error != nil {
+                                                // 取得に失敗した場合の処理
+                                            }else{
+                                                // 取得に成功した場合の処理
+                                                obj?.setObject(title, forKey: "title")
+                                                obj?.setObject(date, forKey: "date")
+                                                obj?.setObject(type, forKey: "type")
+                                                obj?.setObject(department, forKey: "department_name")
+                                                obj?.setObject(description, forKey: "info")
+                                                obj?.setObject(officer, forKey: "officer_only")
+                                                
+                                                obj?.saveInBackground({ (error) in
+                                                    if error != nil {
+                                                        // 更新に失敗した場合の処理
+                                                    }else{
+                                                        // 更新に成功した場合の処理
+                                                        // (例)更新したデータの出力
+                                                        print(obj! as NCMBObject)
+                                                    }
+                                                })
+                                            }
+                                        })
                                         
-                                        let alertAfter = UIAlertController(title: "作成が確定されました",
+                                        let alertAfter = UIAlertController(title: "更新が確定されました",
                                                                            message: nil,
                                                                            preferredStyle: .alert)
                                         let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                                             // ボタンが押された時の処理を書く（クロージャ実装）
                                             (action: UIAlertAction!) -> Void in
                                             print("OK")
-                                            //前の画面に遷移する
-                                            self.navigationController?.popViewController(animated: true)
+                                            //2つ前の画面に遷移する
+                                            self.navigationController?.popToRootViewController(animated: true)
                                         })
                                         
                                         alertAfter.addAction(defaultAction)
@@ -217,3 +254,4 @@ class InformationCreateViewController: FormViewController {
      */
     
 }
+

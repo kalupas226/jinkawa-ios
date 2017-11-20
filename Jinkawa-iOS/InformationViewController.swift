@@ -39,10 +39,10 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         informationListView.register(UINib(nibName:"InformationItemViewCell", bundle:nil), forCellReuseIdentifier: "informationItem")
         
         if(UserManager.sharedInstance.getState() != .common){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(toEventCreateView))
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(toEventCreateView))
+            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
         // Do any additional setup after loading the view.
     }
@@ -71,6 +71,14 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.title.text = information.title
         cell.date.text = information.date
         cell.publisher.text = information.departmentName
+        switch information.type {
+        case "注意": cell.infoImage.image = UIImage(named:"caution.png")
+        case "買い物": cell.infoImage.image = UIImage(named:"shopping.png")
+        case "緊急": cell.infoImage.image = UIImage(named:"alert.png")
+        case "告知": cell.infoImage.image = UIImage(named:"info.png")
+        case "バス": cell.infoImage.image = UIImage(named:"bus.png")
+        default: cell.infoImage.image = UIImage(named:"info.png")
+        }
         switch information.departmentName {
         case "役員": cell.publisher.backgroundColor = UIColor.colorWithHexString("ce1d1c")
         case "総務部": cell.publisher.backgroundColor = UIColor.colorWithHexString("cc4454")
@@ -99,7 +107,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     //役員専用のセルの高さを0にする
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
+        let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
         if(UserManager.sharedInstance.getState() == .common){
             if(information.officer == true){
                 return 0
@@ -107,8 +115,8 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
                 return 121.5
             }
         }else{
-                return 121.5
-            }
+            return 121.5
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,8 +126,8 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toInformationDetail"{
-            let imformationDetailViewController = segue.destination as! InformationDetailViewController
-            imformationDetailViewController.imformation = sender as! Information
+            let informationDetailViewController = segue.destination as! InformationDetailViewController
+            informationDetailViewController.information = sender as! Information
         }
     }
     

@@ -40,7 +40,7 @@ class SettingViewController: FormViewController {
                     let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
                     nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                     self.present(nvc, animated: true, completion: nil)
-                }
+            }
             +++ Section("アカウント"){ section in
                 if UserManager.sharedInstance.getState() == .common {
                     section.hidden = true
