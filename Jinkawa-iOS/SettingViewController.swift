@@ -37,9 +37,11 @@ class SettingViewController: FormViewController {
             <<< LabelRow() {
                 $0.title = "入力情報の確認"
                 }.onCellSelection{ cell, row in
-                    let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
-                    nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                    self.present(nvc, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "toUserInformation", sender: nil)
+//                    let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
+//                    nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//                    self.present(nvc, animated: true, completion: nil)
+                    
             }
             +++ Section("アカウント"){ section in
                 if UserManager.sharedInstance.getState() == .common {
