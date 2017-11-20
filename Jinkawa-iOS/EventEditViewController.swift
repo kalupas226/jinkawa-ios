@@ -152,7 +152,7 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             <<< TimeInlineRow("TimeEndRowTag") {
                 $0.title = "終了時間"
                 dateFrt.setTemplate(.time)
-                $0.value = dateFrt.date(from:event.timeStart)
+                $0.value = dateFrt.date(from:event.timeEnd)
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 }
