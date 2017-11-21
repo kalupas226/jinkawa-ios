@@ -351,6 +351,9 @@
             <objects>
                 <tableViewController id="IAh-ou-TAm" customClass="SettingViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="設定" id="1bi-62-Nlh"/>
+                    <connections>
+                        <segue destination="oxb-5A-vjQ" kind="presentation" identifier="toUserInformation" modalTransitionStyle="crossDissolve" id="cCZ-hV-Pso"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COq-0Y-aao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -359,34 +362,74 @@
         <!--User Information View Controller-->
         <scene sceneID="IvI-51-Nke">
             <objects>
-                <viewController storyboardIdentifier="UserInformationView" modalPresentationStyle="overCurrentContext" id="oxb-5A-vjQ" customClass="UserInformationViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserInformationView" wantsFullScreenLayout="YES" modalPresentationStyle="overCurrentContext" id="oxb-5A-vjQ" customClass="UserInformationViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a40-Uk-FhZ"/>
                         <viewControllerLayoutGuide type="bottom" id="9RA-yi-EF6"/>
                     </layoutGuides>
                     <view key="view" tag="1" contentMode="scaleToFill" id="nnf-o1-fW7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k8c-kx-TF5">
-                                <rect key="frame" x="67" y="177.5" width="240" height="312"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lk8-AF-CGl">
+                                <rect key="frame" x="46" y="130" width="283" height="378"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTV-bG-gxd">
+                                        <rect key="frame" x="0.0" y="10" width="283" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="GGH-WO-XoS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k8c-kx-TF5">
+                                        <rect key="frame" x="10" y="90" width="263" height="238"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2q-5Y-4fe">
+                                        <rect key="frame" x="0.0" y="328" width="283" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="stv-d4-GRF"/>
+                                        </constraints>
+                                        <state key="normal" title="消去する">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="RFi-Pt-zRn"/>
-                                    <constraint firstAttribute="height" constant="312" id="i8x-6A-xhk"/>
+                                    <constraint firstItem="u2q-5Y-4fe" firstAttribute="top" secondItem="k8c-kx-TF5" secondAttribute="bottom" id="3J1-Lw-gwy"/>
+                                    <constraint firstItem="u2q-5Y-4fe" firstAttribute="leading" secondItem="lk8-AF-CGl" secondAttribute="leading" id="C7y-Gu-mhH"/>
+                                    <constraint firstAttribute="trailing" secondItem="WTV-bG-gxd" secondAttribute="trailing" id="IhZ-Hc-uFD"/>
+                                    <constraint firstAttribute="trailing" secondItem="u2q-5Y-4fe" secondAttribute="trailing" id="Jjr-Nn-f9d"/>
+                                    <constraint firstItem="k8c-kx-TF5" firstAttribute="top" secondItem="WTV-bG-gxd" secondAttribute="bottom" constant="30" id="Q8D-L8-VlX"/>
+                                    <constraint firstItem="u2q-5Y-4fe" firstAttribute="top" secondItem="k8c-kx-TF5" secondAttribute="bottom" id="UhR-PS-dht"/>
+                                    <constraint firstItem="WTV-bG-gxd" firstAttribute="top" secondItem="lk8-AF-CGl" secondAttribute="top" constant="10" id="XEo-p9-YuZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="u2q-5Y-4fe" secondAttribute="bottom" id="YtF-dQ-CYJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="k8c-kx-TF5" secondAttribute="trailing" constant="10" id="ez5-sm-nGU"/>
+                                    <constraint firstItem="WTV-bG-gxd" firstAttribute="leading" secondItem="lk8-AF-CGl" secondAttribute="leading" id="qSt-75-gsz"/>
+                                    <constraint firstItem="k8c-kx-TF5" firstAttribute="leading" secondItem="lk8-AF-CGl" secondAttribute="leading" constant="10" id="uli-MN-u1L"/>
                                 </constraints>
-                            </tableView>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="k8c-kx-TF5" firstAttribute="centerX" secondItem="nnf-o1-fW7" secondAttribute="centerX" id="Rrb-P8-wHz"/>
-                            <constraint firstItem="k8c-kx-TF5" firstAttribute="centerY" secondItem="nnf-o1-fW7" secondAttribute="centerY" id="jpe-pY-IHb"/>
+                            <constraint firstItem="lk8-AF-CGl" firstAttribute="top" secondItem="a40-Uk-FhZ" secondAttribute="bottom" constant="110" id="81m-rG-buo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lk8-AF-CGl" secondAttribute="trailing" constant="30" id="8mV-8j-Q2p"/>
+                            <constraint firstItem="lk8-AF-CGl" firstAttribute="leading" secondItem="nnf-o1-fW7" secondAttribute="leadingMargin" constant="30" id="Nai-Ac-YT2"/>
+                            <constraint firstItem="9RA-yi-EF6" firstAttribute="top" secondItem="lk8-AF-CGl" secondAttribute="bottom" constant="110" id="dbs-Tc-QQZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eCM-1z-Pks"/>
+                    <connections>
+                        <outlet property="deleteButton" destination="u2q-5Y-4fe" id="OLs-ph-BLA"/>
+                        <outlet property="titleLabel" destination="WTV-bG-gxd" id="scC-zb-qVG"/>
+                        <outlet property="userInformationTable" destination="k8c-kx-TF5" id="IWa-4F-ehY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="asw-30-nPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3301.5999999999999" y="1665.5172413793105"/>
+            <point key="canvasLocation" x="3301.5999999999999" y="1665.0674662668666"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="adG-mE-Q36">
