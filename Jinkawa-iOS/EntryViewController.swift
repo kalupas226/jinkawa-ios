@@ -39,6 +39,9 @@ class EntryViewController: FormViewController {
                 $0.title = "氏名"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
+                if UserDefaults.standard.object(forKey: "userInformation") != nil {
+                    $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["NameRowTag"] as? String
+                }
                 }.onChange {
                     print("Name changed:", $0.value ?? "");
                 }.cellUpdate { cell, row in
@@ -65,11 +68,17 @@ class EntryViewController: FormViewController {
                 $0.title = "性別　　　　　"
                 $0.options = ["男", "女"]
                 $0.value = "男"    // initially selected
+                if UserDefaults.standard.object(forKey: "userInformation") != nil {
+                    $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["GenderRowTag"] as? String
+                }
             }
             <<< IntRow("AgeRowTag") {
                 $0.title = "年齢"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
+                if UserDefaults.standard.object(forKey: "userInformation") != nil {
+                    $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["AgeRowTag"] as? Int
+                }
                 }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row
@@ -95,6 +104,9 @@ class EntryViewController: FormViewController {
                 $0.title = "電話番号"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
+                if UserDefaults.standard.object(forKey: "userInformation") != nil {
+                    $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["PhoneRowTag"] as? String
+                }
                 }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
@@ -120,6 +132,9 @@ class EntryViewController: FormViewController {
                 $0.title = "住所"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur
+                if UserDefaults.standard.object(forKey: "userInformation") != nil {
+                    $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["AddressRowTag"] as? String
+                }
                 }
                 .cellUpdate{ cell, row in
                     if !row.isValid {
