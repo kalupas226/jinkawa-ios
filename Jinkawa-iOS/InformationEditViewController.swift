@@ -214,6 +214,40 @@ class InformationEditViewController: FormViewController {
                                             // ボタンが押された時の処理を書く（クロージャ実装）
                                             (action: UIAlertAction!) -> Void in
                                             print("OK")
+                                            let push = NCMBPush()
+                                            let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
+                                            push.setData(data_iOS)
+                                            push.setPushToIOS(true)
+                                            push.setTitle(title)
+                                            push.setMessage("お知らせが更新されました！")
+                                            push.setImmediateDeliveryFlag(true) // 即時配信
+                                            push.sendInBackground { (error) in
+                                                if error != nil {
+                                                    // プッシュ通知登録に失敗した場合の処理
+                                                    print("NG:\(String(describing: error))")
+                                                } else {
+                                                    // プッシュ通知登録に成功した場合の処理
+                                                    print("OK")
+                                                }
+                                            }
+                                            
+                                            let pushA = NCMBPush()
+                                            let data_Android = ["action" : "ReceiveActivity", "title" : "testPush"] as [String : Any]
+                                            pushA.setData(data_Android)
+                                            pushA.setDialog(true)
+                                            pushA.setPushToAndroid(true)
+                                            pushA.setTitle(title)
+                                            pushA.setMessage("お知らせが更新されました!")
+                                            pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                            pushA.sendInBackground { (error) in
+                                                if error != nil {
+                                                    // プッシュ通知登録に失敗した場合の処理
+                                                    print("NG:\(String(describing: error))")
+                                                } else {
+                                                    // プッシュ通知登録に成功した場合の処理
+                                                    print("OK")
+                                                }
+                                            }
                                             //2つ前の画面に遷移する
                                             self.navigationController?.popToRootViewController(animated: true)
                                         })

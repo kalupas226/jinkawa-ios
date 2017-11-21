@@ -319,5 +319,3 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
 
 
 
-
-

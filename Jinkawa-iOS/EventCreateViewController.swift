@@ -362,6 +362,40 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                             // ボタンが押された時の処理を書く（クロージャ実装）
                                             (action: UIAlertAction!) -> Void in
                                             print("OK")
+                                            let push = NCMBPush()
+                                            let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
+                                            push.setData(data_iOS)
+                                            push.setPushToIOS(true)
+                                            push.setTitle(name)
+                                            push.setMessage("イベントが追加されました！")
+                                            push.setImmediateDeliveryFlag(true) // 即時配信
+                                            push.sendInBackground { (error) in
+                                                if error != nil {
+                                                    // プッシュ通知登録に失敗した場合の処理
+                                                    print("NG:\(String(describing: error))")
+                                                } else {
+                                                    // プッシュ通知登録に成功した場合の処理
+                                                    print("OK")
+                                                }
+                                            }
+                                            
+                                            let pushA = NCMBPush()
+                                            let data_Android = ["action" : "ReceiveActivity", "title" : "testPush"] as [String : Any]
+                                            pushA.setData(data_Android)
+                                            pushA.setDialog(true)
+                                            pushA.setPushToAndroid(true)
+                                            pushA.setTitle(name)
+                                            pushA.setMessage("イベントが追加されました!")
+                                            pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                            pushA.sendInBackground { (error) in
+                                                if error != nil {
+                                                    // プッシュ通知登録に失敗した場合の処理
+                                                    print("NG:\(String(describing: error))")
+                                                } else {
+                                                    // プッシュ通知登録に成功した場合の処理
+                                                    print("OK")
+                                                }
+                                            }
                                             //前の画面に遷移する
                                             self.navigationController?.popViewController(animated: true)
                                         })
@@ -395,7 +429,11 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
         // 画像をリサイズする(任意)
         /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
         /* 上限を超えてしまうデータの場合はリサイズが必要です */
-        if(image!.size.width>=500||image!.size.height>=500){
+        let imgData: NSData = NSData(data: UIImageJPEGRepresentation((image)!, 1)!)
+        let imageSize: Int = imgData.length
+        print("size of image in KB: %f ", Double(imageSize) / 1024.0)
+        //もしファイルサイズが4500kb以上なら
+        if(Double(imageSize)/1024.0>4500){
             let imageW : Int = Int(image!.size.width*0.2) /* 20%に縮小 */
             let imageH : Int = Int(image!.size.height*0.2) /* 20%に縮小 */
             let resizeImage = resize(image: image!, width: imageW, height: imageH)
@@ -445,5 +483,9 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
      }
      */
 }
+
+
+
+
 
 
