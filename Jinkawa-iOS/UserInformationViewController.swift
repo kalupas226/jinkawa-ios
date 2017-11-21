@@ -8,15 +8,36 @@
 
 import UIKit
 
-class UserInformationViewController: UIViewController {
+class UserInformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var userInformationTable: UITableView!
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    var userInformation = UserDefaults.standard.dictionary(forKey: "userInformation")
+    let userInformationCategory = ["名前","性別","年齢","電話番号","住所"]
+    let userInformationOrder = ["NameRowTag", "GenderRowTag", "AgeRowTag", "PhoneRowTag", "AddressRowTag"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-        //        let visualEffectView = UIVisualEffectView(frame: view.frame)
-        //        visualEffectView.effect = UIBlurEffect(style: .regular)
-        //        view.insertSubview(visualEffectView, at: 0)
+        userInformationTable.delegate = self
+        userInformationTable.dataSource = self
+        
+        userInformationTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
+        
+        userInformationTable.tableFooterView = UIView(frame: .zero)
+        
+        userInformationTable.estimatedRowHeight = 40
+        userInformationTable.rowHeight = UITableViewAutomaticDimension
+        
+        titleLabel.text = "入力情報の確認"
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+        
+        let userAge = userInformation!["AgeRowTag"] as! Int
+        userInformation!["AgeRowTag"] = String(userAge)
         
         // Do any additional setup after loading the view.
     }
@@ -34,6 +55,21 @@ class UserInformationViewController: UIViewController {
                 dismiss(animated: true, completion: nil)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! EventDetailTableViewCell
+        cell.category.text = userInformationCategory[indexPath.row]
+        //cell.category.textAlignment = .center
+        cell.category.font = UIFont.boldSystemFont(ofSize: 16.0)
+        print("\(String(describing: userInformation![userInformationOrder[indexPath.row]]))")
+        cell.content.text = userInformation![userInformationOrder[indexPath.row]] as? String
+        
+        return cell
     }
     
     /*

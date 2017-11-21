@@ -162,13 +162,11 @@ class EntryViewController: FormViewController {
             return
         }
         
-        // Get the value of a single row
-        let nameRow = form.rowBy(tag: "NameRowTag") as! NameRow
-        let name = nameRow.value!
         
         // Get the value of all rows which have a Tag assigned
         let values = form.values()
         
+        let name:String = values["NameRowTag"] as! String
         let gender:String = values["GenderRowTag"] as! String
         let age:Int = values["AgeRowTag"] as! Int
         let tell:String = values["PhoneRowTag"] as! String
@@ -181,45 +179,42 @@ class EntryViewController: FormViewController {
                 "電話番号:" + tell + "\n" +
                 "住所:" + address
         
-        let alert = UIAlertController(title: "この内容で申し込みます",
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "確定",
-                                      style: .default,
-                                      handler: {(UIAlertAction)-> Void in
-                                        let participant = Participant(name: name, gender: gender, age: age.description, tell: tell, address: address, event_id:self.event_id)
-                                        participant.save()
-                                        
-                                        let alertAfter = UIAlertController(title: "申し込みが確定されました",
-                                                                           message: nil,
-                                                                           preferredStyle: .alert)
-                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                                            // ボタンが押された時の処理を書く（クロージャ実装）
-                                            (action: UIAlertAction!) -> Void in
-                                            print("OK")
-                                            //前の画面に遷移する
-                                            self.navigationController?.popViewController(animated: true)
-                                        })
-                                        
-                                        alertAfter.addAction(defaultAction)
-                                        self.present(alertAfter, animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
-            (action: UIAlertAction!) -> Void in
-            print("Cancel")
-            let alertCancel = UIAlertController(title: "キャンセルされました",
-                                                message: nil,
-                                                preferredStyle: .alert)
-            let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-            })
+        
+        //アラート
+        let alert = UIAlertController(title: "この内容で申し込みます", message: message, preferredStyle: .alert)
+        
+        //確定ボタン
+        let confirmAction = UIAlertAction(title: "確定", style: .default){ (action: UIAlertAction) in
+            let participant = Participant(name: name, gender: gender, age: age.description, tell: tell, address: address, event_id:self.event_id)
+            participant.save()
+            print("participant data was saved")
             
-            alertCancel.addAction(defaultAction)
-            self.present(alertCancel, animated: true, completion: nil)
-        }))
+            //ユーザー情報の保存
+            UserDefaults.standard.set(values, forKey: "userInformation")
+            
+            let confirmAlert = UIAlertController(title: "申し込みが確定されました", message: nil, preferredStyle: .alert)
+            let okAction = UIKit.UIAlertAction(title: "OK", style: .default){ (action: UIAlertAction) in
+                print("OK")
+                //前の画面に遷移する
+                self.navigationController?.popViewController(animated: true)
+            }
+            confirmAlert.addAction(okAction)
+            self.present(confirmAlert, animated: true, completion: nil)
+        }
+        
+        //キャンセルボタン
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel){ (action: UIAlertAction) in
+            print("Cancel")
+            let cancelAlert = UIAlertController(title: "キャンセルされました", message: nil, preferredStyle: .alert)
+            let okAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: .default){ (action: UIAlertAction) in
+                print("OK")
+            }
+            cancelAlert.addAction(okAction)
+            self.present(cancelAlert, animated: true, completion: nil)
+        }
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
 }

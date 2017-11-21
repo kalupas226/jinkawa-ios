@@ -37,11 +37,17 @@ class SettingViewController: FormViewController {
             <<< LabelRow() {
                 $0.title = "入力情報の確認"
                 }.onCellSelection{ cell, row in
-                    self.performSegue(withIdentifier: "toUserInformation", sender: nil)
-//                    let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
-//                    nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//                    self.present(nvc, animated: true, completion: nil)
-                    
+                    if UserDefaults.standard.object(forKey: "userInformation") != nil {
+                        self.performSegue(withIdentifier: "toUserInformation", sender: nil)
+//                        let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
+//                        nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//                        self.present(nvc, animated: true, completion: nil)
+                    } else {
+                        let alert = UIAlertController(title: "入力情報の確認", message: "ユーザー情報がありません", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
             }
             +++ Section("アカウント"){ section in
                 if UserManager.sharedInstance.getState() == .common {
@@ -54,17 +60,17 @@ class SettingViewController: FormViewController {
             <<< ButtonRow() {
                 $0.title = "ログアウト"
                 }.onCellSelection { cell, row in
-                    let alertController = UIAlertController(title: "ログアウト",message: "ログアウトしますか", preferredStyle: UIAlertControllerStyle.alert)
-                    let okAction = UIAlertAction(title: "はい", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+                    let alertController = UIAlertController(title: "ログアウト", message: "ログアウトしますか", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "はい", style: .default){ (action: UIAlertAction) in
                         UserManager.sharedInstance.setState(state: .common)
                         self.dismiss(animated: true, completion: nil)
                     }
-                    let cancelAction = UIAlertAction(title: "いいえ", style: UIAlertActionStyle.cancel, handler: nil)
+                    let cancelAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
                     
                     alertController.addAction(okAction)
                     alertController.addAction(cancelAction)
                     
-                    self.present(alertController,animated: true,completion: nil)
+                    self.present(alertController, animated: true, completion: nil)
             }
             +++ Section("お問い合わせ")
             <<< LabelRow() {
