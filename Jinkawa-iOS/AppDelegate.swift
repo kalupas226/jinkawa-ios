@@ -103,6 +103,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         //バッジの数を０にする.
         UIApplication.shared.applicationIconBadgeNumber = 0
+        let currentInstallation = NCMBInstallation.current()
+        if (currentInstallation?.deviceToken == nil) {
+            return
+        }
+        
+        // installation class update
+        currentInstallation?.setObject(0, forKey: "badge")
+        currentInstallation?.saveInBackground{(error) -> Void in
+            if ((error == nil)) {
+                print("updateBadgeNumber complete")
+            } else {
+                print("updateBadgeNumber error: \(String(describing: error))")
+            }
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
