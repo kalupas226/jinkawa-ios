@@ -36,6 +36,8 @@ class UserInformationViewController: UIViewController, UITableViewDelegate, UITa
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         
+        deleteButton.addTarget(self, action: #selector(didTapDeleteButton(sender:)), for: .touchUpInside)
+        
         let userAge = userInformation!["AgeRowTag"] as! Int
         userInformation!["AgeRowTag"] = String(userAge)
         
@@ -72,6 +74,27 @@ class UserInformationViewController: UIViewController, UITableViewDelegate, UITa
         return cell
     }
     
+    func didTapDeleteButton(sender:UIButton){
+        let alertController = UIAlertController(title: "入力情報の消去", message: "入力情報を消去しますか", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "はい", style: .default){ (action: UIAlertAction) in
+            //入力情報の消去
+            UserDefaults.standard.removeObject(forKey: "userInformation")
+            
+            let alertController = UIAlertController(title: "入力情報の消去", message: "入力情報を消去しました", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default){ (action: UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     /*
      // MARK: - Navigation
      
