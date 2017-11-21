@@ -54,8 +54,10 @@ class SettingViewController: FormViewController {
                     section.hidden = true
                 }
             }
-            <<< LabelRow() {
+            <<< ButtonRow() {
                 $0.title = "パスワード変更"
+                }.onCellSelection { cell, row in
+                    self.performSegue(withIdentifier: "toPasswordChange", sender: nil)
             }
             <<< ButtonRow() {
                 $0.title = "ログアウト"

@@ -353,6 +353,7 @@
                     <navigationItem key="navigationItem" title="設定" id="1bi-62-Nlh"/>
                     <connections>
                         <segue destination="oxb-5A-vjQ" kind="presentation" identifier="toUserInformation" modalTransitionStyle="crossDissolve" id="cCZ-hV-Pso"/>
+                        <segue destination="qsc-Ad-Lmc" kind="show" identifier="toPasswordChange" id="sfn-OD-Lha"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COq-0Y-aao" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,6 +431,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="asw-30-nPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3301.5999999999999" y="1665.0674662668666"/>
+        </scene>
+        <!--パスワード変更-->
+        <scene sceneID="1Dj-9d-gd0">
+            <objects>
+                <viewController title="パスワード変更" id="qsc-Ad-Lmc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pve-37-aQd"/>
+                        <viewControllerLayoutGuide type="bottom" id="YV3-S8-8sd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HJ2-r6-zjl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0RK-jK-5QQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4121" y="1665"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="adG-mE-Q36">
