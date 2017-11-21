@@ -11,6 +11,7 @@ import NCMB
 
 class Accounts: NSObject{
     
+    let objId:String
     let id:String
     let ps:String
     let auth: Array<String>
@@ -18,6 +19,7 @@ class Accounts: NSObject{
     let is_login:Bool
     
     override init(){
+        objId = ""
         id = ""
         ps = ""
         auth = [""]
@@ -26,13 +28,15 @@ class Accounts: NSObject{
     }
     
     init(accounts: NCMBObject) {
+        objId = accounts.object(forKey: "objectId") as! String
         id = accounts.object(forKey: "userId") as! String
         ps = accounts.object(forKey: "password") as! String
         auth = accounts.object(forKey: "auth") as! Array
         role = accounts.object(forKey: "role") as! String
         is_login = accounts.object(forKey: "is_login") as! Bool
     }
-    init(id:String, ps:String, auth:Array<String>, role:String, is_login:Bool){
+    init(objId:String, id:String, ps:String, auth:Array<String>, role:String, is_login:Bool){
+        self.objId = id
         self.id = id
         self.ps = ps
         self.auth = auth
