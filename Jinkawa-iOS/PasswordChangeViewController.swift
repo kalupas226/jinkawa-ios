@@ -113,6 +113,7 @@ class PasswordChangeViewController: UIViewController {
                                         // ボタンが押された時の処理を書く（クロージャ実装）
                                         (action: UIAlertAction!) -> Void in
                                         print("OK")
+                                        UserManager.sharedInstance.setState(state: .common)
                                         let storyboard: UIStoryboard = self.storyboard!
                                         let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
                                         self.present(nextView, animated: true, completion: nil)
