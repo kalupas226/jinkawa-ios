@@ -77,6 +77,7 @@ class LoginViewController: UIViewController {
         idTextString = idTextField.text!
         psTextString = psTextField.text!
         login(id: idTextString, pass: psTextString)
+        self.view.endEditing(true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
