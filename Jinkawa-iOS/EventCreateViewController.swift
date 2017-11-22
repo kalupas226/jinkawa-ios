@@ -355,7 +355,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                         EventManager.sharedInstance.loadList()
                                         //print(EventManager.sharedInstance.getList()[0].id)
                                         self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
-                                        
+                                        //プッシュ通知の処理
                                         let push = NCMBPush()
                                         let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
                                         push.setData(data_iOS)

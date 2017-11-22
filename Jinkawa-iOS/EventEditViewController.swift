@@ -395,42 +395,42 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                                                         EventManager.sharedInstance.loadList()
                                                         self.saveImage(id: self.event.id)
                                                         self.af_setImageIgnoreCache(string: "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + self.event.id + ".png")
-                                                        /*
-                                                         let push = NCMBPush()
-                                                         let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
-                                                         push.setData(data_iOS)
-                                                         push.setPushToIOS(true)
-                                                         push.setTitle(name)
-                                                         push.setMessage("イベントが更新されました!")
-                                                         push.setImmediateDeliveryFlag(true) // 即時配信
-                                                         push.sendInBackground { (error) in
-                                                         if error != nil {
-                                                         // プッシュ通知登録に失敗した場合の処理
-                                                         print("NG:\(String(describing: error))")
-                                                         } else {
-                                                         // プッシュ通知登録に成功した場合の処理
-                                                         print("OK")
-                                                         }
-                                                         }
-                                                         
-                                                         let pushA = NCMBPush()
-                                                         let data_Android = ["action" : "ReceiveActivity", "title" : "testPush"] as [String : Any]
-                                                         pushA.setData(data_Android)
-                                                         pushA.setDialog(true)
-                                                         pushA.setPushToAndroid(true)
-                                                         pushA.setTitle(name)
-                                                         pushA.setMessage("イベントが更新されました!")
-                                                         pushA.setImmediateDeliveryFlag(true) // 即時配信
-                                                         pushA.sendInBackground { (error) in
-                                                         if error != nil {
-                                                         // プッシュ通知登録に失敗した場合の処理
-                                                         print("NG:\(String(describing: error))")
-                                                         } else {
-                                                         // プッシュ通知登録に成功した場合の処理
-                                                         print("OK")
-                                                         }
-                                                         }
-                                                         */
+                                                        //プッシュ通知の処理
+                                                        let push = NCMBPush()
+                                                        let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
+                                                        push.setData(data_iOS)
+                                                        push.setPushToIOS(true)
+                                                        push.setTitle(name)
+                                                        push.setMessage("イベントが更新されました!")
+                                                        push.setImmediateDeliveryFlag(true) // 即時配信
+                                                        push.sendInBackground { (error) in
+                                                            if error != nil {
+                                                                // プッシュ通知登録に失敗した場合の処理
+                                                                print("NG:\(String(describing: error))")
+                                                            } else {
+                                                                // プッシュ通知登録に成功した場合の処理
+                                                                print("OK")
+                                                            }
+                                                        }
+                                                        
+                                                        let pushA = NCMBPush()
+                                                        let data_Android = ["action" : "ReceiveActivity", "title" : "testPush"] as [String : Any]
+                                                        pushA.setData(data_Android)
+                                                        pushA.setDialog(true)
+                                                        pushA.setPushToAndroid(true)
+                                                        pushA.setTitle(name)
+                                                        pushA.setMessage("イベントが更新されました!")
+                                                        pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                                        pushA.sendInBackground { (error) in
+                                                            if error != nil {
+                                                                // プッシュ通知登録に失敗した場合の処理
+                                                                print("NG:\(String(describing: error))")
+                                                            } else {
+                                                                // プッシュ通知登録に成功した場合の処理
+                                                                print("OK")
+                                                            }
+                                                        }
+                                                        
                                                         
                                                         // (例)更新したデータの出力
                                                         print(obj! as NCMBObject)
