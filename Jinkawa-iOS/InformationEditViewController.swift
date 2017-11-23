@@ -221,6 +221,9 @@ class InformationEditViewController: FormViewController {
                                             push.setTitle(title)
                                             push.setMessage("お知らせが更新されました！")
                                             push.setImmediateDeliveryFlag(true) // 即時配信
+                                            let query = NCMBInstallation.query()
+                                            query?.whereKey("channels", equalTo: ["on"])
+                                            push.setSearchCondition(query)
                                             push.sendInBackground { (error) in
                                                 if error != nil {
                                                     // プッシュ通知登録に失敗した場合の処理
@@ -239,6 +242,7 @@ class InformationEditViewController: FormViewController {
                                             pushA.setTitle(title)
                                             pushA.setMessage("お知らせが更新されました!")
                                             pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                            pushA.setSearchCondition(query)
                                             pushA.sendInBackground { (error) in
                                                 if error != nil {
                                                     // プッシュ通知登録に失敗した場合の処理

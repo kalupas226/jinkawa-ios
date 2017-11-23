@@ -363,6 +363,9 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                         push.setTitle(name)
                                         push.setMessage("イベントが追加されました！")
                                         push.setImmediateDeliveryFlag(true) // 即時配信
+                                        let query = NCMBInstallation.query()
+                                        query?.whereKey("channels", equalTo: ["on"])
+                                        push.setSearchCondition(query)
                                         push.sendInBackground { (error) in
                                             if error != nil {
                                                 // プッシュ通知登録に失敗した場合の処理
@@ -381,6 +384,7 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                         pushA.setTitle(name)
                                         pushA.setMessage("イベントが追加されました!")
                                         pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                        pushA.setSearchCondition(query)
                                         pushA.sendInBackground { (error) in
                                             if error != nil {
                                                 // プッシュ通知登録に失敗した場合の処理
