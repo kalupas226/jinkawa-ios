@@ -110,9 +110,11 @@ class SettingViewController: FormViewController {
             }
             +++ Section()
             <<< ButtonRow() {
-                $0.title = "ホーム画面へ戻る"
+                $0.title = "スタート画面へ戻る"
                 }.onCellSelection { cell, row in
-                    self.dismiss(animated: true, completion: nil)
+                    let storyboard: UIStoryboard = self.storyboard!
+                    let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+                    self.present(nextView, animated: true, completion: nil)
         }
         
     }
