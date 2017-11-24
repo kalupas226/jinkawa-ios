@@ -100,7 +100,7 @@ class PasswordChangeViewController: UIViewController {
                                         // 更新に成功した場合の処理
                                         // (例)更新したデータの出力
                                         print(obj! as NCMBObject)
-                                        let alert: UIAlertController = UIAlertController(title: nil, message: "パスワード変更が完了しました\nログアウトします", preferredStyle:  UIAlertControllerStyle.alert)
+                                        let alert: UIAlertController = UIAlertController(title: nil, message: "パスワード変更が成功しました\nログアウトします", preferredStyle:  UIAlertControllerStyle.alert)
                                         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                                             // ボタンが押された時の処理を書く（クロージャ実装）
                                             (action: UIAlertAction!) -> Void in
