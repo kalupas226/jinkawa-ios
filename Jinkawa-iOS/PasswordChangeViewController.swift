@@ -11,18 +11,18 @@ import NCMB
 
 class PasswordChangeViewController: UIViewController {
     
-    @IBOutlet weak var id: UITextField!
+    @IBOutlet weak var id: UILabel!
     @IBOutlet weak var oldPassword: UITextField!
     @IBOutlet weak var newPassword: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     private var accountsList:[Accounts] = []
-    var idStr: String = ""
     var oldPasswordStr: String = ""
     var newPasswordStr: String = ""
     var confirmPasswordStr: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        id.text = "ユーザID: " + LoginViewController.userId
         
         // Do any additional setup after loading the view.
     }
@@ -33,27 +33,19 @@ class PasswordChangeViewController: UIViewController {
     }
     
     @IBAction func changeButton(_ sender: Any) {
-        idStr = id.text!
         oldPasswordStr = oldPassword.text!
         newPasswordStr = newPassword.text!
         confirmPasswordStr = confirmPassword.text!
-        passChange(id: idStr, old: oldPasswordStr, new: newPasswordStr, confirm: confirmPasswordStr)
+        self.view.endEditing(true)
+        passChange(id: LoginViewController.userId, old: oldPasswordStr, new: newPasswordStr, confirm: confirmPasswordStr)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func passChange(id: String, old: String, new: String, confirm: String){
         accountsList.removeAll()
-        if(new != confirm){
-            print("一致しません")
-            let alert: UIAlertController = UIAlertController(title: nil, message: "新しいパスワードが一致しません", preferredStyle:  UIAlertControllerStyle.alert)
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-                return
-            })
-            alert.addAction(defaultAction)
-            self.present(alert, animated: true, completion: nil)
-        }
         // AccountsClassクラスを検索するNCMBQueryを作成
         let query = NCMBQuery(className: "Accounts")
         var result:[NCMBObject] = []
@@ -69,64 +61,74 @@ class PasswordChangeViewController: UIViewController {
                 //検索しても見つからなかった場合
                 if(result.isEmpty == true){
                     print("アカウントが見つかりません")
-                    let alert: UIAlertController = UIAlertController(title: nil, message: "アカウントが存在しません", preferredStyle:  UIAlertControllerStyle.alert)
+                    let alert: UIAlertController = UIAlertController(title: nil, message: "現在のパスワードが\n間違っています", preferredStyle:  UIAlertControllerStyle.alert)
                     let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                         // ボタンが押された時の処理を書く（クロージャ実装）
                         (action: UIAlertAction!) -> Void in
                         print("OK")
-                        return
+                        return;
                     })
                     alert.addAction(defaultAction)
                     self.present(alert, animated: true, completion: nil)
                 }else{
-                    // 検索成功時の処理
-                    if result.count > 0 {
-                        result.forEach{ obj in
-                            self.accountsList.append(Accounts(accounts: obj))
+                    if(new == confirm){
+                        // 検索成功時の処理
+                        if result.count > 0 {
+                            result.forEach{ obj in
+                                self.accountsList.append(Accounts(accounts: obj))
+                            }
+                            print("アカウントリストが更新されました")
                         }
-                        print("アカウントリストが更新されました")
+                        // クラスのNCMBObjectを作成
+                        let obj = NCMBObject(className: "Accounts")
+                        // objectIdプロパティを設定
+                        print(self.accountsList[0].objId)
+                        obj?.objectId = self.accountsList[0].objId
+                        // 設定されたobjectIdを元にデータストアからデータを取得
+                        obj?.fetchInBackground({ (error) in
+                            if error != nil {
+                                // 取得に失敗した場合の処理
+                                print("取得失敗")
+                            }else{
+                                // 取得に成功した場合の処理
+                                print("取得成功")
+                                obj?.setObject(new, forKey: "password")
+                                obj?.saveInBackground({ (error) in
+                                    if error != nil {
+                                        // 更新に失敗した場合の処理
+                                    }else{
+                                        // 更新に成功した場合の処理
+                                        // (例)更新したデータの出力
+                                        print(obj! as NCMBObject)
+                                        let alert: UIAlertController = UIAlertController(title: nil, message: "パスワード変更が完了しました\nログアウトします", preferredStyle:  UIAlertControllerStyle.alert)
+                                        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                            // ボタンが押された時の処理を書く（クロージャ実装）
+                                            (action: UIAlertAction!) -> Void in
+                                            print("OK")
+                                            UserManager.sharedInstance.setState(state: .common)
+                                            let storyboard: UIStoryboard = self.storyboard!
+                                            let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+                                            self.present(nextView, animated: true, completion: nil)
+                                            return
+                                        })
+                                        alert.addAction(defaultAction)
+                                        self.present(alert, animated: true, completion: nil)
+                                        print("パスワード更新成功")
+                                    }
+                                })
+                            }
+                        })
+                    }else if(new != confirm){
+                        print("一致しません")
+                        let alert: UIAlertController = UIAlertController(title: nil, message: "新しいパスワードが\n一致しません", preferredStyle:  UIAlertControllerStyle.alert)
+                        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                            // ボタンが押された時の処理を書く（クロージャ実装）
+                            (action: UIAlertAction!) -> Void in
+                            print("OK")
+                        })
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
                     }
-                    // クラスのNCMBObjectを作成
-                    let obj = NCMBObject(className: "Accounts")
-                    // objectIdプロパティを設定
-                    print(self.accountsList[0].objId)
-                    obj?.objectId = self.accountsList[0].objId
-                    // 設定されたobjectIdを元にデータストアからデータを取得
-                    obj?.fetchInBackground({ (error) in
-                        if error != nil {
-                            // 取得に失敗した場合の処理
-                            print("取得失敗")
-                        }else{
-                            // 取得に成功した場合の処理
-                            print("取得成功")
-                            obj?.setObject(new, forKey: "password")
-                            
-                            obj?.saveInBackground({ (error) in
-                                if error != nil {
-                                    // 更新に失敗した場合の処理
-                                }else{
-                                    // 更新に成功した場合の処理
-                                    // (例)更新したデータの出力
-                                    print(obj! as NCMBObject)
-                                    let alert: UIAlertController = UIAlertController(title: nil, message: "パスワード変更が完了しました\nログアウトします", preferredStyle:  UIAlertControllerStyle.alert)
-                                    let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                                        // ボタンが押された時の処理を書く（クロージャ実装）
-                                        (action: UIAlertAction!) -> Void in
-                                        print("OK")
-                                        UserManager.sharedInstance.setState(state: .common)
-                                        let storyboard: UIStoryboard = self.storyboard!
-                                        let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
-                                        self.present(nextView, animated: true, completion: nil)
-                                        return
-                                    })
-                                    alert.addAction(defaultAction)
-                                    self.present(alert, animated: true, completion: nil)
-                                    print("パスワード更新成功")
-                                }
-                            })
-                        }
-                    })
-                    
                 }
             }
         })
