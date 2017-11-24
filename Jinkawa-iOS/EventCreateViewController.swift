@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import NCMB
 import CoreImage
+import SVProgressHUD
 
 
 class EventCreateViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -350,24 +351,50 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
                                         let event = Event(name:name, descriptionText:description, dateStart: dateStart.description, dateEnd: dateEnd.description, timeStart: timeStart.description, timeEnd: timeEnd.description, location: location, departmentName: department, capacity: capacity.description, officer: officer, deadline: deadline.description)
                                         event.save()
                                         //イベントリストが更新されるのを待つため
-                                        sleep(2)
+                                        sleep(1)
                                         EventManager.sharedInstance.loadList()
                                         //print(EventManager.sharedInstance.getList()[0].id)
                                         self.saveImage(id: EventManager.sharedInstance.getList()[0].id)
+                                        //プッシュ通知の処理
+                                        let push = NCMBPush()
+                                        let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
+                                        push.setData(data_iOS)
+                                        push.setPushToIOS(true)
+                                        push.setTitle(name)
+                                        push.setMessage("イベントが追加されました！")
+                                        push.setImmediateDeliveryFlag(true) // 即時配信
+                                        let query = NCMBInstallation.query()
+                                        query?.whereKey("channels", equalTo: ["on"])
+                                        push.setSearchCondition(query)
+                                        push.sendInBackground { (error) in
+                                            if error != nil {
+                                                // プッシュ通知登録に失敗した場合の処理
+                                                print("NG:\(String(describing: error))")
+                                            } else {
+                                                // プッシュ通知登録に成功した場合の処理
+                                                print("OK")
+                                            }
+                                        }
                                         
-                                        let alertAfter = UIAlertController(title: "作成が確定されました",
-                                                                           message: nil,
-                                                                           preferredStyle: .alert)
-                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                                            // ボタンが押された時の処理を書く（クロージャ実装）
-                                            (action: UIAlertAction!) -> Void in
-                                            print("OK")
-                                            //前の画面に遷移する
-                                            self.navigationController?.popViewController(animated: true)
-                                        })
+                                        let pushA = NCMBPush()
+                                        let data_Android = ["action" : "ReceiveActivity", "title" : "testPush"] as [String : Any]
+                                        pushA.setData(data_Android)
+                                        pushA.setDialog(true)
+                                        pushA.setPushToAndroid(true)
+                                        pushA.setTitle(name)
+                                        pushA.setMessage("イベントが追加されました!")
+                                        pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                        pushA.setSearchCondition(query)
+                                        pushA.sendInBackground { (error) in
+                                            if error != nil {
+                                                // プッシュ通知登録に失敗した場合の処理
+                                                print("NG:\(String(describing: error))")
+                                            } else {
+                                                // プッシュ通知登録に成功した場合の処理
+                                                print("OK")
+                                            }
+                                        }
                                         
-                                        alertAfter.addAction(defaultAction)
-                                        self.present(alertAfter, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
@@ -390,12 +417,16 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
     
     // 保存ボタン押下時の処理
     func saveImage(id:String) {
-        
+        var sw = 0
         var pngData: NSData
         // 画像をリサイズする(任意)
         /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
         /* 上限を超えてしまうデータの場合はリサイズが必要です */
-        if(image!.size.width>=500||image!.size.height>=500){
+        let imgData: NSData = NSData(data: UIImageJPEGRepresentation((image)!, 1)!)
+        let imageSize: Int = imgData.length
+        print("size of image in KB: %f ", Double(imageSize) / 1024.0)
+        //もしファイルサイズが大きすぎれば
+        if(Double(imageSize)/1024.0>2000){
             let imageW : Int = Int(image!.size.width*0.2) /* 20%に縮小 */
             let imageH : Int = Int(image!.size.height*0.2) /* 20%に縮小 */
             let resizeImage = resize(image: image!, width: imageW, height: imageH)
@@ -419,7 +450,29 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
             /* 1-100のpercentDoneを返す */
             /* このコールバックは保存中何度も呼ばれる */
             /*例）*/
+            SVProgressHUD.show(withStatus: String(int) + "%")
+            //アップロード完了したら終了
+            if(int == 100){
+                sw = 1
+                SVProgressHUD.dismiss()
+            }
             print("\(int)%")
+            
+            if(sw == 1){
+                let alertAfter = UIAlertController(title: "作成が確定されました",
+                                                   message: nil,
+                                                   preferredStyle: .alert)
+                let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    print("OK")
+                    //前の画面に遷移する
+                    self.navigationController?.popViewController(animated: true)
+                })
+                
+                alertAfter.addAction(defaultAction)
+                self.present(alertAfter, animated: true, completion: nil)
+            }
         }
         
     }
@@ -445,5 +498,9 @@ class EventCreateViewController: FormViewController, UIImagePickerControllerDele
      }
      */
 }
+
+
+
+
 
 

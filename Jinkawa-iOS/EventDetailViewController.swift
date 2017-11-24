@@ -286,22 +286,17 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func photoUp(_ sender: Any) {
         // 1. create SKPhoto Array from UIImage
         let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
-        Alamofire.request(imageURL).responseImage { response in
-            debugPrint(response)
-            print(response.request as Any)
-            print(response.response as Any)
-            debugPrint(response.result)
-            if let image = response.result.value {
-                print("image downloaded: \(image)")
-                var images = [SKPhoto]()
-                let photo = SKPhoto.photoWithImage(image)// add some UIImage
-                images.append(photo)
-                // 2. create PhotoBrowser Instance, and present from your viewController.
-                let browser = SKPhotoBrowser(photos: images)
-                browser.initializePageIndex(0)
-                self.present(browser, animated: true, completion: {})
-            }
-        }
+        // 1. create URL Array
+        var images = [SKPhoto]()
+        let photo = SKPhoto.photoWithImageURL(imageURL)
+        photo.shouldCachePhotoURLImage = false // you can use image cache by true(NSCache)
+        images.append(photo)
+        
+        // 2. create PhotoBrowser Instance, and present.
+        let browser = SKPhotoBrowser(photos: images)
+        browser.initializePageIndex(0)
+        present(browser, animated: true, completion: {})
+        
     }
     
     
@@ -316,8 +311,6 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
      */
     
 }
-
-
 
 
 

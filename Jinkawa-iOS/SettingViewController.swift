@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import NCMB
 
 let sectionTitle = ["設定", "お問合わせ"]
 let settingItem = ["通知のオン/オフ", "入力情報の確認"]
@@ -31,17 +32,44 @@ class SettingViewController: FormViewController {
         
         form
             +++ Section("設定")
-            <<< SwitchRow() {
-                $0.title = "通知のオン/オフ"
+            <<< SwitchRow() { row in
+                row.title = "通知のオン／オフ"
+                let currentInstallation = NCMBInstallation.current()
+                if (currentInstallation?.deviceToken == nil) {
+                    return
+                }
+                if(String(describing: currentInstallation?.channels[0]) == "Optional(on)"){
+                    row.value = true
+                }else{
+                    row.value = false
+                }
+                }.onChange{ row in
+                    let currentInstallation = NCMBInstallation.current()
+                    if (currentInstallation?.deviceToken == nil) {
+                        return
+                    }
+                    // installation class update
+                    if(row.value == false){
+                        currentInstallation?.setObject(["off"], forKey: "channels")
+                    }else if(row.value == true){
+                        currentInstallation?.setObject(["on"], forKey: "channels")
+                    }
+                    currentInstallation?.saveInBackground{(error) -> Void in
+                        if ((error == nil)) {
+                            print("updatechannels complete")
+                        } else {
+                            print("updatechannels error: \(String(describing: error))")
+                        }
+                    }
             }
             <<< LabelRow() {
                 $0.title = "入力情報の確認"
                 }.onCellSelection{ cell, row in
                     if UserDefaults.standard.object(forKey: "userInformation") != nil {
                         self.performSegue(withIdentifier: "toUserInformation", sender: nil)
-//                        let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
-//                        nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//                        self.present(nvc, animated: true, completion: nil)
+                        //                        let nvc = self.storyboard!.instantiateViewController(withIdentifier: "UserInformationView")
+                        //                        nvc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                        //                        self.present(nvc, animated: true, completion: nil)
                     } else {
                         let alert = UIAlertController(title: "入力情報の確認", message: "ユーザー情報がありません", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -54,8 +82,10 @@ class SettingViewController: FormViewController {
                     section.hidden = true
                 }
             }
-            <<< LabelRow() {
+            <<< ButtonRow() {
                 $0.title = "パスワード変更"
+                }.onCellSelection { cell, row in
+                    self.performSegue(withIdentifier: "toPasswordChange", sender: nil)
             }
             <<< ButtonRow() {
                 $0.title = "ログアウト"
@@ -63,7 +93,9 @@ class SettingViewController: FormViewController {
                     let alertController = UIAlertController(title: "ログアウト", message: "ログアウトしますか", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "はい", style: .default){ (action: UIAlertAction) in
                         UserManager.sharedInstance.setState(state: .common)
-                        self.dismiss(animated: true, completion: nil)
+                        let storyboard: UIStoryboard = self.storyboard!
+                        let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+                        self.present(nextView, animated: true, completion: nil)
                     }
                     let cancelAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
                     
@@ -78,9 +110,11 @@ class SettingViewController: FormViewController {
             }
             +++ Section()
             <<< ButtonRow() {
-                $0.title = "ホーム画面へ戻る"
+                $0.title = "スタート画面へ戻る"
                 }.onCellSelection { cell, row in
-                    self.dismiss(animated: true, completion: nil)
+                    let storyboard: UIStoryboard = self.storyboard!
+                    let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+                    self.present(nextView, animated: true, completion: nil)
         }
         
     }
@@ -89,6 +123,8 @@ class SettingViewController: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     /*
      // MARK: - Navigation

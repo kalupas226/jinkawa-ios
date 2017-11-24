@@ -10,6 +10,8 @@ import UIKit
 import Eureka
 import NCMB
 import Alamofire
+import AlamofireImage
+import SVProgressHUD
 
 class EventEditViewController: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -392,20 +394,48 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                                                         // 更新に成功した場合の処理
                                                         EventManager.sharedInstance.loadList()
                                                         self.saveImage(id: self.event.id)
+                                                        self.af_setImageIgnoreCache(string: "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + self.event.id + ".png")
+                                                        //プッシュ通知の処理
+                                                        let push = NCMBPush()
+                                                        let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
+                                                        push.setData(data_iOS)
+                                                        push.setPushToIOS(true)
+                                                        push.setTitle(name)
+                                                        push.setMessage("イベントが更新されました!")
+                                                        push.setImmediateDeliveryFlag(true) // 即時配信
+                                                        let query = NCMBInstallation.query()
+                                                        query?.whereKey("channels", equalTo: ["on"])
+                                                        push.setSearchCondition(query)
+                                                        push.sendInBackground { (error) in
+                                                            if error != nil {
+                                                                // プッシュ通知登録に失敗した場合の処理
+                                                                print("NG:\(String(describing: error))")
+                                                            } else {
+                                                                // プッシュ通知登録に成功した場合の処理
+                                                                print("OK")
+                                                            }
+                                                        }
                                                         
-                                                        let alertAfter = UIAlertController(title: "更新が確定されました",
-                                                                                           message: nil,
-                                                                                           preferredStyle: .alert)
-                                                        let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                                                            // ボタンが押された時の処理を書く（クロージャ実装）
-                                                            (action: UIAlertAction!) -> Void in
-                                                            print("OK")
-                                                            //前の画面に遷移する
-                                                            self.navigationController?.popToRootViewController(animated: true)
-                                                        })
+                                                        let pushA = NCMBPush()
+                                                        let data_Android = ["action" : "ReceiveActivity", "title" : "testPush"] as [String : Any]
+                                                        pushA.setData(data_Android)
+                                                        pushA.setDialog(true)
+                                                        pushA.setPushToAndroid(true)
+                                                        pushA.setTitle(name)
+                                                        pushA.setMessage("イベントが更新されました!")
+                                                        pushA.setImmediateDeliveryFlag(true) // 即時配信
+                                                        pushA.setSearchCondition(query)
+                                                        pushA.sendInBackground { (error) in
+                                                            if error != nil {
+                                                                // プッシュ通知登録に失敗した場合の処理
+                                                                print("NG:\(String(describing: error))")
+                                                            } else {
+                                                                // プッシュ通知登録に成功した場合の処理
+                                                                print("OK")
+                                                            }
+                                                        }
                                                         
-                                                        alertAfter.addAction(defaultAction)
-                                                        self.present(alertAfter, animated: true, completion: nil)
+                                                        
                                                         // (例)更新したデータの出力
                                                         print(obj! as NCMBObject)
                                                     }
@@ -438,7 +468,12 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
         // 画像をリサイズする(任意)
         /* Basic会員は５MB、Expert会員は100GBまでのデータを保存可能です */
         /* 上限を超えてしまうデータの場合はリサイズが必要です */
-        if(image!.size.width>=500||image!.size.height>=500){
+        let imgData: NSData = NSData(data: UIImageJPEGRepresentation((image)!, 1)!)
+        let imageSize: Int = imgData.length
+        print(imageSize)
+        print("size of image in KB: %f ", Double(imageSize) / 1024.0)
+        //もしファイルサイズが大きすぎれば
+        if(Double(imageSize)/1024.0>2000){
             let imageW : Int = Int(image!.size.width*0.2) /* 20%に縮小 */
             let imageH : Int = Int(image!.size.height*0.2) /* 20%に縮小 */
             let resizeImage = resize(image: image!, width: imageW, height: imageH)
@@ -458,10 +493,32 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                 // 保存成功時の処理
             }
         }) { (int) in
+            var sw = 0
             // 進行状況を取得するためのBlock
             /* 1-100のpercentDoneを返す */
             /* このコールバックは保存中何度も呼ばれる */
             /*例）*/
+            SVProgressHUD.show(withStatus: String(int) + "%")
+            //アップロード完了したら終了
+            if(int == 100){
+                sw = 1
+                SVProgressHUD.dismiss()
+            }
+            if(sw == 1){
+                let alertAfter = UIAlertController(title: "更新が確定されました",
+                                                   message: nil,
+                                                   preferredStyle: .alert)
+                let defaultAction: UIAlertAction = UIKit.UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    print("OK")
+                    //前の画面に遷移する
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                
+                alertAfter.addAction(defaultAction)
+                self.present(alertAfter, animated: true, completion: nil)
+            }
             print("\(int)%")
         }
         
@@ -476,6 +533,18 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
         UIGraphicsEndImageContext()
         
         return resizeImage!
+    }
+    
+    // 更新した画像のキャッシュを削除する処理
+    func af_setImageIgnoreCache(string: String?) {
+        guard let url = string, let nsurl = URL(string: url) else { return }
+        let urlRequest = URLRequest(url: nsurl, cachePolicy: .reloadIgnoringCacheData)
+        
+        let imageDownloader = ImageDownloader.default
+        if let imageCache = imageDownloader.imageCache as? AutoPurgingImageCache, let urlCache = imageDownloader.sessionManager.session.configuration.urlCache {
+            _ = imageCache.removeImages(matching: urlRequest)
+            urlCache.removeCachedResponse(for: urlRequest)
+        }
     }
     
     /*

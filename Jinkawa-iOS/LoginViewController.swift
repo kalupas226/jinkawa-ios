@@ -11,7 +11,8 @@ import NCMB
 
 class LoginViewController: UIViewController {
     
-    private var accountsList:[Accounts] = []
+    var accountsList:[Accounts] = []
+    static var userId:String = ""
     static let sharedInstance = LoginViewController()
     @IBOutlet weak var psTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
@@ -55,6 +56,7 @@ class LoginViewController: UIViewController {
                         result.forEach{ obj in
                             self.accountsList.append(Accounts(accounts: obj))
                         }
+                        LoginViewController.userId = self.accountsList[0].id
                         print("アカウントリストが更新されました")
                     }
                     if self.accountsList[0].role == "admin" {
@@ -77,6 +79,7 @@ class LoginViewController: UIViewController {
         idTextString = idTextField.text!
         psTextString = psTextField.text!
         login(id: idTextString, pass: psTextString)
+        self.view.endEditing(true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
