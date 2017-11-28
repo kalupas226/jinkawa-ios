@@ -13,6 +13,7 @@ import NCMB
 class InformationManager: NSObject{
     
     static let sharedInstance = InformationManager()
+    private var InformationListDescending:[Information] = []
     private var informationList:[Information] = []
     
     
@@ -22,6 +23,7 @@ class InformationManager: NSObject{
     }
     
     func loadList(){
+        InformationListDescending.removeAll()
         informationList.removeAll()
         let query = NCMBQuery(className: "Information")
         var result:[NCMBObject] = []
@@ -36,8 +38,9 @@ class InformationManager: NSObject{
             result.forEach{ obj in
                 //                self.informationList.append(Information(information: obj))
                 //お知らせリストの最後尾に追加
-                self.informationList.insert(Information(information: obj), at: 0)
+                self.InformationListDescending.insert(Information(information: obj), at: 0)
             }
+            informationList = InformationListDescending.sorted(by: {$0.updateDate > $1.updateDate})
             print("お知らせリストが更新されました")
         }
     }

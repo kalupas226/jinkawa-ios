@@ -66,7 +66,11 @@ class InformationEditViewController: FormViewController {
             }
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
-                $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
+                if(UserManager.sharedInstance.getState() == .admin){
+                    $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
+                }else{
+                    $0.options = LoginViewController.userAuth
+                }
                 $0.value = information.departmentName   // initially selected
             }
             <<< PickerInlineRow<String>("TypeRowTag") {

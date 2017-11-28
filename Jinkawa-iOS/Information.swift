@@ -15,6 +15,7 @@ class Information: NSObject{
     let title: String
     let date: String
     let type: String
+    let updateDate: String
     let departmentName: String
     let descriptionText: String
     let officer: Bool
@@ -24,6 +25,7 @@ class Information: NSObject{
         title = ""
         date = ""
         type = ""
+        updateDate = ""
         departmentName = ""
         descriptionText = ""
         officer = false
@@ -34,6 +36,7 @@ class Information: NSObject{
         title = information.object(forKey: "title") as! String
         date = information.object(forKey: "date") as! String
         type = information.object(forKey: "type") as! String
+        updateDate = information.object(forKey: "updateDate") as! String
         departmentName = information.object(forKey: "department_name") as! String
         descriptionText = information.object(forKey: "info") as! String
         officer = information.object(forKey: "officer_only") as! Bool
@@ -44,6 +47,7 @@ class Information: NSObject{
         self.title = title
         self.date = date
         self.type = type
+        self.updateDate = String(describing: Date())
         self.departmentName = departmentName
         self.descriptionText = descriptionText
         self.officer = officer

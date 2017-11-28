@@ -81,11 +81,20 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         )
         //navigationbarの設定
         navigationItem.title = information.title
-        if(UserManager.sharedInstance.getState() != .common){
+        
+        if(UserManager.sharedInstance.getState() == .admin){
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                                 target: self,
                                                                 action: #selector(showAlert))
             navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }else if(UserManager.sharedInstance.getState() == .officer){
+            for department in LoginViewController.userAuth{
+                if(information.departmentName == department){
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+                                                                        target: self,
+                                                                        action: #selector(showAlert))
+                }
+            }
         }
         
         // Do any additional setup after loading the view.

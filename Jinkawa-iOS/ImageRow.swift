@@ -47,11 +47,11 @@ extension ImageRowSourceTypes {
     var localizedString: String {
         switch self {
         case ImageRowSourceTypes.Camera:
-            return "写真を撮影"
+            return "写真を撮影する"
         case ImageRowSourceTypes.PhotoLibrary:
-            return "フォトライブラリから選択"
+            return "フォトライブラリから選択する"
         case ImageRowSourceTypes.SavedPhotosAlbum:
-            return "モーメントから選択"
+            return "モーメントから選択する"
         default:
             return ""
         }
@@ -156,7 +156,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
         }
         createOptionsForAlertController(sourceActionSheet)
         if case .yes(let style) = clearAction, value != nil {
-            let clearPhotoOption = UIAlertAction(title: NSLocalizedString("Clear Photo", comment: ""), style: style, handler: { [weak self] _ in
+            let clearPhotoOption = UIAlertAction(title: NSLocalizedString("写真を削除する", comment: ""), style: style, handler: { [weak self] _ in
                 self?.value = nil
                 self?.imageURL = nil
                 self?.updateCell()
@@ -168,7 +168,7 @@ open class _ImageRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where C
                 displayImagePickerController(imagePickerSourceType)
             }
         } else {
-            let cancelOption = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler:nil)
+            let cancelOption = UIAlertAction(title: NSLocalizedString("キャンセル", comment: ""), style: .cancel, handler:nil)
             sourceActionSheet.addAction(cancelOption)
             if let presentingViewController = cell.formViewController() {
                 presentingViewController.present(sourceActionSheet, animated: true)

@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     
     var accountsList:[Accounts] = []
     static var userId:String = ""
+    static var userAuth:[String] = []
     static let sharedInstance = LoginViewController()
     @IBOutlet weak var psTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
@@ -57,6 +58,8 @@ class LoginViewController: UIViewController {
                             self.accountsList.append(Accounts(accounts: obj))
                         }
                         LoginViewController.userId = self.accountsList[0].id
+                        LoginViewController.userAuth = self.accountsList[0].auth
+
                         print("アカウントリストが更新されました")
                     }
                     if self.accountsList[0].role == "admin" {

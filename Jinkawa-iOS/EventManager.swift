@@ -13,6 +13,7 @@ import NCMB
 class EventManager: NSObject{
     
     static let sharedInstance = EventManager()
+    private var eventListDescending:[Event] = []
     private var eventList:[Event] = []
     
     
@@ -23,6 +24,7 @@ class EventManager: NSObject{
     
     func loadList(){
         //イベントリストを一旦空にする
+        eventListDescending.removeAll()
         eventList.removeAll()
         let query = NCMBQuery(className: "Event")
         var result:[NCMBObject] = []
@@ -37,8 +39,10 @@ class EventManager: NSObject{
             result.forEach{ obj in
                 //                self.eventList.append(Event(event: obj))
                 //イベントリストの最後尾に追加
-                self.eventList.insert(Event(event: obj), at: 0)
+                self.eventListDescending.insert(Event(event: obj), at: 0)
             }
+            //更新日で降順にしたものを配列に追加
+            eventList = eventListDescending.sorted(by: {$0.updateDate > $1.updateDate})
             print("イベントリストが更新されました")
         }
     }

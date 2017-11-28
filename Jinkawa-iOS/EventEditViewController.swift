@@ -77,7 +77,11 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< PickerInlineRow<String>("DepartmentNameRowTag") {
                 $0.title = "部署"
-                $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
+                if(UserManager.sharedInstance.getState() == .admin){
+                    $0.options = ["役員","総務部","青少年育成部","女性部","福祉部","Jバス部","環境部","交通部","防火防犯部"]
+                }else{
+                    $0.options = LoginViewController.userAuth
+                }
                 $0.value = event.departmentName   // initially selected
             }
             <<< SwitchRow("OfficerRowTag"){
@@ -217,10 +221,19 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                         }
                     }
             }
-            <<< ImageRow("ImageRowTag") {
-                $0.title = "イベント画像"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnBlur
+            <<< ImageRow("ImageRowTag") { row in
+                row.title = "イベント画像"
+                let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
+                let url = URLRequest(url: URL(string: imageURL)!)
+                Alamofire.request(url).responseData(completionHandler: { response in
+                    if let imageData = response.data
+                    {
+                        let image = UIImage(data: imageData)
+                        row.value = image
+                    }
+                })
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnBlur
                 }
                 .onRowValidationChanged { cell, row in
                     let rowIndex = row.indexPath!.row

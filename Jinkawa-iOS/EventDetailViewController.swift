@@ -146,11 +146,20 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         //navigationbarの設定
         navigationItem.title = event.name
-        if(UserManager.sharedInstance.getState() != .common){
+        
+        if(UserManager.sharedInstance.getState() == .admin){
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
                                                                 target: self,
                                                                 action: #selector(showAlert))
             navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }else if(UserManager.sharedInstance.getState() == .officer){
+            for department in LoginViewController.userAuth{
+                if(event.departmentName == department){
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+                                                                        target: self,
+                                                                        action: #selector(showAlert))
+                }
+            }
         }
         // Do any additional setup after loading the view.
     }
