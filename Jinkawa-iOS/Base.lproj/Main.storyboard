@@ -677,13 +677,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-cb-wlt" userLabel="DepartmentLabel">
-                                        <rect key="frame" x="0.0" y="199" width="94" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="199" width="112.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkW-v0-4ao" userLabel="UpdateDateLabel">
-                                        <rect key="frame" x="94" y="199" width="281" height="20.5"/>
+                                        <rect key="frame" x="112.5" y="199" width="262.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -714,7 +714,7 @@
                                     <constraint firstItem="eVV-gg-dah" firstAttribute="width" secondItem="GG1-Nk-1eQ" secondAttribute="width" id="rcD-3U-Zka"/>
                                     <constraint firstItem="9kJ-cb-wlt" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" id="t5Y-hg-Uv6"/>
                                     <constraint firstItem="eVV-gg-dah" firstAttribute="top" secondItem="6pM-lJ-UHo" secondAttribute="top" id="tlf-Fb-wIf"/>
-                                    <constraint firstItem="9kJ-cb-wlt" firstAttribute="width" secondItem="6pM-lJ-UHo" secondAttribute="width" multiplier="0.25" id="waH-cf-sKr"/>
+                                    <constraint firstItem="9kJ-cb-wlt" firstAttribute="width" secondItem="6pM-lJ-UHo" secondAttribute="width" multiplier="0.3" id="waH-cf-sKr"/>
                                     <constraint firstItem="XkW-v0-4ao" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" id="yDk-zc-gI6"/>
                                     <constraint firstItem="Yhv-bg-ape" firstAttribute="top" secondItem="9kJ-cb-wlt" secondAttribute="bottom" id="yzy-Od-ptA"/>
                                 </constraints>

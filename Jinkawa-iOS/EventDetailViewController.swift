@@ -103,6 +103,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         default:
             departmentLabel.backgroundColor = UIColor.colorWithHexString("ce1d1c")
         }
+        departmentLabel.sizeToFit()
         departmentLabel.textAlignment = .center
         
         // タイムゾーンを言語設定にあわせる
