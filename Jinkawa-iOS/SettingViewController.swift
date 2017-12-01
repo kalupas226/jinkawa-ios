@@ -107,6 +107,8 @@ class SettingViewController: FormViewController {
             +++ Section("お問い合わせ")
             <<< LabelRow() {
                 $0.title = "陣川あさひ町会"
+                }.onCellSelection{ cell, row in
+                    self.performSegue(withIdentifier: "toContact", sender: nil)
             }
             +++ Section()
             <<< ButtonRow() {

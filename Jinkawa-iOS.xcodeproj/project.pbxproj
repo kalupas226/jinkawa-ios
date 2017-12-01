@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19ADFF1E1FB9F2580000A172 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */; };
+		19ADFF261FD11C260000A172 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADFF251FD11C260000A172 /* ContactViewController.swift */; };
 		19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */; };
 		370FA45A1FC08F27003F31B9 /* EventEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370FA4591FC08F27003F31B9 /* EventEditViewController.swift */; };
 		37576CDA1FC47C3700E76E32 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37576CD91FC47C3700E76E32 /* UIView.swift */; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
+		19ADFF251FD11C260000A172 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailViewController.swift; sourceTree = "<group>"; };
 		370FA4591FC08F27003F31B9 /* EventEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewController.swift; sourceTree = "<group>"; };
 		37576CD91FC47C3700E76E32 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				37B0C8121FB720BD00479E95 /* ImagePickerController.swift */,
 				37B0C8141FB720BF00479E95 /* ImageRow.swift */,
 				19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */,
+				19ADFF251FD11C260000A172 /* ContactViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				37576CDA1FC47C3700E76E32 /* UIView.swift in Sources */,
 				55CD50F71F6E20D8007DECB8 /* LoginViewController.swift in Sources */,
 				378C21CD1FB84C18005E243C /* UIColor.swift in Sources */,
+				19ADFF261FD11C260000A172 /* ContactViewController.swift in Sources */,
 				55E07F851F6D4EBA0056E726 /* InformationCreateViewController.swift in Sources */,
 				55C99F881F11BDB20089851A /* EventViewController.swift in Sources */,
 				37AA18A61FAEF8F4000EBD5E /* User.swift in Sources */,

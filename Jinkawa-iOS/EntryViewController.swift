@@ -155,7 +155,14 @@ class EntryViewController: FormViewController {
                             row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
                         }
                     }
+            }
+            +++ Section()
+                <<< ButtonRow() {
+                    $0.title = "申し込む"
+                    }.onCellSelection { cell, row in
+                        
         }
+        
         
         // If you don't want to use Eureka custom operators ...
         //        let row = NameRow("NameRow") { $0.title = "name" }
