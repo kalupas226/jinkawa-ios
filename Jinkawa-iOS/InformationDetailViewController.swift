@@ -12,7 +12,7 @@ import NCMB
 class InformationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var information: Information = Information()
-    var detailListOrder: Array = ["日程", "本文"]
+    var detailListOrder: Array = ["本文"]
     var detailList: Dictionary<String, String> = [:]
     let actionSheet = UIAlertController(
         title:nil,
@@ -35,7 +35,6 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         detailTable.delegate = self
         detailTable.dataSource = self
         
-        detailList["日程"] = information.date
         detailList["本文"] = information.descriptionText
         
         // Labelの設定
