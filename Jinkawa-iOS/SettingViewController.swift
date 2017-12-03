@@ -55,6 +55,11 @@ class SettingViewController: FormViewController {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         
+        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
+        view.addSubview(statusBar)
+        self.navigationController?.view.addSubview(statusBar)
+        
         form
             +++ Section(header: "", footer: SettingViewController.pushStr)
             <<< SwitchRow() { row in
