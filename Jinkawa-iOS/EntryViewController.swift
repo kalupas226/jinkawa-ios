@@ -24,7 +24,6 @@ class EntryViewController: FormViewController {
             cell.textLabel?.textColor = .white
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
             cell.textLabel?.textAlignment = .right
-            
         }
         
         TextRow.defaultCellUpdate = { cell, row in

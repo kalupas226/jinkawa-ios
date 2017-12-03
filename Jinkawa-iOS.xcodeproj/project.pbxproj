@@ -360,6 +360,7 @@
 				TargetAttributes = {
 					556A29C71EFCD8B500FC82E1 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 565CL88MF2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -659,7 +660,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Jinkawa-iOS/Jinkawa-iOS.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 565CL88MF2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -681,7 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Jinkawa-iOS/Jinkawa-iOS.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 565CL88MF2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

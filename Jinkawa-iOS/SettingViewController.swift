@@ -16,18 +16,29 @@ let contactItem = ["陣川あさひ町会"]
 
 class SettingViewController: FormViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        }
-        
+    override func viewWillAppear(_ animated: Bool) {
         LabelRow.defaultCellUpdate = { cell, row in
             cell.contentView.backgroundColor = .white
             cell.textLabel?.textColor = .black
             cell.textLabel?.font = nil
             cell.textLabel?.textAlignment = .right
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.contentView.backgroundColor = .red
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.textLabel?.textAlignment = .right
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         
         form
