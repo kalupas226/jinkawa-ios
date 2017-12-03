@@ -69,10 +69,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="date" destination="1HM-aa-eaU" id="NZu-PI-zPe"/>
                 <outlet property="infoImage" destination="Vlx-wy-Bld" id="G39-kP-USj"/>
                 <outlet property="publisher" destination="9P7-F5-hHk" id="Kds-1v-sDG"/>
                 <outlet property="title" destination="l0I-Oe-sVR" id="gfm-mf-l8B"/>
+                <outlet property="updateDate" destination="1HM-aa-eaU" id="Uy0-ha-Fn8"/>
             </connections>
             <point key="canvasLocation" x="87.5" y="123"/>
         </tableViewCell>

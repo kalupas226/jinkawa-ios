@@ -69,7 +69,6 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
         
         cell.title.text = information.title
-        cell.date.text = information.date
         cell.publisher.text = information.departmentName
         switch information.type {
         case "注意": cell.infoImage.image = UIImage(named:"caution.png")
@@ -95,6 +94,27 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.publisher.sizeToFit()
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
+        
+        // タイムゾーンを言語設定にあわせる
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        // 上記の形式の日付文字列から日付データを取得します。
+        let d:Date = formatter.date(from: information.updateDate)!
+        
+        let dateFrt = DateFormatter()
+        dateFrt.setTemplate(.yer)
+        let updateYear = dateFrt.string(from: d)
+        dateFrt.setTemplate(.mon)
+        let updateMonth = dateFrt.string(from: d)
+        dateFrt.setTemplate(.day)
+        let updateDay = dateFrt.string(from: d)
+        
+        let updateDate = updateYear + updateMonth + updateDay
+        
+        cell.updateDate.text = "最終更新日 \(updateDate)"
         
         //役員専用のセルを隠す
         if(UserManager.sharedInstance.getState() == .common){

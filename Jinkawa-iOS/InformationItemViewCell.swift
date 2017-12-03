@@ -11,7 +11,7 @@ import UIKit
 class InformationItemViewCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var updateDate: UILabel!
     @IBOutlet weak var publisher: UILabel!
     @IBOutlet weak var infoImage: UIImageView!
     
