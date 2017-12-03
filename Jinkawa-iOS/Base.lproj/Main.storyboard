@@ -447,58 +447,66 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPy-ap-ujI" userLabel="modal">
                                 <rect key="frame" x="46" y="120" width="283" height="378"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="住所 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uM-Wu-Nnj">
-                                        <rect key="frame" x="8" y="97" width="57" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="住所 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uM-Wu-Nnj">
+                                        <rect key="frame" x="8" y="98" width="100" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="UR2-tP-Dad"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJa-sh-Exg">
-                                        <rect key="frame" x="8" y="235" width="94" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJa-sh-Exg">
+                                        <rect key="frame" x="8" y="200" width="100" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="QYM-FX-Wfu"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="https://ja-jp.facebook.com/jinnkawaasahi/" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9e-U0-zWX">
-                                        <rect key="frame" x="8" y="254" width="267" height="73"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://ja-jp.facebook.com/jinnkawaasahi/" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9e-U0-zWX">
+                                        <rect key="frame" x="8" y="226" width="267" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ocA-o4-5kt"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="電話番号 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPr-dp-mKw">
-                                        <rect key="frame" x="8" y="159" width="79" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話番号 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPr-dp-mKw">
+                                        <rect key="frame" x="8" y="149" width="100" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Nft-Xi-nSF"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="函館市陣川町79-55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPy-mD-c0E">
-                                        <rect key="frame" x="109" y="96" width="166" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="函館市陣川町79-55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPy-mD-c0E">
+                                        <rect key="frame" x="108" y="98" width="167" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="041-0833" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpm-Pd-9bp">
-                                        <rect key="frame" x="109" y="159" width="109" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0138-31-8855" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpm-Pd-9bp">
+                                        <rect key="frame" x="108" y="149" width="167" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="陣川あさひ町会" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cV-0S-WS4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="陣川あさひ町会" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cV-0S-WS4">
                                         <rect key="frame" x="55" y="47" width="173" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fg-CQ-SEP">
-                                        <rect key="frame" x="13" y="8" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fg-CQ-SEP">
+                                        <rect key="frame" x="8" y="8" width="50" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="K0d-Wn-M4S"/>
+                                            <constraint firstAttribute="height" constant="30" id="Q2V-Ks-orv"/>
+                                        </constraints>
                                         <state key="normal" title="閉じる"/>
                                         <connections>
                                             <action selector="Back:" destination="tt5-gh-IAu" eventType="touchUpInside" id="gT5-AN-U5H"/>
@@ -507,8 +515,28 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="RJa-sh-Exg" firstAttribute="leading" secondItem="GPy-ap-ujI" secondAttribute="leading" constant="8" id="0lN-bT-YJz"/>
+                                    <constraint firstItem="RJa-sh-Exg" firstAttribute="top" secondItem="qPr-dp-mKw" secondAttribute="bottom" constant="30" id="2uH-MS-kdO"/>
+                                    <constraint firstItem="Tpm-Pd-9bp" firstAttribute="top" secondItem="wPy-mD-c0E" secondAttribute="bottom" constant="30" id="6yL-3W-cpm"/>
+                                    <constraint firstItem="n9e-U0-zWX" firstAttribute="leading" secondItem="GPy-ap-ujI" secondAttribute="leading" constant="8" id="8gj-Fa-Iau"/>
+                                    <constraint firstItem="7fg-CQ-SEP" firstAttribute="top" secondItem="GPy-ap-ujI" secondAttribute="top" constant="8" id="9cX-pI-PeE"/>
                                     <constraint firstAttribute="width" constant="283" id="9fI-XJ-BIg"/>
+                                    <constraint firstItem="n9e-U0-zWX" firstAttribute="top" secondItem="RJa-sh-Exg" secondAttribute="bottom" constant="5" id="9fn-9Q-fc1"/>
+                                    <constraint firstAttribute="trailing" secondItem="n9e-U0-zWX" secondAttribute="trailing" constant="8" id="GLy-ir-eNg"/>
+                                    <constraint firstItem="0uM-Wu-Nnj" firstAttribute="leading" secondItem="GPy-ap-ujI" secondAttribute="leading" constant="8" id="Hoz-jt-cAd"/>
+                                    <constraint firstItem="1cV-0S-WS4" firstAttribute="top" secondItem="GPy-ap-ujI" secondAttribute="top" constant="47" id="MNd-ni-5yJ"/>
+                                    <constraint firstItem="0uM-Wu-Nnj" firstAttribute="top" secondItem="1cV-0S-WS4" secondAttribute="bottom" constant="30" id="QT7-iS-y3H"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tpm-Pd-9bp" secondAttribute="trailing" constant="8" id="Y6g-Ft-V89"/>
+                                    <constraint firstItem="wPy-mD-c0E" firstAttribute="top" secondItem="1cV-0S-WS4" secondAttribute="bottom" constant="30" id="bI4-lo-AQv"/>
+                                    <constraint firstAttribute="trailing" secondItem="wPy-mD-c0E" secondAttribute="trailing" constant="8" id="cRs-Ga-V28"/>
+                                    <constraint firstItem="1cV-0S-WS4" firstAttribute="leading" secondItem="GPy-ap-ujI" secondAttribute="leading" constant="55" id="cur-06-ZOK"/>
+                                    <constraint firstItem="wPy-mD-c0E" firstAttribute="leading" secondItem="0uM-Wu-Nnj" secondAttribute="trailing" id="hS2-HO-L37"/>
+                                    <constraint firstItem="qPr-dp-mKw" firstAttribute="top" secondItem="0uM-Wu-Nnj" secondAttribute="bottom" constant="30" id="hyp-aB-8Ce"/>
+                                    <constraint firstAttribute="trailing" secondItem="1cV-0S-WS4" secondAttribute="trailing" constant="55" id="pcl-mp-dAz"/>
+                                    <constraint firstItem="qPr-dp-mKw" firstAttribute="leading" secondItem="GPy-ap-ujI" secondAttribute="leading" constant="8" id="uAG-hX-KqR"/>
                                     <constraint firstAttribute="height" constant="378" id="vac-xi-Q4c"/>
+                                    <constraint firstItem="Tpm-Pd-9bp" firstAttribute="leading" secondItem="qPr-dp-mKw" secondAttribute="trailing" id="xFS-Xi-31y"/>
+                                    <constraint firstItem="7fg-CQ-SEP" firstAttribute="leading" secondItem="GPy-ap-ujI" secondAttribute="leading" constant="8" id="zmZ-Fm-HnH"/>
                                 </constraints>
                             </view>
                         </subviews>
