@@ -15,7 +15,7 @@ import AlamofireImage
 class EventDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var event:Event = Event() // イベントオブジェクトの保持
-    var detailListOrder: Array = ["日程", "場所", "定員", "締切日", "本文"]
+    var detailListOrder: Array = ["開始日", "開始時間", "終了日", "終了時間", "場所", "定員", "締切日", "本文"]
     var detailList: Dictionary<String, String> = [:]
     let actionSheet = UIAlertController(
         title:nil,
@@ -81,7 +81,10 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
             )
         )
         
-        detailList["日程"] = event.dateStart
+        detailList["開始日"] = event.dateStart
+        detailList["開始時間"] = event.timeStart
+        detailList["終了日"] = event.dateEnd
+        detailList["終了時間"] = event.timeEnd
         detailList["場所"] = event.location
         detailList["定員"] = event.capacity + "名"
         detailList["締切日"] = event.deadline
