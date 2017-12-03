@@ -10,13 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var startButton: UIButton!
-    
-    @IBAction func startButtonDidTapped(_ sender: Any) {
-        performSegue(withIdentifier: "showTabView", sender: nil)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
@@ -32,8 +25,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func backToHome(segue: UIStoryboardSegue){
-        
+    @IBAction func startButtonDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "showTabView", sender: nil)
+    }
+
+    @IBAction func didTapToLoginButton(_ sender: Any) {
+        performSegue(withIdentifier: "toLogin", sender: nil)
     }
 }
 
