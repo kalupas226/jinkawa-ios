@@ -15,12 +15,11 @@ class SettingViewController: FormViewController {
     
     static var pushStr = ""
     
-    override func viewWillAppear(_ animated: Bool) {
-        
+    override func viewWillDisappear(_ animated: Bool) {
         LabelRow.defaultCellUpdate = { cell, row in
-            cell.contentView.backgroundColor = .white
-            cell.textLabel?.textColor = .black
-            cell.textLabel?.font = nil
+            cell.contentView.backgroundColor = .red
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
             cell.textLabel?.textAlignment = .right
         }
         //プッシュ通知メッセージの更新
@@ -36,15 +35,6 @@ class SettingViewController: FormViewController {
             case .notDetermined:
                 break
             }
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        LabelRow.defaultCellUpdate = { cell, row in
-            cell.contentView.backgroundColor = .red
-            cell.textLabel?.textColor = .white
-            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-            cell.textLabel?.textAlignment = .right
         }
     }
     
