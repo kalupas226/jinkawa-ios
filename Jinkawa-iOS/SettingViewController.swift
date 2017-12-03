@@ -146,9 +146,10 @@ class SettingViewController: FormViewController {
             <<< ButtonRow() {
                 $0.title = "スタート画面へ戻る"
                 }.onCellSelection { cell, row in
-                    let storyboard: UIStoryboard = self.storyboard!
-                    let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
-                    self.present(nextView, animated: true, completion: nil)
+//                    let storyboard: UIStoryboard = self.storyboard!
+//                    let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+//                    self.present(nextView, animated: true, completion: nil)
+                    self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
