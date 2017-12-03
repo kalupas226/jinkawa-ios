@@ -49,16 +49,6 @@ class UserInformationViewController: UIViewController, UITableViewDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        for touch: UITouch in touches {
-            let tag = touch.view!.tag
-            if tag == 1 {
-                dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -94,6 +84,10 @@ class UserInformationViewController: UIViewController, UITableViewDelegate, UITa
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func Back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     /*
      // MARK: - Navigation

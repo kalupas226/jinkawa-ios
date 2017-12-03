@@ -12,7 +12,7 @@ import NCMB
 class InformationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var information: Information = Information()
-    var detailListOrder: Array = ["日程", "本文"]
+    var detailListOrder: Array = ["本文"]
     var detailList: Dictionary<String, String> = [:]
     let actionSheet = UIAlertController(
         title:nil,
@@ -21,6 +21,9 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
     
     @IBOutlet weak var detailTable: UITableView!
     @IBOutlet weak var infoImage: UIImageView!
+    @IBOutlet weak var departmentLabel: UILabel!
+    @IBOutlet weak var updateDateLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +35,55 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         detailTable.delegate = self
         detailTable.dataSource = self
         
-        detailList["日程"] = information.date
         detailList["本文"] = information.descriptionText
+        
+        // Labelの設定
+        departmentLabel.text = information.departmentName
+        departmentLabel.textColor = UIColor.white
+        switch information.departmentName {
+        case "役員": departmentLabel.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        case "総務部": departmentLabel.backgroundColor = UIColor.colorWithHexString("cc4454")
+        case "青少年育成部": departmentLabel.backgroundColor = UIColor.colorWithHexString("4b93bc")
+        case "女性部": departmentLabel.backgroundColor = UIColor.colorWithHexString("d45273")
+        case "福祉部": departmentLabel.backgroundColor = UIColor.colorWithHexString("d96047")
+        case "環境部": departmentLabel.backgroundColor = UIColor.colorWithHexString("3ba88d")
+        case "防火防犯部": departmentLabel.backgroundColor = UIColor.colorWithHexString("1e2952")
+        case "交通部": departmentLabel.backgroundColor = UIColor.colorWithHexString("00913a")
+        case "Jバス部": departmentLabel.backgroundColor = UIColor.colorWithHexString("4cacd9")
+        default:
+            departmentLabel.backgroundColor = UIColor.colorWithHexString("ce1d1c")
+        }
+        departmentLabel.sizeToFit()
+        departmentLabel.textAlignment = .center
+        
+        // タイムゾーンを言語設定にあわせる
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        // 上記の形式の日付文字列から日付データを取得します。
+        let d:Date = formatter.date(from: information.updateDate)!
+        print(d)
+        
+        let dateFrt = DateFormatter()
+        dateFrt.setTemplate(.yer)
+        let updateYear = dateFrt.string(from: d)
+        dateFrt.setTemplate(.mon)
+        let updateMonth = dateFrt.string(from: d)
+        dateFrt.setTemplate(.day)
+        let updateDay = dateFrt.string(from: d)
+        dateFrt.setTemplate(.time)
+        let updateTime = dateFrt.string(from: d)
+        
+        print(updateYear + "/" + updateMonth + "/" + updateDay + " " + updateTime)
+        
+        let updateDate = updateYear + updateMonth + updateDay + updateTime
+        
+        updateDateLabel.text = "最終更新日 \(updateDate)"
+        updateDateLabel.textColor = UIColor.white
+        updateDateLabel.backgroundColor = UIColor.gray
+        updateDateLabel.textAlignment = .center
         
         //CustomCellの登録
         detailTable.register(UINib(nibName:"EventDetailTableViewCell", bundle:nil), forCellReuseIdentifier: "detailCell")
