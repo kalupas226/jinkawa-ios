@@ -117,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="-690" y="139"/>
         </scene>
-        <!--Login View Controller-->
+        <!--ログイン-->
         <scene sceneID="XTi-mB-YuS">
             <objects>
                 <viewController id="2yu-wv-UVU" customClass="LoginViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,6 +190,7 @@
                             <constraint firstItem="oNc-H1-Tf5" firstAttribute="leading" secondItem="UuR-uv-Pck" secondAttribute="leadingMargin" constant="50" id="zbb-gh-FwV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="ログイン" id="Fac-sv-q22"/>
                     <connections>
                         <outlet property="idTextField" destination="bXy-gW-pNL" id="cfD-NZ-tLC"/>
                         <outlet property="psTextField" destination="oNc-H1-Tf5" id="sil-pS-0DP"/>
@@ -870,11 +871,11 @@
             </objects>
             <point key="canvasLocation" x="4201" y="-1264"/>
         </scene>
-        <!--hoge-->
+        <!--Tab Bar Controller-->
         <scene sceneID="iSK-kv-OrS">
             <objects>
                 <tabBarController storyboardIdentifier="eventListView" id="ZQp-Wp-SOg" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="hoge" id="vcO-9s-ZwM"/>
+                    <navigationItem key="navigationItem" id="vcO-9s-ZwM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Xtj-7Q-ZH9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

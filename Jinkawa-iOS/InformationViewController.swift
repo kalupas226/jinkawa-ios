@@ -53,6 +53,10 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.title = "お知らせ"
+    }
+    
     func toEventCreateView(){
         performSegue(withIdentifier: "toInformationCreate", sender: nil)
     }

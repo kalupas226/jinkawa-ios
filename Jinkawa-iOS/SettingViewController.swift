@@ -154,6 +154,10 @@ class SettingViewController: FormViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.title = "設定"
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

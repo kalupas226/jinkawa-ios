@@ -47,6 +47,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.title = "イベント"
+    }
+    
     func toEventCreateView(){
         performSegue(withIdentifier: "toEventCreate", sender: nil)
     }
