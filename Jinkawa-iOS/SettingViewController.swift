@@ -9,19 +9,33 @@
 import UIKit
 import Eureka
 import NCMB
-
-let sectionTitle = ["設定", "お問合わせ"]
-let settingItem = ["通知のオン/オフ", "入力情報の確認"]
-let contactItem = ["陣川あさひ町会"]
+import UserNotifications
 
 class SettingViewController: FormViewController {
     
+    static var pushStr = ""
+    
     override func viewWillAppear(_ animated: Bool) {
+        
         LabelRow.defaultCellUpdate = { cell, row in
             cell.contentView.backgroundColor = .white
             cell.textLabel?.textColor = .black
             cell.textLabel?.font = nil
             cell.textLabel?.textAlignment = .right
+        }
+        //プッシュ通知メッセージの更新
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            
+            switch settings.authorizationStatus {
+            case .authorized:
+                SettingViewController.pushStr = "アプリを強制終了すると、通知が遅れたり、受信できない場合があります。"
+                break
+            case .denied:
+                SettingViewController.pushStr = "端末のじぷりの通知設定がオフのようです。じぷりの通知設定を有効にするためには、端末の設定画面で「じぷり」の通知をオンにしてください。"
+                break
+            case .notDetermined:
+                break
+            }
         }
     }
     
@@ -42,7 +56,7 @@ class SettingViewController: FormViewController {
         }
         
         form
-            +++ Section("設定")
+            +++ Section(header: "", footer: SettingViewController.pushStr)
             <<< SwitchRow() { row in
                 row.title = "通知のオン／オフ"
                 let currentInstallation = NCMBInstallation.current()
@@ -73,6 +87,8 @@ class SettingViewController: FormViewController {
                         }
                     }
             }
+            
+            +++ Section(header: "", footer: "イベントへの参加申し込み時の入力情報の確認、削除を行うことができます。")
             <<< LabelRow() {
                 $0.title = "入力情報の確認"
                 }.onCellSelection{ cell, row in
