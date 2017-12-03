@@ -115,9 +115,8 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        // 上記の形式の日付文字列から日付データを取得します。
+        // 上記の形式の日付文字列から日付データを取得
         let d:Date = formatter.date(from: event.updateDate)!
-        print(d)
         
         let dateFrt = DateFormatter()
         dateFrt.setTemplate(.yer)

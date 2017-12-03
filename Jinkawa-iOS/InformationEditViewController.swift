@@ -170,11 +170,15 @@ class InformationEditViewController: FormViewController {
         let date = dateFrt.string(from:values["DateRowTag"] as! Date)
         let officer:Bool = values["OfficerRowTag"] as! Bool
         
-        let message: String =
+        var message: String =
             "タイトル:" + title + "\n" +
                 "発行部署:" + department + "\n" +
-                "開催日:" + date.description + "\n"
+                "日付:" + date.description + "\n" +
+                "お知らせ種類:" + type
         
+        if(officer == true){
+            message = message + "\n\n" + "役員のみに公開する"
+        }
         let alert = UIAlertController(title: "この内容で更新します",
                                       message: message,
                                       preferredStyle: .alert)
