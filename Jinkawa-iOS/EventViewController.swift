@@ -34,17 +34,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         eventListView.register(UINib(nibName:"EventItemViewCell", bundle:nil), forCellReuseIdentifier: "eventItem")
         
-        if(UserManager.sharedInstance.getState() != .common){
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                                target: self,
-                                                                action: #selector(toEventCreateView))
-            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        }
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.title = "イベント"
+        if(UserManager.sharedInstance.getState() != .common){
+            tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                                  target: self,
+                                                                                  action: #selector(toEventCreateView))
+            tabBarController?.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
     }
     
     func toEventCreateView(){

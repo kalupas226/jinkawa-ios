@@ -44,17 +44,17 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         
         informationListView.register(UINib(nibName:"InformationItemViewCell", bundle:nil), forCellReuseIdentifier: "informationItem")
         
-        if(UserManager.sharedInstance.getState() != .common){
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                                target: self,
-                                                                action: #selector(toEventCreateView))
-            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        }
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.title = "お知らせ"
+        if(UserManager.sharedInstance.getState() != .common){
+            tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(toEventCreateView))
+            tabBarController?.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
     }
     
     func toEventCreateView(){
