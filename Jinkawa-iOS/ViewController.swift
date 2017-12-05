@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
+        view.addSubview(statusBar)
         // Do any additional setup after loading the view, typically from a nib.
         //        let event = Event(eventName: "testName2", updateAt: "2:00", description: "testDescription")
         

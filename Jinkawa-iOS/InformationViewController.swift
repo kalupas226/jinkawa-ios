@@ -22,6 +22,12 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
+        
+        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
+        view.addSubview(statusBar)
+        self.navigationController?.view.addSubview(statusBar)
+        
         //インジケーターの下に表示する文字列を設定する。
         refresh.attributedTitle = NSAttributedString(string: "読込中")
         //インジケーターの色を設定する。

@@ -363,13 +363,20 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
         let officer: Bool = values["OfficerRowTag"] as! Bool
         let deadline = dateFrt.string(from:values["DeadlineRowTag"] as! Date)
         
-        let message: String =
+        var message: String =
             "イベント名:" + name + "\n" +
                 "発行部署:" + department + "\n" +
-                "開催日:" + dateStart.description + "\n" +
-                "場所" + location + "\n" +
-                "定員" + capacity.description + "\n" +
-                "締切日" + deadline.description
+                "開始日:" + dateStart.description + "\n" +
+                "開始時間:" + timeStart.description + "\n" +
+                "終了日:" + dateEnd.description + "\n" +
+                "終了時間:" + timeEnd.description + "\n" +
+                "場所:" + location + "\n" +
+                "定員:" + capacity.description + "\n" +
+                "締切日:" + deadline.description
+        
+        if(officer == true){
+            message = message + "\n\n" + "役員のみに公開する"
+        }
         
         let alert = UIAlertController(title: "この内容で更新します",
                                       message: message,
