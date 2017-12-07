@@ -22,11 +22,6 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        }
-        
         ImageRow.defaultCellUpdate = { cell, row in
             cell.accessoryView?.layer.cornerRadius = 17
             cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 90, height: 90)

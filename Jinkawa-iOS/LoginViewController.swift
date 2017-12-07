@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
         let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
         statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
         view.addSubview(statusBar)
+        self.navigationController?.view.addSubview(statusBar)
         
         idTextField.placeholder = "IDを入力してください"
         psTextField.placeholder = "パスワードを入力してください"
@@ -106,8 +107,9 @@ class LoginViewController: UIViewController {
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             if(loginMessage != "IDまたはパスワードが\n間違っています"){
-                let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "eventListView")
-                self.present(nextVC!, animated: true, completion: nil)
+//                let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "eventListView")
+//                self.present(nextVC!, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "fromLoginToTabView", sender: nil)
             }else{
                 self.dismiss(animated: true, completion: nil)
             }

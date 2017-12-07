@@ -17,11 +17,6 @@ class InformationEditViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        }
-        
         LabelRow.defaultCellUpdate = { cell, row in
             cell.contentView.backgroundColor = .red
             cell.textLabel?.textColor = .white

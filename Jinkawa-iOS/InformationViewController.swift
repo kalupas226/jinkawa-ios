@@ -18,15 +18,6 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        }
-        
-        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
-        statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
-        view.addSubview(statusBar)
-        self.navigationController?.view.addSubview(statusBar)
         
         //インジケーターの下に表示する文字列を設定する。
         refresh.attributedTitle = NSAttributedString(string: "読込中")
@@ -44,13 +35,17 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         
         informationListView.register(UINib(nibName:"InformationItemViewCell", bundle:nil), forCellReuseIdentifier: "informationItem")
         
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.title = "お知らせ"
         if(UserManager.sharedInstance.getState() != .common){
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+            tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                 target: self,
                                                                 action: #selector(toEventCreateView))
-            navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            tabBarController?.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
-        // Do any additional setup after loading the view.
     }
     
     func toEventCreateView(){
