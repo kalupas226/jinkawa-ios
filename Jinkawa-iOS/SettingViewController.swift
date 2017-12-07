@@ -116,6 +116,7 @@ class SettingViewController: FormViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.title = "設定"
+        tabBarController?.navigationItem.rightBarButtonItem = nil
         
         LabelRow.defaultCellUpdate = { cell, row in
             cell.contentView.backgroundColor = .white
