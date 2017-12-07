@@ -15,29 +15,6 @@ class SettingViewController: FormViewController {
     
     static var pushStr = ""
     
-    override func viewWillDisappear(_ animated: Bool) {
-        LabelRow.defaultCellUpdate = { cell, row in
-            cell.contentView.backgroundColor = .red
-            cell.textLabel?.textColor = .white
-            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-            cell.textLabel?.textAlignment = .right
-        }
-        //プッシュ通知メッセージの更新
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            
-            switch settings.authorizationStatus {
-            case .authorized:
-                SettingViewController.pushStr = "アプリを強制終了すると、通知が遅れたり、受信できない場合があります。"
-                break
-            case .denied:
-                SettingViewController.pushStr = "端末のじぷりの通知設定がオフのようです。じぷりの通知設定を有効にするためには、端末の設定画面で「じぷり」の通知をオンにしてください。"
-                break
-            case .notDetermined:
-                break
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
@@ -45,10 +22,10 @@ class SettingViewController: FormViewController {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         
-        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
-        statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
-        view.addSubview(statusBar)
-        self.navigationController?.view.addSubview(statusBar)
+//        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+//        statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
+//        view.addSubview(statusBar)
+//        self.navigationController?.view.addSubview(statusBar)
         
         form
             +++ Section(header: "", footer: SettingViewController.pushStr)
@@ -143,9 +120,40 @@ class SettingViewController: FormViewController {
         }
         
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
+        
         tabBarController?.title = "設定"
+        
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.contentView.backgroundColor = .white
+            cell.textLabel?.textColor = .black
+            cell.textLabel?.font = nil
+            cell.textLabel?.textAlignment = .right
+        }
+        //プッシュ通知メッセージの更新
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            
+            switch settings.authorizationStatus {
+            case .authorized:
+                SettingViewController.pushStr = "アプリを強制終了すると、通知が遅れたり、受信できない場合があります。"
+                break
+            case .denied:
+                SettingViewController.pushStr = "端末のじぷりの通知設定がオフのようです。じぷりの通知設定を有効にするためには、端末の設定画面で「じぷり」の通知をオンにしてください。"
+                break
+            case .notDetermined:
+                break
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.contentView.backgroundColor = .red
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+            cell.textLabel?.textAlignment = .right
+        }
     }
     
     override func didReceiveMemoryWarning() {

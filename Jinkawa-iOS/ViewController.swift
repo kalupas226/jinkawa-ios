@@ -12,9 +12,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        }
+        
         let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
         statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
         view.addSubview(statusBar)
+        self.navigationController?.view.addSubview(statusBar)
         // Do any additional setup after loading the view, typically from a nib.
         //        let event = Event(eventName: "testName2", updateAt: "2:00", description: "testDescription")
         
@@ -24,20 +30,18 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func startButtonDidTapped(_ sender: Any) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
         performSegue(withIdentifier: "showTabView", sender: nil)
     }
 
     @IBAction func didTapToLoginButton(_ sender: Any) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
         performSegue(withIdentifier: "toLogin", sender: nil)
     }
 }
