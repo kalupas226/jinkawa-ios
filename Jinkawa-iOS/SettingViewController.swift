@@ -83,9 +83,10 @@ class SettingViewController: FormViewController {
                     let alertController = UIAlertController(title: "ログアウト", message: "ログアウトしますか", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "はい", style: .default){ (action: UIAlertAction) in
                         UserManager.sharedInstance.setState(state: .common)
-                        let storyboard: UIStoryboard = self.storyboard!
-                        let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
-                        self.present(nextView, animated: true, completion: nil)
+//                        let storyboard: UIStoryboard = self.storyboard!
+//                        let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+//                        self.present(nextView, animated: true, completion: nil)
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
                     let cancelAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
                     
