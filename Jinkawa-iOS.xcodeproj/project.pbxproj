@@ -24,6 +24,7 @@
 		37B0C80C1FB1FEAC00479E95 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */; };
 		37B0C8131FB720BD00479E95 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C8121FB720BD00479E95 /* ImagePickerController.swift */; };
 		37B0C8151FB720C000479E95 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C8141FB720BF00479E95 /* ImageRow.swift */; };
+		37BCA9321FD9955200D9DBC0 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA9311FD9955200D9DBC0 /* EdgeInsetLabel.swift */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
 		556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CD1EFCD8B500FC82E1 /* ViewController.swift */; };
@@ -94,6 +95,7 @@
 		37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		37B0C8121FB720BD00479E95 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		37B0C8141FB720BF00479E95 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
+		37BCA9311FD9955200D9DBC0 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				55C99F901F1237CF0089851A /* View */,
 				55C99F8E1F1237AE0089851A /* Controller */,
 				556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */,
+				37BCA9311FD9955200D9DBC0 /* EdgeInsetLabel.swift */,
 				37AA18A31FAE97A5000EBD5E /* DateFormat.swift */,
 				37576CD91FC47C3700E76E32 /* UIView.swift */,
 				378C21CC1FB84C18005E243C /* UIColor.swift */,
@@ -484,6 +487,7 @@
 				559FC0931F6A535400FB5ABE /* EventDetailTableViewCell.swift in Sources */,
 				55C99F9A1F126E6D0089851A /* InformationViewController.swift in Sources */,
 				375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */,
+				37BCA9321FD9955200D9DBC0 /* EdgeInsetLabel.swift in Sources */,
 				55F8EE701F69719800D9E64E /* EntryViewController.swift in Sources */,
 				19ADFF1E1FB9F2580000A172 /* UserInformationViewController.swift in Sources */,
 				55F8EE6E1F696EB600D9E64E /* EventDetailViewController.swift in Sources */,
@@ -666,7 +670,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.fun.jinkawa.jipuri-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,7 +692,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.fun.jinkawa.jipuri-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q0L-Is-AzU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q0L-Is-AzU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ホーム画面-->
+        <!--スタート画面-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="Top" id="BYZ-38-t0r" customClass="ViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,12 +23,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopBG" translatesAutoresizingMaskIntoConstraints="NO" id="v6b-ph-kcL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="433"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopBG" translatesAutoresizingMaskIntoConstraints="NO" id="v6b-ph-kcL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3E-dw-twv">
                                 <rect key="frame" x="104" y="457" width="166" height="65"/>
                                 <color key="backgroundColor" red="0.81339401006698608" green="0.23603388667106628" blue="0.15700253844261169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="CXM-C8-YLA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="スタート">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,8 +79,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="v6b-ph-kcL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="6fO-MO-pJT"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="D3E-dw-twv" secondAttribute="bottom" constant="145" id="UNc-AS-Mol"/>
+                            <constraint firstItem="v6b-ph-kcL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="UVX-D6-HXL"/>
                             <constraint firstItem="ZqP-1g-mkR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aR6-UA-Lmd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D3E-dw-twv" secondAttribute="trailing" constant="89" id="gDf-a5-kv0"/>
                             <constraint firstItem="D3E-dw-twv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="88" id="iMq-xr-Ib5"/>
@@ -87,7 +91,7 @@
                             <constraint firstAttribute="trailing" secondItem="v6b-ph-kcL" secondAttribute="trailing" id="vXO-DI-Q2O"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ホーム画面" id="WkE-bQ-DzP"/>
+                    <navigationItem key="navigationItem" title="スタート画面" id="WkE-bQ-DzP"/>
                     <connections>
                         <segue destination="ZQp-Wp-SOg" kind="show" identifier="showTabView" id="mvs-uH-uJ1"/>
                         <segue destination="2yu-wv-UVU" kind="show" identifier="toLogin" id="w6S-7w-MBj"/>
@@ -257,30 +261,58 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4i-uY-Dnw">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-bd-px7">
-                                        <rect key="frame" x="0.0" y="262" width="375" height="341"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRs-8y-Aut">
-                                        <rect key="frame" x="0.0" y="241" width="112.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zd-71-oOJ">
-                                        <rect key="frame" x="112.5" y="241.5" width="262.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kSu-ZE-rpa">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRs-8y-Aut" customClass="EdgeInsetLabel" customModule="Jinkawa_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="231" width="112.5" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9IB-bd-px7">
+                                        <rect key="frame" x="0.0" y="269" width="375" height="334"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zd-71-oOJ" customClass="EdgeInsetLabel" customModule="Jinkawa_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="112.5" y="231" width="262.5" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="1zd-71-oOJ" firstAttribute="top" secondItem="kSu-ZE-rpa" secondAttribute="bottom" id="8tu-hq-mN4"/>
-                                    <constraint firstItem="rRs-8y-Aut" firstAttribute="top" secondItem="kSu-ZE-rpa" secondAttribute="bottom" id="BJI-No-WE5"/>
+                                    <constraint firstItem="1zd-71-oOJ" firstAttribute="top" secondItem="kSu-ZE-rpa" secondAttribute="bottom" constant="-10" id="8tu-hq-mN4"/>
+                                    <constraint firstItem="rRs-8y-Aut" firstAttribute="top" secondItem="kSu-ZE-rpa" secondAttribute="bottom" constant="-10" id="BJI-No-WE5"/>
                                     <constraint firstItem="9IB-bd-px7" firstAttribute="top" secondItem="rRs-8y-Aut" secondAttribute="bottom" id="Ez2-4m-V6j"/>
                                     <constraint firstItem="rRs-8y-Aut" firstAttribute="width" secondItem="q4i-uY-Dnw" secondAttribute="width" multiplier="0.3" id="F3L-Qt-YTn"/>
                                     <constraint firstItem="kSu-ZE-rpa" firstAttribute="height" secondItem="q4i-uY-Dnw" secondAttribute="height" multiplier="0.4" id="GbI-aQ-SW6"/>
@@ -702,28 +734,56 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-Nk-1eQ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-cb-wlt" userLabel="DepartmentLabel" customClass="EdgeInsetLabel" customModule="Jinkawa_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="209" width="112.5" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVV-gg-dah">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
                                         <connections>
                                             <action selector="photoUp:" destination="qvG-28-qwA" eventType="touchUpInside" id="Mw3-9c-CCP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-cb-wlt" userLabel="DepartmentLabel">
-                                        <rect key="frame" x="0.0" y="219" width="112.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkW-v0-4ao" userLabel="UpdateDateLabel">
-                                        <rect key="frame" x="112.5" y="219" width="262.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yhv-bg-ape">
-                                        <rect key="frame" x="0.0" y="239.5" width="375" height="307.5"/>
+                                        <rect key="frame" x="0.0" y="247" width="375" height="300"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkW-v0-4ao" userLabel="UpdateDateLabel" customClass="EdgeInsetLabel" customModule="Jinkawa_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="112.5" y="209" width="262.5" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -731,7 +791,7 @@
                                     <constraint firstItem="XkW-v0-4ao" firstAttribute="leading" secondItem="9kJ-cb-wlt" secondAttribute="trailing" id="7mW-2m-wY6"/>
                                     <constraint firstItem="Yhv-bg-ape" firstAttribute="top" secondItem="9kJ-cb-wlt" secondAttribute="bottom" id="8eF-Ed-fti"/>
                                     <constraint firstAttribute="trailing" secondItem="GG1-Nk-1eQ" secondAttribute="trailing" id="BcO-6c-0Nj"/>
-                                    <constraint firstItem="9kJ-cb-wlt" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" id="Epf-4a-Rnz"/>
+                                    <constraint firstItem="9kJ-cb-wlt" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" constant="-10" id="Epf-4a-Rnz"/>
                                     <constraint firstItem="GG1-Nk-1eQ" firstAttribute="top" secondItem="6pM-lJ-UHo" secondAttribute="top" id="I2w-f1-P5w"/>
                                     <constraint firstAttribute="trailing" secondItem="Yhv-bg-ape" secondAttribute="trailing" id="JW2-O6-MaW"/>
                                     <constraint firstAttribute="bottom" secondItem="Yhv-bg-ape" secondAttribute="bottom" id="KVW-5V-yzJ"/>
@@ -744,10 +804,9 @@
                                     <constraint firstItem="XkW-v0-4ao" firstAttribute="leading" secondItem="9kJ-cb-wlt" secondAttribute="trailing" id="mV4-t0-Shv"/>
                                     <constraint firstItem="Yhv-bg-ape" firstAttribute="leading" secondItem="6pM-lJ-UHo" secondAttribute="leading" id="phi-DV-358"/>
                                     <constraint firstItem="eVV-gg-dah" firstAttribute="width" secondItem="GG1-Nk-1eQ" secondAttribute="width" id="rcD-3U-Zka"/>
-                                    <constraint firstItem="9kJ-cb-wlt" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" id="t5Y-hg-Uv6"/>
                                     <constraint firstItem="eVV-gg-dah" firstAttribute="top" secondItem="6pM-lJ-UHo" secondAttribute="top" id="tlf-Fb-wIf"/>
                                     <constraint firstItem="9kJ-cb-wlt" firstAttribute="width" secondItem="6pM-lJ-UHo" secondAttribute="width" multiplier="0.3" id="waH-cf-sKr"/>
-                                    <constraint firstItem="XkW-v0-4ao" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" id="yDk-zc-gI6"/>
+                                    <constraint firstItem="XkW-v0-4ao" firstAttribute="top" secondItem="GG1-Nk-1eQ" secondAttribute="bottom" constant="-10" id="yDk-zc-gI6"/>
                                     <constraint firstItem="Yhv-bg-ape" firstAttribute="top" secondItem="9kJ-cb-wlt" secondAttribute="bottom" id="yzy-Od-ptA"/>
                                 </constraints>
                             </view>
