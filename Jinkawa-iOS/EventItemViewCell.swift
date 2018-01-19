@@ -15,7 +15,7 @@ class EventItemViewCell: UITableViewCell {
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var publisher: UILabel!
     @IBOutlet weak var eveImage: UIImageView!
-    @IBOutlet weak var updateDate: UILabel!
+//    @IBOutlet weak var updateDate: UILabel!
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

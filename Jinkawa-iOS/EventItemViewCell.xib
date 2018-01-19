@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,32 +28,40 @@
                                     <constraint firstAttribute="height" constant="108" id="rLg-Py-aTK"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最終更新日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdK-lY-H3Y" userLabel="UpdateDate">
-                                <rect key="frame" x="201.5" y="13" width="71.5" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜〜部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUT-ZQ-PKe">
-                                <rect key="frame" x="138" y="7" width="58.5" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜〜部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUT-ZQ-PKe" customClass="EdgeInsetLabel" customModule="Jinkawa_iOS" customModuleProvider="target">
+                                <rect key="frame" x="138" y="7" width="88.5" height="27"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-6-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6O-Je-AHV">
-                                <rect key="frame" x="138" y="66" width="76" height="19.5"/>
+                                <rect key="frame" x="138" y="70" width="76" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="イベント名" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OH-he-l2t">
-                                <rect key="frame" x="138" y="35" width="172" height="25.5"/>
+                                <rect key="frame" x="138" y="39" width="172" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="場所" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYT-UE-3tE">
-                                <rect key="frame" x="138" y="90.5" width="172" height="19.5"/>
+                                <rect key="frame" x="138" y="94.5" width="172" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                 <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -64,12 +73,10 @@
                             <constraint firstItem="riO-Ic-0Rx" firstAttribute="leading" secondItem="bjh-eY-UVD" secondAttribute="leading" constant="15" id="1po-5c-m5t"/>
                             <constraint firstItem="0OH-he-l2t" firstAttribute="leading" secondItem="riO-Ic-0Rx" secondAttribute="trailing" constant="15" id="C5x-kD-v6s"/>
                             <constraint firstItem="yYT-UE-3tE" firstAttribute="top" secondItem="q6O-Je-AHV" secondAttribute="bottom" constant="5" id="Dpd-nd-YrP"/>
-                            <constraint firstItem="gdK-lY-H3Y" firstAttribute="bottom" secondItem="hUT-ZQ-PKe" secondAttribute="bottom" id="KIr-ah-ur2"/>
                             <constraint firstItem="yYT-UE-3tE" firstAttribute="leading" secondItem="riO-Ic-0Rx" secondAttribute="trailing" constant="15" id="LLN-V7-nkC"/>
                             <constraint firstItem="hUT-ZQ-PKe" firstAttribute="top" secondItem="riO-Ic-0Rx" secondAttribute="top" id="NGF-zv-oml"/>
                             <constraint firstItem="q6O-Je-AHV" firstAttribute="leading" secondItem="riO-Ic-0Rx" secondAttribute="trailing" constant="15" id="PLB-mS-uWG"/>
                             <constraint firstItem="q6O-Je-AHV" firstAttribute="top" secondItem="0OH-he-l2t" secondAttribute="bottom" constant="5" id="YHR-7q-pcj"/>
-                            <constraint firstItem="gdK-lY-H3Y" firstAttribute="leading" secondItem="hUT-ZQ-PKe" secondAttribute="trailing" constant="5" id="eMk-Ds-DA3"/>
                             <constraint firstItem="riO-Ic-0Rx" firstAttribute="top" secondItem="bjh-eY-UVD" secondAttribute="top" constant="7" id="gO1-GC-DFb"/>
                             <constraint firstAttribute="bottom" secondItem="riO-Ic-0Rx" secondAttribute="bottom" constant="7" id="i9a-N7-9kK"/>
                             <constraint firstAttribute="trailing" secondItem="yYT-UE-3tE" secondAttribute="trailing" constant="15" id="rNz-Rf-Dzz"/>
@@ -91,7 +98,6 @@
                 <outlet property="location" destination="yYT-UE-3tE" id="hIZ-PX-WJc"/>
                 <outlet property="publisher" destination="hUT-ZQ-PKe" id="imX-Vk-SeA"/>
                 <outlet property="title" destination="0OH-he-l2t" id="FvQ-bz-2WW"/>
-                <outlet property="updateDate" destination="gdK-lY-H3Y" id="hmH-cp-J15"/>
             </connections>
             <point key="canvasLocation" x="87.5" y="124"/>
         </tableViewCell>

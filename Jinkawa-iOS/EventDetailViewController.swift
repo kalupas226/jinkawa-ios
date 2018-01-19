@@ -130,7 +130,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         updateDateLabel.text = "最終更新日 \(updateDate)"
         updateDateLabel.textColor = UIColor.white
-        updateDateLabel.backgroundColor = UIColor.gray
+        updateDateLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         updateDateLabel.textAlignment = .center
         
         //CustomCellの登録
