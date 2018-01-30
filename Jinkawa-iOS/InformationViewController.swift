@@ -69,7 +69,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "informationItem", for: indexPath) as! InformationItemViewCell
         let information:Information = InformationManager.sharedInstance.getList()[indexPath.row]
         
-        cell.title.text = information.title
+        cell.title.text = cutString(str: information.title, maxLength: 8)
         cell.publisher.text = information.departmentName
         switch information.type {
         case "注意": cell.infoImage.image = UIImage(named:"caution.png")
@@ -152,11 +152,32 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    //下に画面を引っ張り続けると、画面を更新する関数
     func refreshTable()
     {
         InformationManager.sharedInstance.loadList()
         refresh.endRefreshing()
         self.informationListView.reloadData()
+    }
+    
+    //長すぎる文字をカットするための関数
+    func cutString(str: String, maxLength: Int) -> String {
+        if str.count > maxLength {
+            // 最大文字数をオーバーする場合
+            // 省略する範囲を作成する
+            let start = str.index(str.startIndex, offsetBy: maxLength)  // 開始位置
+            let end = str.endIndex                                      // 終了位置
+            // 開始位置と終了位置からRangeを作成
+            let range = start..<end
+            
+            // 作成した範囲(最大文字数をオーバーする範囲)を「…」に置き換えて表示
+            return str.replacingCharacters(in: range, with: "…")
+            
+        } else {
+            // 最大文字数をオーバーしない場合は、そのまま表示
+            return str
+        }
+        
     }
     
     /*

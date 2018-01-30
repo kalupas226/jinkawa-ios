@@ -986,7 +986,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IlL-RS-a3p">
-                                <rect key="frame" x="0.0" y="0.0" width="365" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -995,7 +995,7 @@
                             <constraint firstItem="Nl3-v1-pdX" firstAttribute="top" secondItem="IlL-RS-a3p" secondAttribute="bottom" id="0MI-CJ-7Vc"/>
                             <constraint firstItem="IlL-RS-a3p" firstAttribute="top" secondItem="ZlT-CL-A5Q" secondAttribute="top" id="EII-hy-xoc"/>
                             <constraint firstItem="IlL-RS-a3p" firstAttribute="leading" secondItem="ZlT-CL-A5Q" secondAttribute="leading" id="Z4h-4N-OXo"/>
-                            <constraint firstAttribute="trailing" secondItem="IlL-RS-a3p" secondAttribute="trailing" constant="10" id="eKn-Hs-d0X"/>
+                            <constraint firstAttribute="trailing" secondItem="IlL-RS-a3p" secondAttribute="trailing" id="eKn-Hs-d0X"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="イベント" image="ic_event_note_36pt_2x" selectedImage="ic_event_note_36pt_2x" id="cz2-xi-xXj"/>
