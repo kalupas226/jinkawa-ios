@@ -80,8 +80,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventItem", for: indexPath) as! EventItemViewCell
         let event = EventManager.sharedInstance.getList()[indexPath.row]
         
-        cell.title.text = event.name
+        
+        cell.title.text = cutString(str: event.name, maxLength: 8)
         cell.title.sizeToFit()
+
         cell.date.text = "開始日 \(event.dateStart)"
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
@@ -172,6 +174,26 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         EventManager.sharedInstance.loadList()
         refresh.endRefreshing()
         self.eventListView.reloadData()
+    }
+    
+    //長すぎる文字をカットするための関数
+    func cutString(str: String, maxLength: Int) -> String {
+        if str.count > maxLength {
+            // 最大文字数をオーバーする場合
+            // 省略する範囲を作成する
+            let start = str.index(str.startIndex, offsetBy: maxLength)  // 開始位置
+            let end = str.endIndex                                      // 終了位置
+            // 開始位置と終了位置からRangeを作成
+            let range = start..<end
+            
+            // 作成した範囲(最大文字数をオーバーする範囲)を「…」に置き換えて表示
+            return str.replacingCharacters(in: range, with: "…")
+            
+        } else {
+            // 最大文字数をオーバーしない場合は、そのまま表示
+            return str
+        }
+        
     }
     
     /*
