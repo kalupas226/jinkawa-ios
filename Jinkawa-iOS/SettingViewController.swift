@@ -67,6 +67,12 @@ class SettingViewController: FormViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
             }
+            +++ Section("お問い合わせ")
+            <<< LabelRow() {
+                $0.title = "陣川あさひ町会"
+                }.onCellSelection{ cell, row in
+                    self.performSegue(withIdentifier: "toContact", sender: nil)
+            }
             +++ Section("アカウント"){ section in
                 if UserManager.sharedInstance.getState() == .common {
                     section.hidden = true
@@ -77,15 +83,18 @@ class SettingViewController: FormViewController {
                 }.onCellSelection { cell, row in
                     self.performSegue(withIdentifier: "toPasswordChange", sender: nil)
             }
+            
+            +++ Section()
+            
             <<< ButtonRow() {
                 $0.title = "ログアウト"
                 }.onCellSelection { cell, row in
                     let alertController = UIAlertController(title: "ログアウト", message: "ログアウトしますか", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "はい", style: .default){ (action: UIAlertAction) in
                         UserManager.sharedInstance.setState(state: .common)
-//                        let storyboard: UIStoryboard = self.storyboard!
-//                        let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
-//                        self.present(nextView, animated: true, completion: nil)
+                        //                        let storyboard: UIStoryboard = self.storyboard!
+                        //                        let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
+                        //                        self.present(nextView, animated: true, completion: nil)
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                     let cancelAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
@@ -94,25 +103,10 @@ class SettingViewController: FormViewController {
                     alertController.addAction(cancelAction)
                     
                     self.present(alertController, animated: true, completion: nil)
-            }
-            +++ Section("お問い合わせ")
-            <<< LabelRow() {
-                $0.title = "陣川あさひ町会"
-                }.onCellSelection{ cell, row in
-                    self.performSegue(withIdentifier: "toContact", sender: nil)
-            }
-            +++ Section()
-            <<< ButtonRow() {
-                $0.title = "スタート画面へ戻る"
-                }.onCellSelection { cell, row in
-//                    let storyboard: UIStoryboard = self.storyboard!
-//                    let nextView = storyboard.instantiateViewController(withIdentifier: "Top")
-//                    self.present(nextView, animated: true, completion: nil)
-                    self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.title = "設定"
