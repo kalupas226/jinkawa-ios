@@ -14,6 +14,9 @@ class EventItemViewCell: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var publisher: UILabel!
+    @IBOutlet weak var eveImage: UIImageView!
+//    @IBOutlet weak var updateDate: UILabel!
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,10 +31,10 @@ class EventItemViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

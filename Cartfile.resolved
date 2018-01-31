@@ -1,2 +1,6 @@
-github "NIFTYCloud-mbaas/ncmb_ios" "v2.3.7"
-github "xmartlabs/Eureka" "4.0.0"
+github "Alamofire/Alamofire" "4.6.0"
+github "Alamofire/AlamofireImage" "3.3.0"
+github "NIFTYCloud-mbaas/ncmb_ios" "v2.3.6"
+github "SVProgressHUD/SVProgressHUD" "2.2.2"
+github "suzuki-0000/SKPhotoBrowser" "5.0.3"
+github "xmartlabs/Eureka" "4.0.1"

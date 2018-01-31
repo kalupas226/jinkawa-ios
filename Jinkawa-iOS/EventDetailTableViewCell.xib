@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,24 +18,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19b-n1-5VQ" customClass="EventDetailTableViewCell" customModule="Jinkawa_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4i-aS-iM4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffr-ge-jcJ">
-                                <rect key="frame" x="139" y="10" width="173" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wn-Hh-zQV">
+                                <rect key="frame" x="8" y="8" width="70" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="jRL-hd-Tag"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfL-X1-BBE">
+                                <rect key="frame" x="128" y="8" width="184" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MfL-X1-BBE" firstAttribute="top" secondItem="q4i-aS-iM4" secondAttribute="top" constant="8" id="7cl-x9-zsP"/>
+                            <constraint firstItem="4wn-Hh-zQV" firstAttribute="leading" secondItem="q4i-aS-iM4" secondAttribute="leading" constant="8" id="YtM-Sc-tvQ"/>
+                            <constraint firstItem="MfL-X1-BBE" firstAttribute="leading" secondItem="4wn-Hh-zQV" secondAttribute="trailing" constant="50" id="ark-o3-fQH"/>
+                            <constraint firstAttribute="bottom" secondItem="MfL-X1-BBE" secondAttribute="bottom" constant="8" id="bu0-Et-sUE"/>
+                            <constraint firstItem="4wn-Hh-zQV" firstAttribute="top" secondItem="q4i-aS-iM4" secondAttribute="top" constant="8" id="dqr-Wo-lhM"/>
+                            <constraint firstAttribute="trailing" secondItem="MfL-X1-BBE" secondAttribute="trailing" constant="8" id="o0O-E4-1wJ"/>
+                            <constraint firstAttribute="bottom" secondItem="4wn-Hh-zQV" secondAttribute="bottom" constant="8" id="xi7-H4-gDV"/>
+                        </constraints>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="q4i-aS-iM4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="AVu-y1-mG1"/>
+                    <constraint firstAttribute="bottom" secondItem="q4i-aS-iM4" secondAttribute="bottom" id="Tgd-qq-Toc"/>
+                    <constraint firstAttribute="trailing" secondItem="q4i-aS-iM4" secondAttribute="trailing" id="bbz-iI-Axh"/>
+                    <constraint firstItem="q4i-aS-iM4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qDq-dc-3ma"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="title" destination="Ffr-ge-jcJ" id="QrF-KN-Uge"/>
+                <outlet property="category" destination="4wn-Hh-zQV" id="tVa-C1-Xle"/>
+                <outlet property="content" destination="MfL-X1-BBE" id="0Eg-75-ocf"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19ADFF1E1FB9F2580000A172 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */; };
+		19ADFF261FD11C260000A172 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADFF251FD11C260000A172 /* ContactViewController.swift */; };
+		19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */; };
+		370FA45A1FC08F27003F31B9 /* EventEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370FA4591FC08F27003F31B9 /* EventEditViewController.swift */; };
+		37576CDA1FC47C3700E76E32 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37576CD91FC47C3700E76E32 /* UIView.swift */; };
+		37576CDC1FC47D3800E76E32 /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37576CDB1FC47D3800E76E32 /* PasswordChangeViewController.swift */; };
+		37576CDE1FC5315000E76E32 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37576CDD1FC5315000E76E32 /* SVProgressHUD.framework */; };
+		375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375810CE1F9B3BEC0095B29C /* SettingViewController.swift */; };
+		378C21CD1FB84C18005E243C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C21CC1FB84C18005E243C /* UIColor.swift */; };
+		378C21DA1FC02A60005E243C /* InformationEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C21D91FC02A60005E243C /* InformationEditViewController.swift */; };
+		37AA18A01FAC5C6D000EBD5E /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */; };
+		37AA18A41FAE97A5000EBD5E /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA18A31FAE97A5000EBD5E /* DateFormat.swift */; };
+		37AA18A61FAEF8F4000EBD5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA18A51FAEF8F4000EBD5E /* User.swift */; };
+		37B0C80B1FB1FEAC00479E95 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */; };
+		37B0C80C1FB1FEAC00479E95 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */; };
+		37B0C8131FB720BD00479E95 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C8121FB720BD00479E95 /* ImagePickerController.swift */; };
+		37B0C8151FB720C000479E95 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C8141FB720BF00479E95 /* ImageRow.swift */; };
+		37BCA9321FD9955200D9DBC0 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA9311FD9955200D9DBC0 /* EdgeInsetLabel.swift */; };
 		5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534EFB61F84B30D00C85E5B /* UserManager.swift */; };
 		556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */; };
 		556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556A29CD1EFCD8B500FC82E1 /* ViewController.swift */; };
@@ -59,6 +77,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
+		19ADFF251FD11C260000A172 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailViewController.swift; sourceTree = "<group>"; };
+		370FA4591FC08F27003F31B9 /* EventEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewController.swift; sourceTree = "<group>"; };
+		37576CD91FC47C3700E76E32 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		37576CDB1FC47D3800E76E32 /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
+		37576CDD1FC5315000E76E32 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		375810CE1F9B3BEC0095B29C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		378C21CC1FB84C18005E243C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		378C21D41FBBF31D005E243C /* Jinkawa-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jinkawa-iOS.entitlements"; sourceTree = "<group>"; };
+		378C21D91FC02A60005E243C /* InformationEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationEditViewController.swift; sourceTree = "<group>"; };
+		37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = Carthage/Build/iOS/SKPhotoBrowser.framework; sourceTree = "<group>"; };
+		37AA18A31FAE97A5000EBD5E /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		37AA18A51FAEF8F4000EBD5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		37B0C8121FB720BD00479E95 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		37B0C8141FB720BF00479E95 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
+		37BCA9311FD9955200D9DBC0 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		5534EFB61F84B30D00C85E5B /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		556A29C81EFCD8B500FC82E1 /* Jinkawa-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jinkawa-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +143,10 @@
 			files = (
 				55C99F8C1F11BE200089851A /* NCMB.framework in Frameworks */,
 				55B403D21F696714007CDFDB /* Eureka.framework in Frameworks */,
+				37AA18A01FAC5C6D000EBD5E /* SKPhotoBrowser.framework in Frameworks */,
+				37B0C80B1FB1FEAC00479E95 /* AlamofireImage.framework in Frameworks */,
+				37B0C80C1FB1FEAC00479E95 /* Alamofire.framework in Frameworks */,
+				37576CDE1FC5315000E76E32 /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,10 +191,15 @@
 		556A29CA1EFCD8B500FC82E1 /* Jinkawa-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				378C21D41FBBF31D005E243C /* Jinkawa-iOS.entitlements */,
 				55C99F8F1F1237BD0089851A /* Model */,
 				55C99F901F1237CF0089851A /* View */,
 				55C99F8E1F1237AE0089851A /* Controller */,
 				556A29CB1EFCD8B500FC82E1 /* AppDelegate.swift */,
+				37BCA9311FD9955200D9DBC0 /* EdgeInsetLabel.swift */,
+				37AA18A31FAE97A5000EBD5E /* DateFormat.swift */,
+				37576CD91FC47C3700E76E32 /* UIView.swift */,
+				378C21CC1FB84C18005E243C /* UIColor.swift */,
 				556A29CF1EFCD8B500FC82E1 /* Main.storyboard */,
 				556A29D21EFCD8B500FC82E1 /* Assets.xcassets */,
 				556A29D41EFCD8B500FC82E1 /* LaunchScreen.storyboard */,
@@ -183,6 +229,10 @@
 		55C99F8A1F11BE200089851A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37576CDD1FC5315000E76E32 /* SVProgressHUD.framework */,
+				37B0C80A1FB1FEAC00479E95 /* Alamofire.framework */,
+				37B0C8091FB1FEAC00479E95 /* AlamofireImage.framework */,
+				37AA189F1FAC5C6D000EBD5E /* SKPhotoBrowser.framework */,
 				55B403D11F696714007CDFDB /* Eureka.framework */,
 				55C99F8B1F11BE200089851A /* NCMB.framework */,
 			);
@@ -192,16 +242,24 @@
 		55C99F8E1F1237AE0089851A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5534EFB61F84B30D00C85E5B /* UserManager.swift */,
 				556A29CD1EFCD8B500FC82E1 /* ViewController.swift */,
 				55C99F851F11BDB20089851A /* EventViewController.swift */,
 				55F8EE6D1F696EB600D9E64E /* EventDetailViewController.swift */,
 				55DF2DD31F6CC808002491E1 /* EventCreateViewController.swift */,
+				370FA4591FC08F27003F31B9 /* EventEditViewController.swift */,
 				55C99F991F126E6D0089851A /* InformationViewController.swift */,
+				19DCFB881F9CC255006F2D58 /* InformationDetailViewController.swift */,
 				55E07F841F6D4EBA0056E726 /* InformationCreateViewController.swift */,
+				378C21D91FC02A60005E243C /* InformationEditViewController.swift */,
 				55C3E34B1F6BE9CB0026E9EE /* PartisipantViewController.swift */,
 				55F8EE6F1F69719800D9E64E /* EntryViewController.swift */,
 				55CD50F61F6E20D8007DECB8 /* LoginViewController.swift */,
+				375810CE1F9B3BEC0095B29C /* SettingViewController.swift */,
+				37576CDB1FC47D3800E76E32 /* PasswordChangeViewController.swift */,
+				37B0C8121FB720BD00479E95 /* ImagePickerController.swift */,
+				37B0C8141FB720BF00479E95 /* ImageRow.swift */,
+				19ADFF1D1FB9F2580000A172 /* UserInformationViewController.swift */,
+				19ADFF251FD11C260000A172 /* ContactViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -212,9 +270,11 @@
 				55C99F841F11BDB20089851A /* EventManager.swift */,
 				55C99F971F1269570089851A /* InformationManager.swift */,
 				559FC0951F6A67DD00FB5ABE /* ParticipantManager.swift */,
+				5534EFB61F84B30D00C85E5B /* UserManager.swift */,
 				559FC0991F6AB21100FB5ABE /* Event.swift */,
 				559FC09B1F6AB22200FB5ABE /* Information.swift */,
 				559FC0971F6A68E100FB5ABE /* Participant.swift */,
+				37AA18A51FAEF8F4000EBD5E /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -303,8 +363,13 @@
 				TargetAttributes = {
 					556A29C71EFCD8B500FC82E1 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8MZ6625L9H;
+						DevelopmentTeam = 565CL88MF2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					556A29DB1EFCD8B500FC82E1 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -380,6 +445,10 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/NCMB.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SKPhotoBrowser.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 			);
 			outputPaths = (
 			);
@@ -394,25 +463,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37576CDA1FC47C3700E76E32 /* UIView.swift in Sources */,
 				55CD50F71F6E20D8007DECB8 /* LoginViewController.swift in Sources */,
+				378C21CD1FB84C18005E243C /* UIColor.swift in Sources */,
+				19ADFF261FD11C260000A172 /* ContactViewController.swift in Sources */,
 				55E07F851F6D4EBA0056E726 /* InformationCreateViewController.swift in Sources */,
 				55C99F881F11BDB20089851A /* EventViewController.swift in Sources */,
+				37AA18A61FAEF8F4000EBD5E /* User.swift in Sources */,
 				556A29CE1EFCD8B500FC82E1 /* ViewController.swift in Sources */,
+				37B0C8151FB720C000479E95 /* ImageRow.swift in Sources */,
+				378C21DA1FC02A60005E243C /* InformationEditViewController.swift in Sources */,
+				37B0C8131FB720BD00479E95 /* ImagePickerController.swift in Sources */,
 				559FC0981F6A68E100FB5ABE /* Participant.swift in Sources */,
 				559FC09C1F6AB22200FB5ABE /* Information.swift in Sources */,
+				370FA45A1FC08F27003F31B9 /* EventEditViewController.swift in Sources */,
 				55DF2DD41F6CC808002491E1 /* EventCreateViewController.swift in Sources */,
 				55C3E34F1F6BEA120026E9EE /* ParticipantTableViewCell.swift in Sources */,
 				559FC09A1F6AB21100FB5ABE /* Event.swift in Sources */,
 				5534EFB71F84B30D00C85E5B /* UserManager.swift in Sources */,
 				556A29CC1EFCD8B500FC82E1 /* AppDelegate.swift in Sources */,
+				37AA18A41FAE97A5000EBD5E /* DateFormat.swift in Sources */,
 				55C99F871F11BDB20089851A /* EventManager.swift in Sources */,
 				559FC0931F6A535400FB5ABE /* EventDetailTableViewCell.swift in Sources */,
 				55C99F9A1F126E6D0089851A /* InformationViewController.swift in Sources */,
+				375810CF1F9B3BEC0095B29C /* SettingViewController.swift in Sources */,
+				37BCA9321FD9955200D9DBC0 /* EdgeInsetLabel.swift in Sources */,
 				55F8EE701F69719800D9E64E /* EntryViewController.swift in Sources */,
+				19ADFF1E1FB9F2580000A172 /* UserInformationViewController.swift in Sources */,
 				55F8EE6E1F696EB600D9E64E /* EventDetailViewController.swift in Sources */,
 				55C99F981F1269570089851A /* InformationManager.swift in Sources */,
+				19DCFB891F9CC255006F2D58 /* InformationDetailViewController.swift in Sources */,
 				559FC0961F6A67DD00FB5ABE /* ParticipantManager.swift in Sources */,
 				55C99F831F11BDA40089851A /* EventItemViewCell.swift in Sources */,
+				37576CDC1FC47D3800E76E32 /* PasswordChangeViewController.swift in Sources */,
 				55C99F951F12692A0089851A /* InformationItemViewCell.swift in Sources */,
 				55C3E34C1F6BE9CB0026E9EE /* PartisipantViewController.swift in Sources */,
 			);
@@ -578,15 +661,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8MZ6625L9H;
+				CODE_SIGN_ENTITLEMENTS = "Jinkawa-iOS/Jinkawa-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 565CL88MF2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sato.Jinkawa-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.fun.jinkawa.jipuri-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -595,15 +683,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8MZ6625L9H;
+				CODE_SIGN_ENTITLEMENTS = "Jinkawa-iOS/Jinkawa-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 565CL88MF2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Jinkawa-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sato.Jinkawa-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.fun.jinkawa.jipuri-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

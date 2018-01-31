@@ -22,6 +22,7 @@ class ParticipantManager: NSObject{
     }
     
     func loadList(){
+        participantList.removeAll()
         let query = NCMBQuery(className: "Participants")
         var result:[NCMBObject] = []
         do{

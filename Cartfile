@@ -1,2 +1,7 @@
-github "NIFTYCloud-mbaas/ncmb_ios"
+github "NIFTYCloud-mbaas/ncmb_ios" == 2.3.6
 github "xmartlabs/Eureka"
+github "suzuki-0000/SKPhotoBrowser"
+github "Alamofire/AlamofireImage" ~> 3.3
+github "SVProgressHUD/SVProgressHUD"
+
+

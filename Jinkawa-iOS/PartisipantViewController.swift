@@ -10,7 +10,7 @@ import UIKit
 import NCMB
 
 class PartisipantViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     
     @IBOutlet weak var participantTable: UITableView!
     var event: Event = Event()
@@ -19,7 +19,6 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         participantTable.delegate = self
         participantTable.dataSource = self
         
@@ -29,10 +28,14 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
         
         participantTable.register(UINib(nibName: "ParticipantTableViewCell", bundle: nil), forCellReuseIdentifier: "participantCell")
         
-        uploadCSV()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize,
+                                                            target: self,
+                                                            action: #selector(uploadCSV))
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,7 +49,9 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = participantTable.dequeueReusableCell(withIdentifier: "participantCell") as! ParticipantTableViewCell
         let participant = participantList[indexPath.row]
         
-        cell.nameLabel.text = participant.name
+        cell.nameLabel.text = "氏名:" + participant.name + " " + participant.gender
+        cell.phoneLabel.text = "電話番号:" + participant.tell
+        cell.addressLabel.text = "住所:" + participant.address
         
         return cell
     }
@@ -56,7 +61,7 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func uploadCSV(){
-        var data = event.name + "," + event.day + "," + event.location + "," + event.departmentName
+        var data = event.name + "," + event.dateStart + "," + event.location + "," + event.departmentName
         data += "\r\n"
         data += " "
         data += "\r\n"
@@ -74,19 +79,42 @@ class PartisipantViewController: UIViewController, UITableViewDelegate, UITableV
             data += "\r\n"
         }
         
-        let file = NCMBFile.file(withName: "testSwift.csv", data: data.data(using: String.Encoding.utf16)) as! NCMBFile
+        let file = NCMBFile.file(withName: event.id + ".csv", data: data.data(using: String.Encoding.utf8)) as! NCMBFile
         file.save(nil)
         print("File Saved.")
+        tapShare(fileName: event.id)
+    }
+    
+    func tapShare(fileName: String) {
+        // 共有する項目
+        let shareTitle = "こちらのURLからCSVファイルをダウンロードすることができます。"
+        let shareURL = NSURL(string: "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + fileName + ".csv")
+        let shareItems = [shareTitle,shareURL!] as [Any]
+        
+        let avc = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        
+        // 使用しないアクティビティタイプ
+        let excludedActivityTypes = [
+            UIActivityType.postToWeibo,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.print,
+            UIActivityType.copyToPasteboard,
+            UIActivityType.assignToContact,
+            UIActivityType.addToReadingList
+        ]
+        avc.excludedActivityTypes = excludedActivityTypes
+        
+        present(avc, animated: true, completion: nil)
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

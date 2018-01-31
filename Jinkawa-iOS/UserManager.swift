@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import NCMB
+import UIKit
 
-class UserManager: NSObject{
+class UserManager: NSObject {
     private var userState:UserState
-    static let sharedManager = UserManager()
+    static let sharedInstance = UserManager()
     
     private override init(){
         self.userState = .common
@@ -23,12 +25,6 @@ class UserManager: NSObject{
     func setState(state:UserState){
         self.userState = state
     }
-    
-    func login(pass:String){
-        if pass == "jinkawa8855001"{
-            userState = .admin
-        }
-    }
 }
 
 enum UserState{
@@ -36,3 +32,4 @@ enum UserState{
     case officer
     case admin
 }
+
