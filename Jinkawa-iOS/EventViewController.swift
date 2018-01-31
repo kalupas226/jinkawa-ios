@@ -18,7 +18,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: UIApplication.shared.statusBarFrame.height))
         statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
         view.addSubview(statusBar)
         self.navigationController?.view.addSubview(statusBar)
