@@ -84,7 +84,11 @@ class SettingViewController: FormViewController {
                     self.performSegue(withIdentifier: "toPasswordChange", sender: nil)
             }
             
-            +++ Section()
+            +++ Section(){ section in
+                if UserManager.sharedInstance.getState() == .common {
+                    section.hidden = true
+                }
+            }
             
             <<< ButtonRow() {
                 $0.title = "ログアウト"
