@@ -238,13 +238,14 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                             // 削除に失敗した場合の処理
                         }else{
                             // 削除に成功した場合の処理
+                            
                             //ファイルストアから画像を削除する
                             // ファイルストアを検索するクエリを作成
-                            let query = NCMBFile.query()
+                            let imageQuery = NCMBFile.query()
                             // 検索するファイル名を設定
-                            query?.whereKey("fileName", equalTo: self.event.id + ".png")
+                            imageQuery?.whereKey("fileName", equalTo: self.event.id + ".png")
                             // ファイルストアの検索を実行
-                            query?.findObjectsInBackground({ (files, error) in
+                            imageQuery?.findObjectsInBackground({ (files, error) in
                                 if error != nil {
                                     // 検索失敗時の処理
                                 } else {
@@ -262,6 +263,31 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
                                     }
                                 }
                             })
+                            
+                            //データストアから該当する参加者を削除する
+                            let participantsQuery = NCMBQuery(className: "Participants")
+                            //削除する参加者を絞り込むための条件
+                            participantsQuery?.whereKey("eventID", equalTo: self.event.id)
+                            // データストアの検索を実施
+                            participantsQuery?.findObjectsInBackground({(files, error) in
+                                if (error != nil){
+                                    // 検索失敗時の処理
+                                }else{
+                                    // 検索成功時の処理
+                                    for file in files! as! [NCMBObject] {
+                                        file.deleteInBackground({ (error) in
+                                            if error != nil {
+                                                // 削除に失敗した場合の処理
+                                                print("削除に失敗しました")
+                                            }else{
+                                                // 削除に成功した場合の処理
+                                                print("削除に成功しました")
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                            
                             let alertAfter = UIAlertController(title: "イベントが削除されました",
                                                                message: nil,
                                                                preferredStyle: .alert)
