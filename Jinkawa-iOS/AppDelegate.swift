@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        NCMB.setApplicationKey("fe37c2186e22a438c980af699d831ac26d2ce6e05909c89e0677309528274a4d", clientKey: "9fd56b4ec717815b4d72081d9ae9e58192bdec9be30a416319d0069a6c33fd9f")
+        NCMB.setApplicationKey("ead8a7d8462aa955188f2ea4f135809f28f90a7b63f2926fe778da8d16feef69", clientKey: "00aa30c7f0459ea78213abc730307767fd68ce9587aeaec9bca388f9ac884a5b")
         
         // デバイストークンの要求
         if #available(iOS 10.0, *){

@@ -29,7 +29,7 @@ class EntryViewController: FormViewController {
         
         form
             +++ Section("申し込み情報")
-            <<< NameRow("NameRowTag") {
+            <<< TextRow("NameRowTag") {
                 $0.title = "氏名"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnBlur

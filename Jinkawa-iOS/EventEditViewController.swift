@@ -218,7 +218,7 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
             }
             <<< ImageRow("ImageRowTag") { row in
                 row.title = "イベント画像"
-                let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
+                let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/81CA63sCDMxLez1p/publicFiles/" + event.id + ".png"
                 let url = URLRequest(url: URL(string: imageURL)!)
                 Alamofire.request(url).responseData(completionHandler: { response in
                     if let imageData = response.data

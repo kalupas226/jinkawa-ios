@@ -18,7 +18,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: UIApplication.shared.statusBarFrame.height))
         statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
         view.addSubview(statusBar)
         self.navigationController?.view.addSubview(statusBar)
@@ -80,8 +80,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventItem", for: indexPath) as! EventItemViewCell
         let event = EventManager.sharedInstance.getList()[indexPath.row]
         
-        cell.title.text = event.name
+        
+        cell.title.text = cutString(str: event.name, maxLength: 8)
         cell.title.sizeToFit()
+        
         cell.date.text = "開始日 \(event.dateStart)"
         cell.location.text = event.location
         cell.publisher.text = event.departmentName
@@ -103,26 +105,26 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
         
-//        // タイムゾーンを言語設定にあわせる
-//        let formatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "ja_JP")
-//
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//
-//        // 上記の形式の日付文字列から日付データを取得します。
-//        let d:Date = formatter.date(from: event.updateDate)!
-//
-//        let dateFrt = DateFormatter()
-//        dateFrt.setTemplate(.yer)
-//        let updateYear = dateFrt.string(from: d)
-//        dateFrt.setTemplate(.mon)
-//        let updateMonth = dateFrt.string(from: d)
-//        dateFrt.setTemplate(.day)
-//        let updateDay = dateFrt.string(from: d)
-//
-//        let updateDate = updateYear + updateMonth + updateDay
-//
-//        cell.updateDate.text = "最終更新日 \(updateDate)"
+        //        // タイムゾーンを言語設定にあわせる
+        //        let formatter = DateFormatter()
+        //        formatter.locale = Locale(identifier: "ja_JP")
+        //
+        //        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        //
+        //        // 上記の形式の日付文字列から日付データを取得します。
+        //        let d:Date = formatter.date(from: event.updateDate)!
+        //
+        //        let dateFrt = DateFormatter()
+        //        dateFrt.setTemplate(.yer)
+        //        let updateYear = dateFrt.string(from: d)
+        //        dateFrt.setTemplate(.mon)
+        //        let updateMonth = dateFrt.string(from: d)
+        //        dateFrt.setTemplate(.day)
+        //        let updateDay = dateFrt.string(from: d)
+        //
+        //        let updateDate = updateYear + updateMonth + updateDay
+        //
+        //        cell.updateDate.text = "最終更新日 \(updateDate)"
         
         //役員専用のセルを隠す
         if(UserManager.sharedInstance.getState() == .common){
@@ -131,7 +133,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
+        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/81CA63sCDMxLez1p/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         cell.eveImage.af_setImage(
             withURL: url,
@@ -172,6 +174,26 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         EventManager.sharedInstance.loadList()
         refresh.endRefreshing()
         self.eventListView.reloadData()
+    }
+    
+    //長すぎる文字をカットするための関数
+    func cutString(str: String, maxLength: Int) -> String {
+        if str.count > maxLength {
+            // 最大文字数をオーバーする場合
+            // 省略する範囲を作成する
+            let start = str.index(str.startIndex, offsetBy: maxLength)  // 開始位置
+            let end = str.endIndex                                      // 終了位置
+            // 開始位置と終了位置からRangeを作成
+            let range = start..<end
+            
+            // 作成した範囲(最大文字数をオーバーする範囲)を「…」に置き換えて表示
+            return str.replacingCharacters(in: range, with: "…")
+            
+        } else {
+            // 最大文字数をオーバーしない場合は、そのまま表示
+            return str
+        }
+        
     }
     
     /*
