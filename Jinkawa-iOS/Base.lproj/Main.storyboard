@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--startView-->
         <scene sceneID="kQX-YR-eWL">
             <objects>
-                <navigationController id="Q0L-Is-AzU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="startView" title="startView" id="Q0L-Is-AzU" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dxe-c7-7qE">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -124,6 +124,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZT-Ev-cpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-690" y="139"/>
+        </scene>
+        <!--privacyView-->
+        <scene sceneID="bBZ-AI-n9q">
+            <objects>
+                <viewController storyboardIdentifier="privacyView" title="privacyView" id="4bS-Hu-b4K" customClass="PrivacyViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tzr-jp-lcQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="njj-zX-Mw1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cGl-cA-szG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1i-Dn-W1z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEm-XQ-dDI">
+                                <rect key="frame" x="117" y="601" width="140" height="40"/>
+                                <color key="backgroundColor" red="0.75031286478042603" green="0.27971178293228149" blue="0.19995418190956116" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="09K-qt-pN7"/>
+                                    <constraint firstAttribute="width" constant="140" id="zAC-X6-9Ei"/>
+                                </constraints>
+                                <state key="normal" title="同意して始める">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.75031286480000003" green="0.27971178289999998" blue="0.1999541819" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="agreeButton:" destination="4bS-Hu-b4K" eventType="touchUpInside" id="IJN-LQ-BPh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cEm-XQ-dDI" firstAttribute="centerX" secondItem="cGl-cA-szG" secondAttribute="centerX" id="DYP-CL-RCI"/>
+                            <constraint firstAttribute="trailing" secondItem="b1i-Dn-W1z" secondAttribute="trailing" id="O5e-n8-LPo"/>
+                            <constraint firstItem="njj-zX-Mw1" firstAttribute="top" secondItem="cEm-XQ-dDI" secondAttribute="bottom" constant="26" id="f1E-ut-3OE"/>
+                            <constraint firstItem="b1i-Dn-W1z" firstAttribute="leading" secondItem="cGl-cA-szG" secondAttribute="leading" id="iFG-h6-6OE"/>
+                            <constraint firstItem="b1i-Dn-W1z" firstAttribute="top" secondItem="cGl-cA-szG" secondAttribute="top" id="rC0-8X-hqE"/>
+                            <constraint firstItem="cEm-XQ-dDI" firstAttribute="top" secondItem="b1i-Dn-W1z" secondAttribute="bottom" constant="10" id="w2J-M6-ksm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="privacyWebView" destination="b1i-Dn-W1z" id="Gnf-EE-TtJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lRG-cM-M2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2111" y="913"/>
         </scene>
         <!--ログイン-->
         <scene sceneID="XTi-mB-YuS">
@@ -390,16 +457,17 @@
             </objects>
             <point key="canvasLocation" x="3084" y="1037"/>
         </scene>
-        <!--設定-->
+        <!--SettingView-->
         <scene sceneID="eY7-Lx-5f0">
             <objects>
-                <tableViewController id="IAh-ou-TAm" customClass="SettingViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingView" title="SettingView" id="IAh-ou-TAm" customClass="SettingViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="設定" image="ic_settings_36pt_2x" selectedImage="ic_settings_36pt_2x" id="g1c-K1-9MQ"/>
                     <navigationItem key="navigationItem" title="設定" id="1bi-62-Nlh"/>
                     <connections>
                         <segue destination="oxb-5A-vjQ" kind="presentation" identifier="toUserInformation" modalTransitionStyle="crossDissolve" id="cCZ-hV-Pso"/>
                         <segue destination="qsc-Ad-Lmc" kind="show" identifier="toPasswordChange" id="sfn-OD-Lha"/>
                         <segue destination="tt5-gh-IAu" kind="presentation" identifier="toContact" modalTransitionStyle="crossDissolve" id="4t8-mg-BeR"/>
+                        <segue destination="b8n-Dd-wVO" kind="show" identifier="toPrivacy" id="SLR-4E-KAp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COq-0Y-aao" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -524,7 +592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHG-22-N7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="1800"/>
+            <point key="canvasLocation" x="591" y="1800"/>
         </scene>
         <!--User Information View Controller-->
         <scene sceneID="IvI-51-Nke">
@@ -609,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="asw-30-nPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2025" y="1800"/>
+            <point key="canvasLocation" x="1423" y="1800"/>
         </scene>
         <!--パスワード変更-->
         <scene sceneID="1Dj-9d-gd0">
@@ -1010,6 +1078,43 @@
             </objects>
             <point key="canvasLocation" x="2025" y="-659"/>
         </scene>
+        <!--プライバシーポリシー-->
+        <scene sceneID="ceF-Te-OIu">
+            <objects>
+                <viewController title="プライバシーポリシー" id="b8n-Dd-wVO" customClass="SettingPrivacyViewController" customModule="Jinkawa_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xi9-5d-kHz"/>
+                        <viewControllerLayoutGuide type="bottom" id="MXX-3A-hux"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s6Y-zO-HdP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFf-gi-LGv" userLabel="Setting Privacy Web View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EFf-gi-LGv" secondAttribute="trailing" id="68p-GN-dBk"/>
+                            <constraint firstItem="EFf-gi-LGv" firstAttribute="top" secondItem="Xi9-5d-kHz" secondAttribute="bottom" id="MAj-0Q-48D"/>
+                            <constraint firstItem="EFf-gi-LGv" firstAttribute="leading" secondItem="s6Y-zO-HdP" secondAttribute="leading" id="Mzl-VB-Hfg"/>
+                            <constraint firstItem="MXX-3A-hux" firstAttribute="top" secondItem="EFf-gi-LGv" secondAttribute="bottom" id="RM2-Lc-BRa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="SettingPrivacyWebView" destination="EFf-gi-LGv" id="civ-vI-uzC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vIh-AY-yBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2278" y="1800"/>
+        </scene>
     </scenes>
     <resources>
         <image name="TopBG" width="313" height="386"/>
@@ -1018,6 +1123,6 @@
         <image name="ic_settings_36pt_2x" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mvs-uH-uJ1"/>
+        <segue reference="LVW-6Y-8va"/>
     </inferredMetricsTieBreakers>
 </document>

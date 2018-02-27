@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
     
@@ -20,6 +21,15 @@ class ViewController: UIViewController {
         statusBar.backgroundColor = UIColor.colorWithHexString("2E2E2E")
         view.addSubview(statusBar)
         self.navigationController?.view.addSubview(statusBar)
+        
+        let userDefault = UserDefaults.standard
+        let dict = ["firstPrivacy": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstPrivacy"){
+            let storyboard: UIStoryboard = self.storyboard!
+            let nextView = storyboard.instantiateViewController(withIdentifier: "privacyView")
+            present(nextView, animated: true, completion: nil)
+        }
         // Do any additional setup after loading the view, typically from a nib.
         //        let event = Event(eventName: "testName2", updateAt: "2:00", description: "testDescription")
         
@@ -38,10 +48,11 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         performSegue(withIdentifier: "showTabView", sender: nil)
     }
-
+    
     @IBAction func didTapToLoginButton(_ sender: Any) {
         navigationController?.setNavigationBarHidden(false, animated: false)
         performSegue(withIdentifier: "toLogin", sender: nil)
     }
+    
 }
 
