@@ -29,7 +29,7 @@ class SettingPrivacyViewController: UIViewController {
     func showBrowser() {
         
         // サイズを指定してブラウザ作成
-        let webView = WKWebView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height, width: self.view.frame.width, height: settingPrivacyWebView.frame.height + 50))
+        let webView = WKWebView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height, width: self.view.frame.width, height: settingPrivacyWebView.frame.height - UIApplication.shared.statusBarFrame.height))
         
         // ローカルのHTMLを読み込む
         if let htmlData = Bundle.main.path(forResource: "index", ofType: "html") {
