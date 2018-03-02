@@ -11,7 +11,8 @@ import WebKit
 
 class PrivacyViewController: UIViewController {
     
-    @IBOutlet weak var privacyWebView: UIView!
+
+    @IBOutlet weak var privacyWebView: UIWebView!
     
     @IBAction func agreeButton(_ sender: Any) {
         let userDefault = UserDefaults.standard
@@ -36,14 +37,9 @@ class PrivacyViewController: UIViewController {
     }
     
     func showBrowser() {
-        
-        // サイズを指定してブラウザ作成
-        let webView = WKWebView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height, width: self.view.frame.width, height: privacyWebView.frame.height - UIApplication.shared.statusBarFrame.height))
-        
         // ローカルのHTMLを読み込む
         if let htmlData = Bundle.main.path(forResource: "index", ofType: "html") {
-            webView.load(URLRequest(url: URL(fileURLWithPath: htmlData)))
-            privacyWebView.addSubview(webView)
+            privacyWebView.loadRequest(URLRequest(url: URL(fileURLWithPath: htmlData)))
         } else {
             print("file not found")
         }

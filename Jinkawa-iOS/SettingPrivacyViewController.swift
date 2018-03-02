@@ -9,10 +9,11 @@
 import UIKit
 import WebKit
 
-class SettingPrivacyViewController: UIViewController {
+class SettingPrivacyViewController: UIViewController{
     
     
-    @IBOutlet weak var settingPrivacyWebView: UIView!
+    @IBOutlet weak var settingPrivacyWebView: UIWebView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +28,9 @@ class SettingPrivacyViewController: UIViewController {
     }
     
     func showBrowser() {
-        
-        // サイズを指定してブラウザ作成
-        let webView = WKWebView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height, width: self.view.frame.width, height: settingPrivacyWebView.frame.height - UIApplication.shared.statusBarFrame.height))
-        
         // ローカルのHTMLを読み込む
         if let htmlData = Bundle.main.path(forResource: "index", ofType: "html") {
-            webView.load(URLRequest(url: URL(fileURLWithPath: htmlData)))
-            settingPrivacyWebView.addSubview(webView)
+            settingPrivacyWebView.loadRequest(URLRequest(url: URL(fileURLWithPath: htmlData)))
         } else {
             print("file not found")
         }
