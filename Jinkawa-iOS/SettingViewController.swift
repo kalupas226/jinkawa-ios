@@ -67,6 +67,12 @@ class SettingViewController: FormViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
             }
+            +++ Section()
+            <<< LabelRow() {
+                $0.title = "プライバシーポリシーの確認"
+                }.onCellSelection{ cell, row in
+                    self.performSegue(withIdentifier: "toPrivacy", sender: nil)
+            }
             +++ Section("お問い合わせ")
             <<< LabelRow() {
                 $0.title = "陣川あさひ町会"
