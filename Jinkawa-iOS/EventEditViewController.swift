@@ -528,7 +528,7 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                     (action: UIAlertAction!) -> Void in
                     print("OK")
                     //一覧画面に遷移する
-                    self.navigationController?.popToViewController(self.navigationController!.viewControllers[2], animated: true)
+                    self.navigationController?.popToViewController(self.navigationController!.viewControllers[self.navigationController!.viewControllers.count - 2], animated: true)
                 })
                 
                 alertAfter.addAction(defaultAction)
