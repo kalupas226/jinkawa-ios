@@ -527,8 +527,8 @@ class EventEditViewController: FormViewController, UIImagePickerControllerDelega
                     // ボタンが押された時の処理を書く（クロージャ実装）
                     (action: UIAlertAction!) -> Void in
                     print("OK")
-                    //前の画面に遷移する
-                    self.navigationController?.popToRootViewController(animated: true)
+                    //一覧画面に遷移する
+                    self.navigationController?.popToViewController(self.navigationController!.viewControllers[2], animated: true)
                 })
                 
                 alertAfter.addAction(defaultAction)
