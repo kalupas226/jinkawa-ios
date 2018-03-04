@@ -120,6 +120,7 @@ class SettingViewController: FormViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         tabBarController?.title = "設定"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.navigationItem.rightBarButtonItem = nil
         
         LabelRow.defaultCellUpdate = { cell, row in

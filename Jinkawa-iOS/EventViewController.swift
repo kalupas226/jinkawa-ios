@@ -44,6 +44,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.title = "イベント"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         if(UserManager.sharedInstance.getState() != .common){
             tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                                   target: self,

@@ -40,6 +40,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.title = "お知らせ"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         if(UserManager.sharedInstance.getState() != .common){
             tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                 target: self,
