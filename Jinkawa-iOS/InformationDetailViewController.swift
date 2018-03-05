@@ -51,29 +51,17 @@ class InformationDetailViewController: UIViewController, UITableViewDelegate, UI
         departmentLabel.sizeToFit()
         departmentLabel.textAlignment = .center
         
-        // タイムゾーンを言語設定にあわせる
+        // 日付のフォーマット設定
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ja_JP")
-        
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        // 上記の形式の日付文字列から日付データを取得します。
+        // 日付文字列をDate型に変更
         let d:Date = formatter.date(from: information.updateDate)!
-        print(d)
         
-        let dateFrt = DateFormatter()
-        dateFrt.setTemplate(.yer)
-        let updateYear = dateFrt.string(from: d)
-        dateFrt.setTemplate(.mon)
-        let updateMonth = dateFrt.string(from: d)
-        dateFrt.setTemplate(.day)
-        let updateDay = dateFrt.string(from: d)
-        dateFrt.setTemplate(.time)
-        let updateTime = dateFrt.string(from: d)
+        //フォーマット変更
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         
-        print(updateYear + "/" + updateMonth + "/" + updateDay + " " + updateTime)
-        
-        let updateDate = updateYear + updateMonth + updateDay + updateTime
+        let updateDate = formatter.string(from: d)
         
         updateDateLabel.text = "最終更新日 \(updateDate)"
         updateDateLabel.textColor = UIColor.white

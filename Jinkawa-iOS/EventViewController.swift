@@ -26,7 +26,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //インジケーターの下に表示する文字列を設定する。
         refresh.attributedTitle = NSAttributedString(string: "読込中")
         //インジケーターの色を設定する。
-        refresh.tintColor = UIColor.blue
+        refresh.tintColor = UIColor.white
         //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
         refresh.addTarget(self, action: #selector(EventViewController.refreshTable), for: UIControlEvents.valueChanged)
         //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
@@ -44,6 +44,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.title = "イベント"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         if(UserManager.sharedInstance.getState() != .common){
             tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                                   target: self,

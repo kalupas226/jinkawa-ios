@@ -255,8 +255,8 @@ class InformationEditViewController: FormViewController {
                                                     print("OK")
                                                 }
                                             }
-                                            //2つ前の画面に遷移する
-                                            self.navigationController?.popToRootViewController(animated: true)
+                                            //一覧画面に遷移する
+                                            self.navigationController?.popToViewController(self.navigationController!.viewControllers[self.navigationController!.viewControllers.count - 3], animated: true)
                                         })
                                         
                                         alertAfter.addAction(defaultAction)

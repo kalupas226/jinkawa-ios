@@ -22,7 +22,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         //インジケーターの下に表示する文字列を設定する。
         refresh.attributedTitle = NSAttributedString(string: "読込中")
         //インジケーターの色を設定する。
-        refresh.tintColor = UIColor.blue
+        refresh.tintColor = UIColor.white
         //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
         refresh.addTarget(self, action: #selector(InformationViewController.refreshTable), for: UIControlEvents.valueChanged)
         //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
@@ -40,6 +40,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.title = "お知らせ"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         if(UserManager.sharedInstance.getState() != .common){
             tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                                 target: self,
@@ -96,24 +97,17 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         cell.publisher.layer.cornerRadius = 3
         cell.publisher.clipsToBounds = true
         
-        // タイムゾーンを言語設定にあわせる
+        // 日付のフォーマット設定
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ja_JP")
-        
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        // 上記の形式の日付文字列から日付データを取得します。
+        // 日付文字列をDate型に変更
         let d:Date = formatter.date(from: information.updateDate)!
         
-        let dateFrt = DateFormatter()
-        dateFrt.setTemplate(.yer)
-        let updateYear = dateFrt.string(from: d)
-        dateFrt.setTemplate(.mon)
-        let updateMonth = dateFrt.string(from: d)
-        dateFrt.setTemplate(.day)
-        let updateDay = dateFrt.string(from: d)
+        //フォーマット変更
+        formatter.dateFormat = "yyyy/MM/dd"
         
-        let updateDate = updateYear + updateMonth + updateDay
+        let updateDate = formatter.string(from: d)
         
         cell.updateDate.text = "最終更新日 \(updateDate)"
         
