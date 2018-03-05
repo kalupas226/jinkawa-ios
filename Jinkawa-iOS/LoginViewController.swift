@@ -111,11 +111,9 @@ class LoginViewController: UIViewController {
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             if(loginMessage != "IDまたはパスワードが\n間違っています"){
-//                let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "eventListView")
-//                self.present(nextVC!, animated: true, completion: nil)
                 self.performSegue(withIdentifier: "fromLoginToTabView", sender: nil)
             }else{
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         })
         alert.addAction(defaultAction)
