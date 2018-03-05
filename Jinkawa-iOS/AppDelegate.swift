@@ -125,32 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // デバイストークンの要求
-        if #available(iOS 10.0, *){
-            /** iOS10以上 **/
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
-                if error != nil {
-                    // エラー時の処理
-                    print("error")
-                    return
-                }
-                if granted {
-                    // デバイストークンの要求
-                    DispatchQueue.main.async(execute: {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    })
-                }
-            }
-        } else {
-            /** iOS8以上iOS10未満 **/
-            //通知のタイプを設定したsettingを用意
-            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            //通知のタイプを設定
-            application.registerUserNotificationSettings(setting)
-            //DevoceTokenを要求
-            UIApplication.shared.registerForRemoteNotifications()
-        }
         //バッジの数を０にする.
         UIApplication.shared.applicationIconBadgeNumber = 0
         let currentInstallation = NCMBInstallation.current()

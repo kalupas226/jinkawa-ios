@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
                         }
                         LoginViewController.userId = self.accountsList[0].id
                         LoginViewController.userAuth = self.accountsList[0].auth
-
+                        
                         print("アカウントリストが更新されました")
                     }
                     if self.accountsList[0].role == "admin" {
