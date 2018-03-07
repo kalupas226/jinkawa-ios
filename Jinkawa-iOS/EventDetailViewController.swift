@@ -35,7 +35,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         detailTable.delegate = self
         detailTable.dataSource = self
         
-        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/81CA63sCDMxLez1p/publicFiles/" + event.id + ".png"
+        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         let url = URL(string: imageURL)!
         self.eventDetailImage.af_setImage(
             withURL: url,
@@ -308,7 +308,7 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func photoUp(_ sender: Any) {
         // 1. create SKPhoto Array from UIImage
-        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/81CA63sCDMxLez1p/publicFiles/" + event.id + ".png"
+        let imageURL:String = "https://mb.api.cloud.nifty.com/2013-09-01/applications/zUockxBwPHqxceBH/publicFiles/" + event.id + ".png"
         // 1. create URL Array
         var images = [SKPhoto]()
         let photo = SKPhoto.photoWithImageURL(imageURL)
