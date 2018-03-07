@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
                         }
                         LoginViewController.userId = self.accountsList[0].id
                         LoginViewController.userAuth = self.accountsList[0].auth
-
+                        
                         print("アカウントリストが更新されました")
                     }
                     if self.accountsList[0].role == "admin" {
@@ -111,11 +111,9 @@ class LoginViewController: UIViewController {
             // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             if(loginMessage != "IDまたはパスワードが\n間違っています"){
-//                let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "eventListView")
-//                self.present(nextVC!, animated: true, completion: nil)
                 self.performSegue(withIdentifier: "fromLoginToTabView", sender: nil)
             }else{
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         })
         alert.addAction(defaultAction)

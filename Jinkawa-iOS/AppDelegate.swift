@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        NCMB.setApplicationKey("ead8a7d8462aa955188f2ea4f135809f28f90a7b63f2926fe778da8d16feef69", clientKey: "00aa30c7f0459ea78213abc730307767fd68ce9587aeaec9bca388f9ac884a5b")
+        NCMB.setApplicationKey("fe37c2186e22a438c980af699d831ac26d2ce6e05909c89e0677309528274a4d", clientKey: "9fd56b4ec717815b4d72081d9ae9e58192bdec9be30a416319d0069a6c33fd9f")
         
         // デバイストークンの要求
         if #available(iOS 10.0, *){
@@ -47,24 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //DevoceTokenを要求
             UIApplication.shared.registerForRemoteNotifications()
         }
-        /*-------プッシュ通知の基本型-------
-         let push = NCMBPush()
-         let data_iOS = ["contentAvailable" : false, "badgeIncrementFlag" : true, "sound" : "default"] as [String : Any]
-         push.setData(data_iOS)
-         push.setPushToIOS(true)
-         push.setTitle("-----Title-----")
-         push.setMessage("-----Message-----")
-         push.setImmediateDeliveryFlag(true) // 即時配信
-         push.sendInBackground { (error) in
-         if error != nil {
-         // プッシュ通知登録に失敗した場合の処理
-         print("NG:\(String(describing: error))")
-         } else {
-         // プッシュ通知登録に成功した場合の処理
-         print("OK")
-         }
-         }
-         --------------------------*/
         return true
         
     }
@@ -125,32 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // デバイストークンの要求
-        if #available(iOS 10.0, *){
-            /** iOS10以上 **/
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
-                if error != nil {
-                    // エラー時の処理
-                    print("error")
-                    return
-                }
-                if granted {
-                    // デバイストークンの要求
-                    DispatchQueue.main.async(execute: {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    })
-                }
-            }
-        } else {
-            /** iOS8以上iOS10未満 **/
-            //通知のタイプを設定したsettingを用意
-            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            //通知のタイプを設定
-            application.registerUserNotificationSettings(setting)
-            //DevoceTokenを要求
-            UIApplication.shared.registerForRemoteNotifications()
-        }
         //バッジの数を０にする.
         UIApplication.shared.applicationIconBadgeNumber = 0
         let currentInstallation = NCMBInstallation.current()
