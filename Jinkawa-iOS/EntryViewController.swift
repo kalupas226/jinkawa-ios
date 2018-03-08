@@ -6,6 +6,8 @@
 //  Copyright © 2017年 Taro Sato. All rights reserved.
 //
 
+// 必須入力に関わる部分はコメントアウトしています
+
 import UIKit
 import Eureka
 
@@ -68,87 +70,87 @@ class EntryViewController: FormViewController {
             }
             <<< IntRow("AgeRowTag") {
                 $0.title = "年齢"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnChange
+//                $0.add(rule: RuleRequired())
+//                $0.validationOptions = .validatesOnChange
                 if UserDefaults.standard.object(forKey: "userInformation") != nil {
                     $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["AgeRowTag"] as? Int
                 }
-                }
-                .onRowValidationChanged { cell, row in
-                    let rowIndex = row.indexPath!.row
-                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                        row.section?.remove(at: rowIndex + 1)
-                    }
-                    if !row.isValid {
-                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
-                            let labelRow = LabelRow() {
-                                $0.title = "年齢を入力してください"
-                                $0.cell.height = { 30 }
-                            }
-                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                        }
-                    }
-                }
-                .cellUpdate{ cell, row in
-                    if !row.isValid {
-                        cell.titleLabel?.textColor = .red
-                    }
+//                }
+//                .onRowValidationChanged { cell, row in
+//                    let rowIndex = row.indexPath!.row
+//                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+//                        row.section?.remove(at: rowIndex + 1)
+//                    }
+//                    if !row.isValid {
+//                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+//                            let labelRow = LabelRow() {
+//                                $0.title = "年齢を入力してください"
+//                                $0.cell.height = { 30 }
+//                            }
+//                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+//                        }
+//                    }
+//                }
+//                .cellUpdate{ cell, row in
+//                    if !row.isValid {
+//                        cell.titleLabel?.textColor = .red
+//                    }
             }
             <<< PhoneRow("PhoneRowTag") {
                 $0.title = "電話番号"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnBlur
+//                $0.add(rule: RuleRequired())
+//                $0.validationOptions = .validatesOnBlur
                 if UserDefaults.standard.object(forKey: "userInformation") != nil {
                     $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["PhoneRowTag"] as? String
                 }
-                }
-                .cellUpdate{ cell, row in
-                    if !row.isValid {
-                        cell.titleLabel?.textColor = .red
-                    }
-                }
-                .onRowValidationChanged { cell, row in
-                    let rowIndex = row.indexPath!.row
-                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                        row.section?.remove(at: rowIndex + 1)
-                    }
-                    if !row.isValid {
-                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
-                            let labelRow = LabelRow() {
-                                $0.title = "電話番号を入力してください"
-                                $0.cell.height = { 30 }
-                            }
-                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                        }
-                    }
+//                }
+//                .cellUpdate{ cell, row in
+//                    if !row.isValid {
+//                        cell.titleLabel?.textColor = .red
+//                    }
+//                }
+//                .onRowValidationChanged { cell, row in
+//                    let rowIndex = row.indexPath!.row
+//                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+//                        row.section?.remove(at: rowIndex + 1)
+//                    }
+//                    if !row.isValid {
+//                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+//                            let labelRow = LabelRow() {
+//                                $0.title = "電話番号を入力してください"
+//                                $0.cell.height = { 30 }
+//                            }
+//                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+//                        }
+//                    }
             }
             <<< TextRow("AddressRowTag") {
                 $0.title = "住所"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnBlur
+//                $0.add(rule: RuleRequired())
+//                $0.validationOptions = .validatesOnBlur
                 if UserDefaults.standard.object(forKey: "userInformation") != nil {
                     $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["AddressRowTag"] as? String
                 }
-                }
-                .cellUpdate{ cell, row in
-                    if !row.isValid {
-                        cell.titleLabel?.textColor = .red
-                    }
-                }
-                .onRowValidationChanged { cell, row in
-                    let rowIndex = row.indexPath!.row
-                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                        row.section?.remove(at: rowIndex + 1)
-                    }
-                    if !row.isValid {
-                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
-                            let labelRow = LabelRow() {
-                                $0.title = "住所を入力してください"
-                                $0.cell.height = { 30 }
-                            }
-                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                        }
-                    }
+//                }
+//                .cellUpdate{ cell, row in
+//                    if !row.isValid {
+//                        cell.titleLabel?.textColor = .red
+//                    }
+//                }
+//                .onRowValidationChanged { cell, row in
+//                    let rowIndex = row.indexPath!.row
+//                    while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
+//                        row.section?.remove(at: rowIndex + 1)
+//                    }
+//                    if !row.isValid {
+//                        for (index, _) in row.validationErrors.map({ $0.msg }).enumerated() {
+//                            let labelRow = LabelRow() {
+//                                $0.title = "住所を入力してください"
+//                                $0.cell.height = { 30 }
+//                            }
+//                            row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
+//                        }
+//                    }
             }
             +++ Section()
                 <<< ButtonRow() {
@@ -159,7 +161,7 @@ class EntryViewController: FormViewController {
                             print("validate errors:", errors)
                             return
                         }
-                        
+                    
                         
                         // Get the value of all rows which have a Tag assigned
                         let values = self.form.values()
