@@ -60,20 +60,14 @@ class EntryViewController: FormViewController {
                         }
                     }
             }
-            <<< TextRow("GenderRowTag"){
-                $0.title = "性別"
+            <<< SegmentedRow<String>("GenderRowTag") {
+                $0.title = "性別　　　　　"
+                $0.options = [ "未選択","男", "女"]
+                $0.value = "未選択"    // initially selected
                 if UserDefaults.standard.object(forKey: "userInformation") != nil {
                     $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["GenderRowTag"] as? String
                 }
             }
-            //            <<< SegmentedRow<String>("GenderRowTag") {
-            //                $0.title = "性別　　　　　"
-            //                $0.options = ["男", "女"]
-            //                $0.value = "男"    // initially selected
-            //                if UserDefaults.standard.object(forKey: "userInformation") != nil {
-            //                    $0.value = UserDefaults.standard.dictionary(forKey: "userInformation")?["GenderRowTag"] as? String
-            //                }
-            //            }
             <<< IntRow("AgeRowTag") {
                 $0.title = "年齢"
                 //                $0.add(rule: RuleRequired())
@@ -173,27 +167,22 @@ class EntryViewController: FormViewController {
                     let values = self.form.values()
                     
                     let name:String = values["NameRowTag"] as! String
-                    var gender:String
+                    let gender:String = values["GenderRowTag"] as! String
                     var age:Int
                     var tell:String
                     var address:String
-                    if values["GenderRowTag"]! == nil{
-                        gender = "なし"
-                    }else{
-                        gender = values["GenderRowTag"] as! String
-                    }
                     if values["AgeRowTag"]! == nil{
                         age = 0
                     }else{
                         age = values["AgeRowTag"] as! Int
                     }
                     if values["PhoneRowTag"]! == nil{
-                        tell = "なし"
+                        tell = "未入力"
                     }else{
                         tell = values["PhoneRowTag"] as! String
                     }
                     if values["AddressRowTag"]! == nil{
-                        address = "なし"
+                        address = "未入力"
                     }else{
                         address = values["AddressRowTag"] as! String
                     }
@@ -202,13 +191,23 @@ class EntryViewController: FormViewController {
                     //                        let tell:String = values["PhoneRowTag"] as! String
                     //                        let address:String = values["AddressRowTag"] as! String
                     
+                    var message: String
                     
-                    let message: String =
-                        "名前:" + name + "\n" +
-                            "性別:" + gender + "\n\n" +
-                            "年齢:" + age.description + "\n" +
-                            "電話番号:" + tell + "\n" +
-                            "住所:" + address
+                    if(age != 0){
+                        message =
+                            "\n" + "氏名: " + name + "\n" +
+                            "性別: " + gender + "\n\n" +
+                            "年齢: " + age.description + "\n" +
+                            "電話番号: " + tell + "\n" +
+                            "住所: " + address
+                    }else{
+                        message =
+                            "\n" + "氏名: " + name + "\n" +
+                            "性別: " + gender + "\n\n" +
+                            "年齢: " + "未入力" + "\n" +
+                            "電話番号: " + tell + "\n" +
+                            "住所: " + address
+                    }
                     
                     
                     //アラート
@@ -222,7 +221,7 @@ class EntryViewController: FormViewController {
                         
                         //ユーザー情報の保存
                         if(values["GenderRowTag"]! != nil && values["AgeRowTag"]! != nil && values["PhoneRowTag"]! != nil && values["AddressRowTag"]! != nil){
-                        UserDefaults.standard.set(values, forKey: "userInformation")
+                            UserDefaults.standard.set(values, forKey: "userInformation")
                         }
                         
                         let confirmAlert = UIAlertController(title: "申し込みが確定されました", message: nil, preferredStyle: .alert)
