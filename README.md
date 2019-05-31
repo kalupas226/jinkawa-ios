@@ -1,2 +1,2 @@
-# jinkawa-ios
+# Jinkawa-iOS
 「じぷり」のiOS版のリポジトリです
